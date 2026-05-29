@@ -73,8 +73,16 @@
   .intro{
     background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--red);
     border-radius:var(--rad);padding:14px 16px;margin-bottom:14px;font-size:14px;color:var(--cream);
+    position:relative;
   }
   .intro b{color:var(--red);}
+  .intro .introclose{
+    position:absolute;top:8px;right:10px;background:transparent;border:none;
+    color:var(--mute);font-size:22px;font-weight:700;cursor:pointer;line-height:1;
+    padding:2px 8px;
+  }
+  .intro .introclose:hover{color:var(--red);}
+  .intro p.introbody{padding-right:24px;margin:0;}
   .locrow{
     display:flex;align-items:center;justify-content:space-between;
     background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);
@@ -203,6 +211,23 @@
     background:transparent;color:var(--gold);cursor:pointer;
     font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;
   }
+  /* ---- rest timer ---- */
+  .resttimer{
+    margin-top:7px;width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:14px;
+    background:var(--input);color:var(--cream);cursor:pointer;
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1px;
+  }
+  .resttimer .rtlabel{display:flex;align-items:center;gap:8px;}
+  .resttimer .rtdot{width:10px;height:10px;border-radius:50%;background:var(--gold);}
+  .resttimer .rttime{font-size:20px;color:var(--gold);font-variant-numeric:tabular-nums;}
+  .resttimer.running{border-color:var(--green);background:rgba(95,208,126,.12);}
+  .resttimer.running .rtdot{background:var(--green);animation:rtpulse 1s ease-in-out infinite;}
+  .resttimer.running .rttime{color:var(--green);}
+  .resttimer.done{border-color:var(--red);background:rgba(255,77,77,.16);}
+  .resttimer.done .rtdot{background:var(--red);}
+  .resttimer.done .rttime{color:var(--red);}
+  @keyframes rtpulse{0%,100%{opacity:1;}50%{opacity:.35;}}
   /* ---- done button ---- */
   .donebtn{
     width:100%;padding:14px;border:none;border-radius:18px;cursor:pointer;
@@ -262,7 +287,7 @@
 <body>
 
 <header>
-  <div class="kicker">Red Arbor LLC · 90-Day Plan</div>
+  <div class="kicker">90-Day Plan</div>
   <h1>BUILT TO <span>LAST</span></h1>
   <div class="sub">Cory Claussen · 3 days a week · Mon / Wed / Fri</div>
   <div class="goalwrap">
@@ -293,8 +318,9 @@
       <button data-loc="gym">Gym</button>
     </div>
   </div>
-  <div class="intro">
-    <b>How it works.</b> Use <b>Show</b> to pick one week, or leave it on <b>All Weeks</b>. Tap a day to open it. Each move has a <b>Log Sets</b> dropdown — record weight and reps for every set. The tip <b>averages all your sets</b> from last time to pick the next weight. On <b>Home</b>, weights past your 45 lb dumbbells get flagged.
+  <div class="intro" id="introBox">
+    <button class="introclose" id="introClose" aria-label="Close">&times;</button>
+    <p class="introbody"><b>How it works.</b> Use <b>Show</b> to pick one week, or leave it on <b>All Weeks</b>. Tap a day to open it. Each move has a <b>Log Sets</b> dropdown — record weight and reps for every set. Tap the <b>Rest Timer</b> after each set. The tip <b>averages all your sets</b> from last time to pick the next weight.</p>
   </div>
   <div class="jump">
     <label for="weekJump">Show</label>
@@ -383,46 +409,46 @@ const TPL = {
     name:'Push Day', type:'A',
     core:[
       {n:'Barbell Back Squat',s:'3 sets x 8-10 reps',sets:3,note:'Squat rack. Go slow down, drive up.',
-        repLo:8,repHi:10,startLo:95,startHi:115,step:10,unit:'lbs',homeMax:null},
+        repLo:8,repHi:10,startLo:95,startHi:115,step:10,unit:'lbs',homeMax:null,rest:180},
       {n:'Dumbbell Bench Press',s:'3 sets x 8-12 reps',sets:3,note:'Flat bench. Chest and triceps.',
-        repLo:8,repHi:12,startLo:30,startHi:40,step:5,unit:'each',homeMax:HOME_DB},
+        repLo:8,repHi:12,startLo:30,startHi:40,step:5,unit:'each',homeMax:HOME_DB,rest:120},
       {n:'Dumbbell Shoulder Press',s:'3 sets x 8-12 reps',sets:3,note:'Seated or standing. Builds shoulders.',
-        repLo:8,repHi:12,startLo:20,startHi:30,step:5,unit:'each',homeMax:HOME_DB},
+        repLo:8,repHi:12,startLo:20,startHi:30,step:5,unit:'each',homeMax:HOME_DB,rest:120},
       {n:'One-Arm Dumbbell Row',s:'3 sets x 10-12 each arm',sets:3,note:'Hand on bench. Pull to your hip.',
-        repLo:10,repHi:12,startLo:35,startHi:45,step:5,unit:'each',homeMax:HOME_DB},
+        repLo:10,repHi:12,startLo:35,startHi:45,step:5,unit:'each',homeMax:HOME_DB,rest:120},
       {n:'EZ-Bar Curl',s:'3 sets x 10-12 reps',sets:3,note:'Bicep bar. No swinging.',
-        repLo:10,repHi:12,startLo:30,startHi:45,step:5,unit:'lbs',homeMax:null}
+        repLo:10,repHi:12,startLo:30,startHi:45,step:5,unit:'lbs',homeMax:null,rest:90}
     ],
     bonus:[
       {n:'Romanian Deadlift',s:'2 sets x 10 reps',sets:2,note:'Barbell. Soft knees, hinge at hips.',
-        repLo:10,repHi:10,startLo:95,startHi:135,step:10,unit:'lbs',homeMax:null},
+        repLo:10,repHi:10,startLo:95,startHi:135,step:10,unit:'lbs',homeMax:null,rest:180},
       {n:'Dumbbell Lateral Raise',s:'2 sets x 12-15 reps',sets:2,note:'Light weight. Round shoulders.',
-        repLo:12,repHi:15,startLo:10,startHi:15,step:5,unit:'each',homeMax:HOME_DB},
+        repLo:12,repHi:15,startLo:10,startHi:15,step:5,unit:'each',homeMax:HOME_DB,rest:90},
       {n:'Overhead Triceps Extension',s:'2 sets x 12 reps',sets:2,note:'One dumbbell, both hands.',
-        repLo:12,repHi:12,startLo:20,startHi:30,step:5,unit:'lbs',homeMax:HOME_DB}
+        repLo:12,repHi:12,startLo:20,startHi:30,step:5,unit:'lbs',homeMax:HOME_DB,rest:90}
     ]
   },
   B:{
     name:'Pull Day', type:'B',
     core:[
       {n:'Goblet Squat',s:'3 sets x 10-12 reps',sets:3,note:'Hold a kettlebell at your chest.',
-        repLo:10,repHi:12,startLo:25,startHi:35,step:5,unit:'lbs',homeMax:35},
+        repLo:10,repHi:12,startLo:25,startHi:35,step:5,unit:'lbs',homeMax:35,rest:120},
       {n:'Lat Pulldown or Pull-Ups',s:'3 sets x 8-12 reps',sets:3,note:'Cable at gym. Pull-ups work at home.',
-        repLo:8,repHi:12,startLo:90,startHi:120,step:10,unit:'lbs',homeMax:0},
+        repLo:8,repHi:12,startLo:90,startHi:120,step:10,unit:'lbs',homeMax:0,rest:120},
       {n:'Incline Dumbbell Press',s:'3 sets x 8-12 reps',sets:3,note:'Bench at an angle. Upper chest.',
-        repLo:8,repHi:12,startLo:25,startHi:35,step:5,unit:'each',homeMax:HOME_DB},
+        repLo:8,repHi:12,startLo:25,startHi:35,step:5,unit:'each',homeMax:HOME_DB,rest:120},
       {n:'Cable Lateral Raise',s:'3 sets x 12-15 reps',sets:3,note:'Dumbbells work at home. Shoulders.',
-        repLo:12,repHi:15,startLo:10,startHi:20,step:5,unit:'lbs',homeMax:null},
+        repLo:12,repHi:15,startLo:10,startHi:20,step:5,unit:'lbs',homeMax:null,rest:90},
       {n:'Cable Curl',s:'3 sets x 10-12 reps',sets:3,note:'EZ-bar curl works at home.',
-        repLo:10,repHi:12,startLo:30,startHi:50,step:10,unit:'lbs',homeMax:null}
+        repLo:10,repHi:12,startLo:30,startHi:50,step:10,unit:'lbs',homeMax:null,rest:90}
     ],
     bonus:[
       {n:'Cable Triceps Pushdown',s:'2 sets x 12-15 reps',sets:2,note:'Cable at gym. Use a dumbbell at home.',
-        repLo:12,repHi:15,startLo:30,startHi:50,step:10,unit:'lbs',homeMax:0},
+        repLo:12,repHi:15,startLo:30,startHi:50,step:10,unit:'lbs',homeMax:0,rest:90},
       {n:'Walking Lunges',s:'2 sets x 10 each leg',sets:2,note:'Dumbbells in hands, or just bodyweight.',
-        repLo:10,repHi:10,startLo:0,startHi:25,step:5,unit:'each',homeMax:HOME_DB},
+        repLo:10,repHi:10,startLo:0,startHi:25,step:5,unit:'each',homeMax:HOME_DB,rest:90},
       {n:'Face Pulls',s:'2 sets x 15 reps',sets:2,note:'Cable at gym. Use a band at home.',
-        repLo:15,repHi:15,startLo:25,startHi:40,step:10,unit:'lbs',homeMax:0}
+        repLo:15,repHi:15,startLo:25,startHi:40,step:10,unit:'lbs',homeMax:0,rest:90}
     ]
   }
 };
@@ -455,6 +481,7 @@ function loadData(){
   if(!DATA.currentWeek)DATA.currentWeek=1;
   if(DATA.showWeek===undefined)DATA.showWeek=0;
   if(!DATA.loc)DATA.loc='home';
+  if(DATA.introHidden===undefined)DATA.introHidden=false;
   migrateLogs();
 }
 function migrateLogs(){
@@ -494,6 +521,10 @@ function exLog(dayId,exName){
   if(!DATA.logs[dayId].ex[exName])DATA.logs[dayId].ex[exName]={sets:[]};
   if(!Array.isArray(DATA.logs[dayId].ex[exName].sets))DATA.logs[dayId].ex[exName].sets=[];
   return DATA.logs[dayId].ex[exName];
+}
+function formatTime(secs){
+  const m=Math.floor(secs/60), s=secs%60;
+  return m+':'+(s<10?'0':'')+s;
 }
 /* gather all completed sets of an exercise from the most recent day it was logged before dIdx */
 function getLastDaySets(exName,beforeIdx){
@@ -669,6 +700,13 @@ function exHTML(ex,dayId,dIdx){
         </span>
       </div>`;
   h+=setsBoxHTML(ex,dayId);
+  if(ex.rest){
+    const restTxt = formatTime(ex.rest);
+    h+=`<button class="resttimer" data-rest="${dayId}|${ex.n}|${ex.rest}">
+          <span class="rtlabel"><span class="rtdot"></span>Rest Timer</span>
+          <span class="rttime">${restTxt}</span>
+        </button>`;
+  }
   h+=`</div>`;
   return h;
 }
@@ -823,7 +861,11 @@ function drawChart(entries){
   box.innerHTML=svg;
 }
 
-function renderAll(){renderPlan();renderWeigh();renderGoal();setPill(canSave);}
+function renderAll(){
+  renderPlan();renderWeigh();renderGoal();setPill(canSave);
+  const intro=document.getElementById('introBox');
+  if(intro)intro.style.display = DATA.introHidden ? 'none' : '';
+}
 
 /* ---------- backup ---------- */
 function exportBackup(){
@@ -856,6 +898,7 @@ function importBackup(file){
       if(!DATA.currentWeek)DATA.currentWeek=1;
       if(DATA.showWeek===undefined)DATA.showWeek=0;
       if(!DATA.loc)DATA.loc='home';
+      if(DATA.introHidden===undefined)DATA.introHidden=false;
       migrateLogs();
       saveData();
       renderAll();
@@ -871,6 +914,75 @@ function showBkMsg(msg,ok){
   const el=document.getElementById('bkmsg');
   el.textContent=msg;
   el.style.color = ok ? 'var(--green)' : 'var(--red)';
+}
+
+/* ---------- rest timer ---------- */
+let TIMER = { btn:null, secs:0, remain:0, intv:null };
+function beep(){
+  try{
+    const ctx=new (window.AudioContext||window.webkitAudioContext)();
+    function tone(freq,start,dur){
+      const o=ctx.createOscillator(), g=ctx.createGain();
+      o.connect(g);g.connect(ctx.destination);
+      o.type='sine';o.frequency.value=freq;
+      const t=ctx.currentTime+start;
+      g.gain.setValueAtTime(0,t);
+      g.gain.linearRampToValueAtTime(0.35,t+0.02);
+      g.gain.linearRampToValueAtTime(0,t+dur);
+      o.start(t);o.stop(t+dur+0.05);
+    }
+    tone(880,0,0.18);tone(880,0.22,0.18);tone(1175,0.44,0.32);
+    if(navigator.vibrate)navigator.vibrate([200,100,200,100,400]);
+  }catch(e){
+    if(navigator.vibrate)navigator.vibrate([200,100,200,100,400]);
+  }
+}
+function paintTimer(){
+  if(!TIMER.btn)return;
+  const tEl=TIMER.btn.querySelector('.rttime');
+  if(tEl)tEl.textContent=formatTime(TIMER.remain);
+}
+function stopTimer(){
+  if(TIMER.intv){clearInterval(TIMER.intv);TIMER.intv=null;}
+  if(TIMER.btn){
+    TIMER.btn.classList.remove('running','done');
+    const tEl=TIMER.btn.querySelector('.rttime');
+    if(tEl)tEl.textContent=formatTime(TIMER.secs);
+  }
+  TIMER.btn=null;TIMER.secs=0;TIMER.remain=0;
+}
+function startTimer(btn,secs){
+  // if another timer is running, stop it first
+  if(TIMER.btn && TIMER.btn!==btn) stopTimer();
+  TIMER.btn=btn; TIMER.secs=secs; TIMER.remain=secs;
+  btn.classList.remove('done');
+  btn.classList.add('running');
+  paintTimer();
+  TIMER.intv=setInterval(()=>{
+    TIMER.remain--;
+    if(TIMER.remain<=0){
+      clearInterval(TIMER.intv);TIMER.intv=null;
+      TIMER.remain=0;
+      if(TIMER.btn){
+        TIMER.btn.classList.remove('running');
+        TIMER.btn.classList.add('done');
+        const tEl=TIMER.btn.querySelector('.rttime');
+        if(tEl)tEl.textContent='Done!';
+      }
+      beep();
+    }else{
+      paintTimer();
+    }
+  },1000);
+}
+function handleRestClick(btn){
+  if(btn.classList.contains('running') || btn.classList.contains('done')){
+    // tapping again resets
+    if(TIMER.btn===btn){stopTimer();return;}
+  }
+  const parts=btn.dataset.rest.split('|');
+  const secs=parseInt(parts[2]);
+  startTimer(btn,secs);
 }
 
 /* ---------- events ---------- */
@@ -891,12 +1003,24 @@ function bindEvents(){
     saveData();
     renderPlan();
   });
+  const introCloseBtn=document.getElementById('introClose');
+  if(introCloseBtn){
+    introCloseBtn.addEventListener('click',()=>{
+      DATA.introHidden=true;
+      saveData();
+      const intro=document.getElementById('introBox');
+      if(intro)intro.style.display='none';
+    });
+  }
 
   const weeksEl=document.getElementById('weeks');
 
   weeksEl.addEventListener('click',e=>{
     const whead=e.target.closest('.weekhead');
     if(whead){whead.parentElement.classList.toggle('open');return;}
+    // rest timer button
+    const rest=e.target.closest('.resttimer');
+    if(rest){handleRestClick(rest);return;}
     const dhead=e.target.closest('.dayhead');
     if(dhead){
       const id=dhead.dataset.daytoggle;
@@ -941,6 +1065,7 @@ function bindEvents(){
       e2.sets.push({weight:'',reps:''});
       e2._open=true;
       saveData();
+      stopTimer();
       renderPlan();
       return;
     }
@@ -954,6 +1079,7 @@ function bindEvents(){
         e2.sets.splice(idx,1);
         e2._open=true;
         saveData();
+        stopTimer();
         renderPlan();
       }
       return;
@@ -978,6 +1104,8 @@ function bindEvents(){
   });
   weeksEl.addEventListener('focusout',e=>{
     if(e.target&&e.target.dataset&&e.target.dataset.set!==undefined){
+      // don't re-render mid-set if a rest timer is running (would kill the timer)
+      if(TIMER.intv)return;
       renderPlan();
     }
   });
