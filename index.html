@@ -83,13 +83,6 @@
   }
   .intro .introclose:hover{color:var(--red);}
   .intro p.introbody{padding-right:24px;margin:0;}
-  .locrow{
-    display:flex;align-items:center;justify-content:space-between;
-    background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);
-    padding:12px 15px;margin-bottom:14px;
-  }
-  .locrow .loclabel{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:1px;}
-  .locrow .locsub{font-size:11px;color:var(--mute);font-weight:600;margin-top:1px;}
   .seg{display:flex;background:var(--input);border:1px solid var(--line);border-radius:18px;overflow:hidden;}
   .seg button{
     border:none;background:transparent;color:var(--mute);cursor:pointer;
@@ -142,16 +135,46 @@
   .daybody{display:none;}
   .day.open .daybody{display:block;}
   .dloc{font-size:11px;color:var(--mute);font-weight:600;padding:8px 14px 0;}
+  /* per-day home/gym toggle (only shows when day is open) */
+  .daytoggle{
+    display:flex;align-items:center;gap:8px;padding:10px 14px 4px;
+  }
+  .daytoggle .seg{
+    display:inline-flex;background:var(--input);border:1px solid var(--line);
+    border-radius:12px;padding:3px;
+  }
+  .daytoggle .seg button{
+    border:none;background:transparent;color:var(--cream);
+    font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:1px;
+    padding:5px 12px;border-radius:9px;cursor:pointer;
+  }
+  .daytoggle .seg button.on{background:var(--red);color:#fff;}
+  .daytoggle .dlocsub{font-size:10px;color:var(--mute);font-weight:600;}
   .grouplabel{
     font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1.5px;
     color:var(--gold);padding:9px 14px 4px;
   }
   .grouplabel.bonus{color:var(--gold);}
   /* ---- exercise ---- */
-  .ex{padding:9px 14px;border-bottom:1px solid rgba(74,68,60,.6);}
-  .exname{font-size:14px;font-weight:700;display:flex;justify-content:space-between;color:var(--red);}
-  .exsets{font-size:12px;color:var(--mute);font-weight:600;}
+  .ex{padding:11px 14px;border-bottom:1px solid rgba(74,68,60,.6);}
+  .exname{
+    font-size:17px;font-weight:700;color:var(--red);
+    display:flex;align-items:baseline;gap:6px;line-height:1.2;
+  }
+  .exname .exnum{color:var(--gold);min-width:22px;}
+  .exname .extitle{flex:1;}
+  .exsets{font-size:12px;color:var(--mute);font-weight:600;margin-top:2px;}
   .exnote{font-size:11px;color:var(--mute);margin-top:2px;font-weight:500;}
+  /* exercise picker (swap to substitute) */
+  .expicker{
+    display:flex;align-items:center;gap:6px;margin-top:5px;
+    font-size:11px;color:var(--mute);
+  }
+  .expicker select{
+    flex:1;background:var(--input);color:var(--cream);
+    border:1px solid var(--line);border-radius:10px;
+    padding:5px 8px;font-size:12px;font-weight:600;
+  }
   .exhint{
     font-size:12px;font-weight:700;margin-top:6px;padding:6px 9px;border-radius:12px;
     background:var(--input);border-left:4px solid var(--mute);
@@ -215,9 +238,10 @@
   .resttimer{
     margin-top:7px;width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:14px;
     background:var(--input);color:var(--cream);cursor:pointer;
-    display:flex;justify-content:space-between;align-items:center;
+    display:none;justify-content:space-between;align-items:center;
     font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:1px;
   }
+  .ex.setsopen .resttimer{display:flex;}
   .resttimer .rtlabel{display:flex;align-items:center;gap:8px;}
   .resttimer .rtdot{width:10px;height:10px;border-radius:50%;background:var(--gold);}
   .resttimer .rttime{font-size:20px;color:var(--gold);font-variant-numeric:tabular-nums;}
@@ -253,6 +277,7 @@
     padding:12px 19px;cursor:pointer;
   }
   .chart{margin-top:8px;}
+  .hint{margin-top:8px;font-size:12px;color:var(--mute);}
   .wlist{margin-top:6px;}
   .wlitem{
     display:flex;justify-content:space-between;padding:10px 2px;
@@ -308,19 +333,9 @@
 </nav>
 
 <div class="page on" id="plan">
-  <div class="locrow">
-    <div>
-      <div class="loclabel">Today I'm Training</div>
-      <div class="locsub" id="locSub">Home gym — dumbbells max 45 lbs</div>
-    </div>
-    <div class="seg" id="locSeg">
-      <button data-loc="home" class="on">Home</button>
-      <button data-loc="gym">Gym</button>
-    </div>
-  </div>
   <div class="intro" id="introBox">
     <button class="introclose" id="introClose" aria-label="Close">&times;</button>
-    <p class="introbody"><b>How it works.</b> Use <b>Show</b> to pick one week, or leave it on <b>All Weeks</b>. Tap a day to open it. Each move has a <b>Log Sets</b> dropdown — record weight and reps for every set. Tap the <b>Rest Timer</b> after each set. The tip <b>averages all your sets</b> from last time to pick the next weight.</p>
+    <p class="introbody"><b>How it works.</b> Use <b>Show</b> to pick one week, or leave it on <b>All Weeks</b>. Tap a day to open it, then pick <b>Home</b> or <b>Gym</b> for that day. Each lift has a dropdown — swap to a substitute if your equipment is busy. Tap <b>Log Sets</b> to record weight and reps, then tap the <b>Rest Timer</b>.</p>
   </div>
   <div class="jump">
     <label for="weekJump">Show</label>
@@ -331,18 +346,15 @@
 
 <div class="page" id="weigh">
   <div class="wbox">
-    <h2>Log a Weigh-In</h2>
+    <h2>Log Today's Weigh-In</h2>
     <div class="winrow">
-      <div class="field">
-        <label>WEEK</label>
-        <select id="wiWeek"></select>
-      </div>
       <div class="field">
         <label>WEIGHT (LBS)</label>
         <input type="number" id="wiVal" inputmode="decimal" placeholder="—">
       </div>
       <button class="savew" id="wiSave">Save</button>
     </div>
+    <div class="hint" id="wiHint">Logs to today's date. Re-saving the same day overwrites it.</div>
   </div>
   <div class="wbox">
     <h2>Your Progress</h2>
@@ -404,51 +416,121 @@
 
 <script>
 const HOME_DB=45;
+/*  Each exercise has a default option (the first entry in opts) plus
+    ranked substitutes. Each option:
+     - n: name
+     - loc: 'home' | 'gym' | 'both'
+     - unit: 'lbs' (barbell/total/stack) or 'each' (one DB)
+     - startLo / startHi: generic starting range if you've never logged anything
+     - step: how much to add when you progress
+     - ratio: rough multiplier from THIS option's weight back to the DEFAULT's weight.
+       Used to convert a default-weight history into a sane first guess on the sub
+       (and vice-versa). The default option always has ratio=1.
+    repLo/repHi/sets/s/note/rest live on the parent block since the rep scheme
+    travels with the exercise, not the implement. */
 const TPL = {
   A:{
     name:'Push Day', type:'A',
     core:[
-      {n:'Barbell Back Squat',s:'3 sets x 8-10 reps',sets:3,note:'Squat rack. Go slow down, drive up.',
-        repLo:8,repHi:10,startLo:95,startHi:115,step:10,unit:'lbs',homeMax:null,rest:180},
-      {n:'Dumbbell Bench Press',s:'3 sets x 8-12 reps',sets:3,note:'Flat bench. Chest and triceps.',
-        repLo:8,repHi:12,startLo:30,startHi:40,step:5,unit:'each',homeMax:HOME_DB,rest:120},
-      {n:'Dumbbell Shoulder Press',s:'3 sets x 8-12 reps',sets:3,note:'Seated or standing. Builds shoulders.',
-        repLo:8,repHi:12,startLo:20,startHi:30,step:5,unit:'each',homeMax:HOME_DB,rest:120},
-      {n:'One-Arm Dumbbell Row',s:'3 sets x 10-12 each arm',sets:3,note:'Hand on bench. Pull to your hip.',
-        repLo:10,repHi:12,startLo:35,startHi:45,step:5,unit:'each',homeMax:HOME_DB,rest:120},
-      {n:'EZ-Bar Curl',s:'3 sets x 10-12 reps',sets:3,note:'Bicep bar. No swinging.',
-        repLo:10,repHi:12,startLo:30,startHi:45,step:5,unit:'lbs',homeMax:null,rest:90}
+      {sets:3, repLo:8, repHi:10, s:'3 sets x 8-10 reps', note:'Slow down, drive up.', rest:150,
+        opts:[
+          {n:'Barbell Back Squat',   loc:'both', unit:'lbs',  startLo:95, startHi:115, step:10, ratio:1.0},
+          {n:'Hack Squat Machine',   loc:'gym',  unit:'lbs',  startLo:90, startHi:140, step:10, ratio:1.15},
+          {n:'Leg Press',            loc:'gym',  unit:'lbs',  startLo:140,startHi:210, step:10, ratio:1.75}
+        ]},
+      {sets:3, repLo:8, repHi:12, s:'3 sets x 8-12 reps', note:'Chest and triceps.', rest:105,
+        opts:[
+          {n:'Dumbbell Bench Press', loc:'both', unit:'each', startLo:30, startHi:40,  step:5,  ratio:1.0},
+          {n:'Barbell Bench Press',  loc:'both', unit:'lbs',  startLo:75, startHi:95,  step:5,  ratio:2.35},
+          {n:'Chest Press Machine',  loc:'gym',  unit:'lbs',  startLo:70, startHi:95,  step:5,  ratio:2.20}
+        ]},
+      {sets:3, repLo:8, repHi:12, s:'3 sets x 8-12 reps', note:'Builds shoulders.', rest:105,
+        opts:[
+          {n:'Dumbbell Shoulder Press',loc:'both', unit:'each', startLo:20, startHi:30, step:5,  ratio:1.0},
+          {n:'Barbell Overhead Press', loc:'both', unit:'lbs',  startLo:45, startHi:65, step:5,  ratio:2.0},
+          {n:'Shoulder Press Machine', loc:'gym',  unit:'lbs',  startLo:50, startHi:75, step:5,  ratio:2.30}
+        ]},
+      {sets:3, repLo:10, repHi:12, s:'3 sets x 10-12 each arm', note:'Pull to your hip.', rest:105,
+        opts:[
+          {n:'One-Arm Dumbbell Row',  loc:'both', unit:'each', startLo:35, startHi:45, step:5,  ratio:1.0},
+          {n:'Chest-Supported DB Row',loc:'both', unit:'each', startLo:30, startHi:40, step:5,  ratio:0.95},
+          {n:'Seated Cable Row',      loc:'gym',  unit:'lbs',  startLo:70, startHi:90, step:10, ratio:2.0}
+        ]},
+      {sets:3, repLo:10, repHi:12, s:'3 sets x 10-12 reps', note:'No swinging.', rest:75,
+        opts:[
+          {n:'EZ-Bar Curl',     loc:'both', unit:'lbs',  startLo:30, startHi:45, step:5, ratio:1.0},
+          {n:'Dumbbell Curl',   loc:'both', unit:'each', startLo:15, startHi:25, step:5, ratio:0.47},
+          {n:'Cable Curl',      loc:'gym',  unit:'lbs',  startLo:25, startHi:45, step:5, ratio:0.90}
+        ]}
     ],
     bonus:[
-      {n:'Romanian Deadlift',s:'2 sets x 10 reps',sets:2,note:'Barbell. Soft knees, hinge at hips.',
-        repLo:10,repHi:10,startLo:95,startHi:135,step:10,unit:'lbs',homeMax:null,rest:180},
-      {n:'Dumbbell Lateral Raise',s:'2 sets x 12-15 reps',sets:2,note:'Light weight. Round shoulders.',
-        repLo:12,repHi:15,startLo:10,startHi:15,step:5,unit:'each',homeMax:HOME_DB,rest:90},
-      {n:'Overhead Triceps Extension',s:'2 sets x 12 reps',sets:2,note:'One dumbbell, both hands.',
-        repLo:12,repHi:12,startLo:20,startHi:30,step:5,unit:'lbs',homeMax:HOME_DB,rest:90}
+      {sets:2, repLo:10, repHi:10, s:'2 sets x 10 reps', note:'Soft knees, hinge at hips.', rest:150,
+        opts:[
+          {n:'Romanian Deadlift',   loc:'both', unit:'lbs',  startLo:95, startHi:135, step:10, ratio:1.0},
+          {n:'Dumbbell RDL',        loc:'both', unit:'each', startLo:30, startHi:45,  step:5,  ratio:0.50},
+          {n:'Seated Leg Curl',     loc:'gym',  unit:'lbs',  startLo:50, startHi:90,  step:10, ratio:0.65}
+        ]},
+      {sets:2, repLo:12, repHi:15, s:'2 sets x 12-15 reps', note:'Light weight. Round shoulders.', rest:75,
+        opts:[
+          {n:'Dumbbell Lateral Raise',loc:'both', unit:'each', startLo:10, startHi:15, step:5, ratio:1.0},
+          {n:'Cable Lateral Raise',   loc:'gym',  unit:'lbs',  startLo:10, startHi:20, step:5, ratio:0.90},
+          {n:'Lateral Raise Machine', loc:'gym',  unit:'lbs',  startLo:15, startHi:30, step:5, ratio:1.1}
+        ]}
     ]
   },
   B:{
     name:'Pull Day', type:'B',
     core:[
-      {n:'Goblet Squat',s:'3 sets x 10-12 reps',sets:3,note:'Hold a kettlebell at your chest.',
-        repLo:10,repHi:12,startLo:25,startHi:35,step:5,unit:'lbs',homeMax:35,rest:120},
-      {n:'Lat Pulldown or Pull-Ups',s:'3 sets x 8-12 reps',sets:3,note:'Cable at gym. Pull-ups work at home.',
-        repLo:8,repHi:12,startLo:90,startHi:120,step:10,unit:'lbs',homeMax:0,rest:120},
-      {n:'Incline Dumbbell Press',s:'3 sets x 8-12 reps',sets:3,note:'Bench at an angle. Upper chest.',
-        repLo:8,repHi:12,startLo:25,startHi:35,step:5,unit:'each',homeMax:HOME_DB,rest:120},
-      {n:'Cable Lateral Raise',s:'3 sets x 12-15 reps',sets:3,note:'Dumbbells work at home. Shoulders.',
-        repLo:12,repHi:15,startLo:10,startHi:20,step:5,unit:'lbs',homeMax:null,rest:90},
-      {n:'Cable Curl',s:'3 sets x 10-12 reps',sets:3,note:'EZ-bar curl works at home.',
-        repLo:10,repHi:12,startLo:30,startHi:50,step:10,unit:'lbs',homeMax:null,rest:90}
+      {sets:3, repLo:10, repHi:12, s:'3 sets x 10-12 reps', note:'Hold weight at your chest.', rest:105,
+        opts:[
+          {n:'Goblet Squat',         loc:'both', unit:'lbs',  startLo:25, startHi:35, step:5,  ratio:1.0},
+          {n:'Leg Press',            loc:'gym',  unit:'lbs',  startLo:120,startHi:170,step:10, ratio:4.50},
+          {n:'DB Bulgarian Split Squat',loc:'both', unit:'each', startLo:20, startHi:30, step:5, ratio:0.85}
+        ]},
+      {sets:3, repLo:8, repHi:12, s:'3 sets x 8-12 reps', note:'Pull a wide bar down to your chest.', rest:105,
+        opts:[
+          {n:'Lat Pulldown',         loc:'gym',  unit:'lbs',  startLo:90, startHi:120,step:10, ratio:1.0},
+          {n:'Pull-Ups (assisted)',  loc:'gym',  unit:'lbs',  startLo:60, startHi:100,step:10, ratio:0.90},
+          {n:'Seated Row Machine',   loc:'gym',  unit:'lbs',  startLo:80, startHi:110,step:10, ratio:0.95}
+        ]},
+      {sets:3, repLo:8, repHi:12, s:'3 sets x 8-12 reps', note:'Upper chest.', rest:105,
+        opts:[
+          {n:'Incline Dumbbell Press',loc:'both', unit:'each', startLo:25, startHi:35, step:5, ratio:1.0},
+          {n:'Incline Barbell Press', loc:'both', unit:'lbs',  startLo:65, startHi:85, step:5, ratio:2.35},
+          {n:'Incline Press Machine', loc:'gym',  unit:'lbs',  startLo:60, startHi:85, step:5, ratio:2.20}
+        ]},
+      {sets:3, repLo:12, repHi:15, s:'3 sets x 12-15 reps', note:'Shoulders.', rest:75,
+        opts:[
+          {n:'Cable Lateral Raise',   loc:'gym',  unit:'lbs',  startLo:10, startHi:20, step:5, ratio:1.0},
+          {n:'Dumbbell Lateral Raise',loc:'both', unit:'each', startLo:10, startHi:15, step:5, ratio:1.1},
+          {n:'Lateral Raise Machine', loc:'gym',  unit:'lbs',  startLo:15, startHi:30, step:5, ratio:1.20}
+        ]},
+      {sets:3, repLo:10, repHi:12, s:'3 sets x 10-12 reps', note:'Smooth pull, slow lower.', rest:75,
+        opts:[
+          {n:'Cable Curl',     loc:'gym',  unit:'lbs',  startLo:30, startHi:50, step:5, ratio:1.0},
+          {n:'EZ-Bar Curl',    loc:'both', unit:'lbs',  startLo:30, startHi:45, step:5, ratio:1.10},
+          {n:'Dumbbell Curl',  loc:'both', unit:'each', startLo:15, startHi:25, step:5, ratio:0.52}
+        ]}
     ],
     bonus:[
-      {n:'Cable Triceps Pushdown',s:'2 sets x 12-15 reps',sets:2,note:'Cable at gym. Use a dumbbell at home.',
-        repLo:12,repHi:15,startLo:30,startHi:50,step:10,unit:'lbs',homeMax:0,rest:90},
-      {n:'Walking Lunges',s:'2 sets x 10 each leg',sets:2,note:'Dumbbells in hands, or just bodyweight.',
-        repLo:10,repHi:10,startLo:0,startHi:25,step:5,unit:'each',homeMax:HOME_DB,rest:90},
-      {n:'Face Pulls',s:'2 sets x 15 reps',sets:2,note:'Cable at gym. Use a band at home.',
-        repLo:15,repHi:15,startLo:25,startHi:40,step:10,unit:'lbs',homeMax:0,rest:90}
+      {sets:2, repLo:12, repHi:15, s:'2 sets x 12-15 reps', note:'Slow on the lower.', rest:75,
+        opts:[
+          {n:'Cable Triceps Pushdown',loc:'gym',  unit:'lbs',  startLo:30, startHi:50, step:5, ratio:1.0},
+          {n:'EZ-Bar Skull Crusher',  loc:'both', unit:'lbs',  startLo:25, startHi:40, step:5, ratio:0.85},
+          {n:'Overhead Triceps Ext.', loc:'both', unit:'lbs',  startLo:20, startHi:30, step:5, ratio:0.65}
+        ]},
+      {sets:2, repLo:10, repHi:10, s:'2 sets x 10 each leg', note:'Step forward, slow and steady.', rest:75,
+        opts:[
+          {n:'Walking Lunges',        loc:'both', unit:'each', startLo:0,  startHi:25, step:5, ratio:1.0},
+          {n:'DB Bulgarian Split Squat',loc:'both', unit:'each', startLo:15, startHi:25, step:5, ratio:0.95},
+          {n:'DB Reverse Lunge',      loc:'both', unit:'each', startLo:15, startHi:25, step:5, ratio:1.0}
+        ]},
+      {sets:2, repLo:15, repHi:15, s:'2 sets x 15 reps', note:'Rear shoulders and upper back.', rest:75,
+        opts:[
+          {n:'Face Pulls',            loc:'gym',  unit:'lbs',  startLo:25, startHi:40, step:5, ratio:1.0},
+          {n:'Reverse Pec-Deck',      loc:'gym',  unit:'lbs',  startLo:30, startHi:50, step:5, ratio:1.15},
+          {n:'DB Rear-Delt Fly',      loc:'both', unit:'each', startLo:10, startHi:15, step:5, ratio:0.30}
+        ]}
     ]
   }
 };
@@ -480,7 +562,6 @@ function loadData(){
   if(!DATA.weighIns)DATA.weighIns={};
   if(!DATA.currentWeek)DATA.currentWeek=1;
   if(DATA.showWeek===undefined)DATA.showWeek=0;
-  if(!DATA.loc)DATA.loc='home';
   if(DATA.introHidden===undefined)DATA.introHidden=false;
   migrateLogs();
 }
@@ -498,6 +579,34 @@ function migrateLogs(){
       }
     }
   }
+  // weigh-ins: migrate from week-keyed (numeric keys like "0","1","13") to date-keyed (YYYY-MM-DD)
+  if(DATA.weighIns){
+    const fresh={};
+    for(const k in DATA.weighIns){
+      if(/^\d{4}-\d{2}-\d{2}$/.test(k)){
+        fresh[k]=DATA.weighIns[k];
+      }else if(/^\d+$/.test(k)){
+        // legacy weekly entry — give it a fake date so it shows on the chart but is clearly old
+        const wk=parseInt(k);
+        const d=new Date(); d.setDate(d.getDate()-(WEEKS-wk)*7);
+        fresh[isoDate(d)]=DATA.weighIns[k];
+      }
+    }
+    DATA.weighIns=fresh;
+  }
+}
+function isoDate(d){
+  const yr=d.getFullYear();
+  const mo=String(d.getMonth()+1).padStart(2,'0');
+  const da=String(d.getDate()).padStart(2,'0');
+  return yr+'-'+mo+'-'+da;
+}
+function todayISO(){return isoDate(new Date());}
+function prettyDate(iso){
+  const [y,m,d]=iso.split('-').map(n=>parseInt(n));
+  const dt=new Date(y,m-1,d);
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  return months[dt.getMonth()]+' '+dt.getDate();
 }
 function saveData(){
   try{
@@ -557,74 +666,96 @@ function setsLogged(dayId,exName){
   });
   return c;
 }
+/* ---- per-day location helpers ---- */
+function dayLoc(dayId){
+  const dl=DATA.logs[dayId];
+  return (dl && dl.loc) ? dl.loc : 'home';
+}
+function setDayLoc(dayId,loc){
+  if(!DATA.logs[dayId])DATA.logs[dayId]={ex:{}};
+  DATA.logs[dayId].loc=loc;
+}
+/* options available for a block at a given location */
+function optsForLoc(block, loc){
+  return block.opts.filter(o => o.loc==='both' || o.loc===loc);
+}
+/* the currently picked option name for this block on this day, defaulting to the
+   first option allowed by the current location */
+function pickedOptName(block, dayId, blockKey){
+  const dl=DATA.logs[dayId];
+  const picked = dl && dl.picked && dl.picked[blockKey];
+  const allowed = optsForLoc(block, dayLoc(dayId));
+  if(picked){
+    // make sure the saved pick is still allowed at the current location
+    if(allowed.some(o=>o.n===picked))return picked;
+  }
+  return allowed.length ? allowed[0].n : block.opts[0].n;
+}
+function pickedOpt(block, dayId, blockKey){
+  const name=pickedOptName(block, dayId, blockKey);
+  return block.opts.find(o=>o.n===name) || block.opts[0];
+}
+function setPickedOpt(dayId, blockKey, optName){
+  if(!DATA.logs[dayId])DATA.logs[dayId]={ex:{}};
+  if(!DATA.logs[dayId].picked)DATA.logs[dayId].picked={};
+  DATA.logs[dayId].picked[blockKey]=optName;
+}
+
 /* averaged suggested weight, or null for start-range moves */
-function suggestedWeight(ex,dIdx){
-  const sets=getLastDaySets(ex.n,dIdx);
+function suggestedWeight(opt, block, dIdx){
+  const sets=getLastDaySets(opt.n,dIdx);
   if(!sets)return null;
   const avgW=round5(avg(sets.map(s=>s.weight)));
   const avgR=avg(sets.map(s=>s.reps));
-  if(avgR>=ex.repHi)return avgW+ex.step;
+  if(avgR>=block.repHi)return avgW+opt.step;
   return avgW;
 }
-/* ---- smart starting weight from a related "anchor" lift ----
-   Each entry: target exercise -> the anchor lift to base off, and a
-   conservative multiplier (already derated to start light & safe).
-   Exercises NOT listed here always use the generic start range:
-   Barbell Back Squat, Dumbbell Bench Press, EZ-Bar Curl,
-   Cable Triceps Pushdown, Dumbbell Lateral Raise, Face Pulls. */
-const ANCHOR = {
-  'Incline Dumbbell Press':   {anchor:'Dumbbell Bench Press', mult:0.65},
-  'Dumbbell Shoulder Press':  {anchor:'Dumbbell Bench Press', mult:0.60},
-  'Goblet Squat':             {anchor:'Barbell Back Squat',   mult:0.20},
-  'Walking Lunges':           {anchor:'Barbell Back Squat',   mult:0.10},
-  'Romanian Deadlift':        {anchor:'Barbell Back Squat',   mult:0.70},
-  'Cable Curl':               {anchor:'EZ-Bar Curl',          mult:0.85},
-  'Overhead Triceps Extension':{anchor:'Cable Triceps Pushdown',mult:0.65},
-  'Cable Lateral Raise':      {anchor:'Dumbbell Lateral Raise',mult:1.00},
-  'One-Arm Dumbbell Row':     {anchor:'Lat Pulldown or Pull-Ups',mult:0.35},
-  'Lat Pulldown or Pull-Ups': {anchor:'One-Arm Dumbbell Row', mult:2.00}
-};
-/* returns a safe starting weight from a related lift, or null if none */
-function smartStart(ex,dIdx){
-  const a=ANCHOR[ex.n];
-  if(!a)return null;
-  const anchorSets=getLastDaySets(a.anchor,dIdx);
-  if(!anchorSets)return null;
-  const anchorW=avg(anchorSets.map(s=>s.weight));
-  if(!anchorW||anchorW<=0)return null;
-  let val=round5(anchorW*a.mult);
-  // keep it inside the exercise's sane start range
-  if(val<ex.startLo)val=ex.startLo;
-  if(val>ex.startHi)val=ex.startHi;
+
+/* smart starting weight — use the same block's DEFAULT option's history,
+   scaled by the picked option's ratio. Lets you switch implements and still
+   get a sane starting weight on the first try. */
+function smartStart(opt, block, dIdx){
+  if(opt.n===block.opts[0].n)return null; // it IS the default — no scaling
+  const defaultOpt=block.opts[0];
+  const defaultSets=getLastDaySets(defaultOpt.n,dIdx);
+  if(!defaultSets)return null;
+  const defaultW=avg(defaultSets.map(s=>s.weight));
+  if(!defaultW||defaultW<=0)return null;
+  // default ratio is 1.0; opt.ratio expresses "to convert from default → this opt,
+  // multiply by ratio". e.g., DB Bench ratio=1, Barbell Bench ratio=2.35 → barbell ≈ 2.35× DB-each
+  let val=round5(defaultW*opt.ratio);
+  if(val<opt.startLo)val=opt.startLo;
+  if(val>opt.startHi)val=opt.startHi;
   return val;
 }
-function weightHint(ex,dIdx){
-  const sets=getLastDaySets(ex.n,dIdx);
-  const u = ex.unit==='each' ? ' lbs each' : ' lbs';
+
+function weightHint(opt, block, dIdx){
+  const sets=getLastDaySets(opt.n,dIdx);
+  const u = opt.unit==='each' ? ' lbs each' : ' lbs';
   if(!sets){
-    const smart=smartStart(ex,dIdx);
+    const smart=smartStart(opt,block,dIdx);
     if(smart!=null){
-      return {cls:'start',text:'Start here: '+smart+u+'. Should feel easy-to-moderate for 8 reps.'};
+      return {cls:'start',text:'Start here: '+smart+u+'. Adjust on set one if it feels too heavy or light.'};
     }
-    if(ex.startLo===0){
-      return {cls:'start',text:'Start: bodyweight, or up to '+ex.startHi+u+' if it feels easy.'};
+    if(opt.startLo===0){
+      return {cls:'start',text:'Start: bodyweight, or up to '+opt.startHi+u+' if it feels easy.'};
     }
-    return {cls:'start',text:'Start: try '+ex.startLo+'–'+ex.startHi+u+'. Pick where 8 reps feels solid.'};
+    return {cls:'start',text:'Start: try '+opt.startLo+'–'+opt.startHi+u+'. Pick where 8 reps feels solid.'};
   }
   const avgW=round5(avg(sets.map(s=>s.weight)));
   const avgR=avg(sets.map(s=>s.reps));
   const avgRtxt=(Math.round(avgR*10)/10);
-  if(avgR>=ex.repHi){
-    return {cls:'up',text:'Go up: try '+(avgW+ex.step)+u+'. Your sets averaged '+avgRtxt+' reps at ~'+avgW+u+'.'};
+  if(avgR>=block.repHi){
+    return {cls:'up',text:'Go up: try '+(avgW+opt.step)+u+'. Your sets averaged '+avgRtxt+' reps at ~'+avgW+u+'.'};
   }
-  if(avgR>=ex.repLo){
-    return {cls:'hold',text:'Hold ~'+avgW+u+'. Sets averaged '+avgRtxt+' reps. Build to '+ex.repHi+', then add weight.'};
+  if(avgR>=block.repLo){
+    return {cls:'hold',text:'Hold ~'+avgW+u+'. Sets averaged '+avgRtxt+' reps. Build to '+block.repHi+', then add weight.'};
   }
-  return {cls:'hold',text:'Stay at ~'+avgW+u+'. Sets averaged '+avgRtxt+' reps — build to '+ex.repLo+'+ with clean form.'};
+  return {cls:'hold',text:'Stay at ~'+avgW+u+'. Sets averaged '+avgRtxt+' reps — build to '+block.repLo+'+ with clean form.'};
 }
 /* fade note: last set drops 3+ reps below the average of the earlier sets */
-function fadeNote(ex,dIdx){
-  const sets=getLastDaySets(ex.n,dIdx);
+function fadeNote(opt,dIdx){
+  const sets=getLastDaySets(opt.n,dIdx);
   if(!sets||sets.length<2)return null;
   const last=sets[sets.length-1];
   const earlier=sets.slice(0,-1).map(s=>s.reps);
@@ -634,75 +765,71 @@ function fadeNote(ex,dIdx){
   }
   return null;
 }
-function homeFlag(ex,dIdx){
-  if(DATA.loc!=='home')return null;
-  if(ex.homeMax===null)return null;
-  if(ex.homeMax===0)return 'Gym move — no home gear. Swap: '+ex.note;
-  const sug=suggestedWeight(ex,dIdx);
-  let target;
-  if(sug!=null){
-    target=sug;
-  }else{
-    const smart=smartStart(ex,dIdx);
-    target = smart!=null ? smart : ex.startLo;
-  }
-  if(target>ex.homeMax){
-    return 'Past your home gear ('+ex.homeMax+' lbs max). Use the barbell, a kettlebell, or Rapid Fitness.';
-  }
-  return null;
-}
 
 /* ---------- render plan ---------- */
-function setsBoxHTML(ex,dayId){
-  const e=exLog(dayId,ex.n);
-  while(e.sets.length<ex.sets)e.sets.push({weight:'',reps:''});
-  const wlab = ex.unit==='each' ? 'WEIGHT (EACH)' : 'WEIGHT';
+function setsBoxHTML(opt, block, dayId){
+  const e=exLog(dayId,opt.n);
+  while(e.sets.length<block.sets)e.sets.push({weight:'',reps:''});
+  const wlab = opt.unit==='each' ? 'WEIGHT (EACH)' : 'WEIGHT';
   let h='<div class="setsbox">';
   for(let i=0;i<e.sets.length;i++){
     const st=e.sets[i]||{weight:'',reps:''};
-    const isBonus = i>=ex.sets; // sets beyond the planned count
+    const isBonus = i>=block.sets;
     h+=`<div class="setrow">
       <span class="setn">Set ${i+1}</span>
       <div class="field"><label>${wlab}</label>
         <input type="number" inputmode="decimal" placeholder="lbs"
-          data-day="${dayId}" data-ex="${ex.n}" data-set="${i}" data-f="weight" value="${st.weight||''}"></div>
+          data-day="${dayId}" data-ex="${opt.n}" data-set="${i}" data-f="weight" value="${st.weight||''}"></div>
       <div class="field"><label>REPS</label>
         <input type="number" inputmode="numeric" placeholder="reps"
-          data-day="${dayId}" data-ex="${ex.n}" data-set="${i}" data-f="reps" value="${st.reps||''}"></div>`;
+          data-day="${dayId}" data-ex="${opt.n}" data-set="${i}" data-f="reps" value="${st.reps||''}"></div>`;
     if(isBonus){
-      h+=`<button class="delset" data-delset="${dayId}|${ex.n}|${i}">&times;</button>`;
+      h+=`<button class="delset" data-delset="${dayId}|${opt.n}|${i}">&times;</button>`;
     }
     h+=`</div>`;
   }
-  h+=`<button class="addset" data-addset="${dayId}|${ex.n}">+ Add Set</button>`;
+  h+=`<button class="addset" data-addset="${dayId}|${opt.n}">+ Add Set</button>`;
   h+='</div>';
   return h;
 }
-function exHTML(ex,dayId,dIdx){
-  const e=exLog(dayId,ex.n);
-  const hint=weightHint(ex,dIdx);
-  const fade=fadeNote(ex,dIdx);
-  const flag=homeFlag(ex,dIdx);
-  const logged=setsLogged(dayId,ex.n);
-  const totalSets=Math.max(ex.sets, e.sets.length);
+function exHTML(block,blockKey,num,dayId,dIdx){
+  const opt=pickedOpt(block,dayId,blockKey);
+  const allowed=optsForLoc(block,dayLoc(dayId));
+  const e=exLog(dayId,opt.n);
+  const hint=weightHint(opt,block,dIdx);
+  const fade=fadeNote(opt,dIdx);
+  const logged=setsLogged(dayId,opt.n);
+  const totalSets=Math.max(block.sets, e.sets.length);
   const open=e._open?true:false;
   let h=`<div class="ex ${open?'setsopen':''}">
-    <div class="exname"><span>${ex.n}</span><span class="exsets">${ex.s}</span></div>
-    <div class="exnote">${ex.note}</div>
+    <div class="exname">
+      <span class="exnum">${num}.</span>
+      <span class="extitle">${opt.n}</span>
+    </div>
+    <div class="exsets">${block.s}</div>`;
+  if(allowed.length>1){
+    h+=`<div class="expicker">
+          <span>Swap:</span>
+          <select data-pick="${dayId}|${blockKey}">`;
+    allowed.forEach(o=>{
+      h+=`<option value="${o.n}"${o.n===opt.n?' selected':''}>${o.n}</option>`;
+    });
+    h+=`</select></div>`;
+  }
+  h+=`<div class="exnote">${block.note}</div>
     <div class="exhint ${hint.cls}">${hint.text}</div>`;
   if(fade)h+=`<div class="exfade">${fade}</div>`;
-  if(flag)h+=`<div class="exflag">${flag}</div>`;
-  h+=`<div class="setstoggle" data-settoggle="${dayId}|${ex.n}">
+  h+=`<div class="setstoggle" data-settoggle="${dayId}|${opt.n}">
         <span class="stlabel">Log Sets</span>
         <span style="display:flex;align-items:center;">
           <span class="stinfo">${logged}/${totalSets} sets</span>
           <span class="stchev">&#9654;</span>
         </span>
       </div>`;
-  h+=setsBoxHTML(ex,dayId);
-  if(ex.rest){
-    const restTxt = formatTime(ex.rest);
-    h+=`<button class="resttimer" data-rest="${dayId}|${ex.n}|${ex.rest}">
+  h+=setsBoxHTML(opt,block,dayId);
+  if(block.rest){
+    const restTxt = formatTime(block.rest);
+    h+=`<button class="resttimer" data-rest="${dayId}|${opt.n}|${block.rest}">
           <span class="rtlabel"><span class="rtdot"></span>Rest Timer</span>
           <span class="rttime">${restTxt}</span>
         </button>`;
@@ -717,7 +844,7 @@ function dayHTML(w,d){
   const dl=DATA.logs[dayId]||{};
   const done=dl.done||false;
   const open=dl._dayopen?true:false;
-  const loc = t.type==='B' ? 'Best at Rapid Fitness (cables)' : 'Home gym or Rapid Fitness';
+  const loc=dayLoc(dayId);
   const stat = done ? '<span class="donetag">✓ Done</span>' : (t.type==='A'?'Push Day':'Pull Day');
   let h=`<div class="day ${done?'done':''} ${open?'open':''}" id="${dayId}">
     <div class="dayhead" data-daytoggle="${dayId}">
@@ -731,11 +858,18 @@ function dayHTML(w,d){
       </div>
     </div>
     <div class="daybody">
-      <div class="dloc">${loc}</div>
+      <div class="daytoggle">
+        <div class="seg" data-dayloc="${dayId}">
+          <button data-loc="home"${loc==='home'?' class="on"':''}>Home</button>
+          <button data-loc="gym"${loc==='gym'?' class="on"':''}>Gym</button>
+        </div>
+        <span class="dlocsub">${loc==='home'?'Home — DBs to 45 lb':'Rapid Fitness — full machines'}</span>
+      </div>
       <div class="grouplabel">Core · 30 Min</div>`;
-  t.core.forEach(ex=>h+=exHTML(ex,dayId,dIdx));
+  let num=1;
+  t.core.forEach((block,i)=>{ h+=exHTML(block,'core_'+i,num,dayId,dIdx); num++; });
   h+=`<div class="grouplabel bonus">Bonus · 15 Min (if time)</div>`;
-  t.bonus.forEach(ex=>h+=exHTML(ex,dayId,dIdx));
+  t.bonus.forEach((block,i)=>{ h+=exHTML(block,'bonus_'+i,num,dayId,dIdx); num++; });
   h+=`<div class="daybtnwrap">
         <button class="donebtn" data-day="${dayId}">${done?'✓ Workout Done':'Mark Workout Done'}</button>
       </div>
@@ -782,18 +916,16 @@ function renderPlan(){
     if(w===DATA.showWeek)o.selected=true;
     jp.appendChild(o);
   }
-  document.querySelectorAll('#locSeg button').forEach(b=>{
-    b.classList.toggle('on',b.dataset.loc===DATA.loc);
-  });
-  document.getElementById('locSub').textContent =
-    DATA.loc==='home' ? 'Home gym — dumbbells max 45 lbs' : 'Rapid Fitness — full rack & cables';
 }
 
 /* ---------- weigh-in ---------- */
+function sortedWeighInDates(){
+  return Object.keys(DATA.weighIns).filter(k=>DATA.weighIns[k]!=null).sort();
+}
 function latestWeight(){
-  let last=null;
-  for(let w=0;w<=WEEKS;w++){if(DATA.weighIns[w]!=null)last=DATA.weighIns[w];}
-  return last;
+  const dates=sortedWeighInDates();
+  if(dates.length===0)return null;
+  return DATA.weighIns[dates[dates.length-1]];
 }
 function renderGoal(){
   const cur=latestWeight();
@@ -811,29 +943,27 @@ function renderGoal(){
     left>0 ? left+' lbs to go. Keep showing up.' : 'You hit the goal. Strong work.';
 }
 function renderWeigh(){
-  const ws=document.getElementById('wiWeek');
-  ws.innerHTML='';
-  for(let w=1;w<=WEEKS;w++){
-    const o=document.createElement('option');
-    o.value=w;o.textContent='Week '+w;
-    ws.appendChild(o);
-  }
   const list=document.getElementById('wlist');
-  let entries=[];
-  for(let w=0;w<=WEEKS;w++){if(DATA.weighIns[w]!=null)entries.push([w,DATA.weighIns[w]]);}
+  const dates=sortedWeighInDates();
+  const entries=dates.map(d=>[d,DATA.weighIns[d]]);
   if(entries.length===0){
     list.innerHTML='<div class="empty">No weigh-ins yet. Log your first one above.</div>';
   }else{
     let h='';let prev=null;
-    entries.forEach(([w,v])=>{
-      let diff='';
+    // newest first in the list, but track diffs in chronological order
+    const diffs={};
+    entries.forEach(([d,v])=>{
       if(prev!=null){
-        const d=(v-prev).toFixed(1);
-        diff=d>0?`<span class="wd up">+${d}</span>`:`<span class="wd">${d}</span>`;
-      }else{diff='<span class="wd" style="color:var(--mute)">start</span>';}
-      h+=`<div class="wlitem"><span>${w===0?'Start':'Week '+w}</span>
-           <span class="ww">${v} lbs</span>${diff}</div>`;
+        const dd=(v-prev).toFixed(1);
+        diffs[d] = dd>0 ? `<span class="wd up">+${dd}</span>` : `<span class="wd">${dd}</span>`;
+      }else{
+        diffs[d] = '<span class="wd" style="color:var(--mute)">start</span>';
+      }
       prev=v;
+    });
+    entries.slice().reverse().forEach(([d,v])=>{
+      h+=`<div class="wlitem"><span>${prettyDate(d)}</span>
+           <span class="ww">${v} lbs</span>${diffs[d]}</div>`;
     });
     list.innerHTML=h;
   }
@@ -844,14 +974,20 @@ function drawChart(entries){
   if(entries.length<1){box.innerHTML='';return;}
   const W=320,H=150,pad=24;
   const yMin=GOAL-4, yMax=START+4;
-  const xFor=w=>pad+(w/WEEKS)*(W-pad*2);
+  // x-axis: time across the entries (proportional positioning by date)
+  const first=entries[0][0], last=entries[entries.length-1][0];
+  const ms=iso=>{const [y,m,d]=iso.split('-').map(n=>parseInt(n));return new Date(y,m-1,d).getTime();};
+  const span=Math.max(1, ms(last)-ms(first));
+  const xFor=iso => entries.length===1 ? (W/2) : pad+((ms(iso)-ms(first))/span)*(W-pad*2);
   const yFor=v=>pad+(1-((v-yMin)/(yMax-yMin)))*(H-pad*2);
   let svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet">`;
+  // goal line
   svg+=`<line x1="${pad}" y1="${yFor(GOAL)}" x2="${W-pad}" y2="${yFor(GOAL)}" stroke="#5fd07e" stroke-width="1" stroke-dasharray="4 3"/>`;
   svg+=`<text x="${W-pad}" y="${yFor(GOAL)-4}" fill="#5fd07e" font-size="9" text-anchor="end">Goal 188</text>`;
+  // start line
   svg+=`<line x1="${pad}" y1="${yFor(START)}" x2="${W-pad}" y2="${yFor(START)}" stroke="#4a443c" stroke-width="1"/>`;
   svg+=`<text x="${pad}" y="${yFor(START)-4}" fill="#bcb3a5" font-size="9">Start 210</text>`;
-  let pts=entries.map(([w,v])=>[xFor(w),yFor(v)]);
+  let pts=entries.map(([d,v])=>[xFor(d),yFor(v)]);
   if(pts.length>1){
     let path='M'+pts.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L');
     svg+=`<path d="${path}" fill="none" stroke="#ff4d4d" stroke-width="2.5" stroke-linejoin="round"/>`;
@@ -897,7 +1033,6 @@ function importBackup(file){
       if(!DATA.weighIns)DATA.weighIns={};
       if(!DATA.currentWeek)DATA.currentWeek=1;
       if(DATA.showWeek===undefined)DATA.showWeek=0;
-      if(!DATA.loc)DATA.loc='home';
       if(DATA.introHidden===undefined)DATA.introHidden=false;
       migrateLogs();
       saveData();
@@ -996,13 +1131,6 @@ function bindEvents(){
       window.scrollTo(0,0);
     });
   });
-  document.getElementById('locSeg').addEventListener('click',e=>{
-    const b=e.target.closest('button');
-    if(!b)return;
-    DATA.loc=b.dataset.loc;
-    saveData();
-    renderPlan();
-  });
   const introCloseBtn=document.getElementById('introClose');
   if(introCloseBtn){
     introCloseBtn.addEventListener('click',()=>{
@@ -1021,6 +1149,21 @@ function bindEvents(){
     // rest timer button
     const rest=e.target.closest('.resttimer');
     if(rest){handleRestClick(rest);return;}
+    // per-day home/gym toggle
+    const dloc=e.target.closest('.daytoggle .seg');
+    if(dloc){
+      const btn=e.target.closest('button');
+      if(!btn)return;
+      const dayId=dloc.dataset.dayloc;
+      const newLoc=btn.dataset.loc;
+      if(dayLoc(dayId)!==newLoc){
+        stopTimer();
+        setDayLoc(dayId,newLoc);
+        saveData();
+        renderPlan();
+      }
+      return;
+    }
     const dhead=e.target.closest('.dayhead');
     if(dhead){
       const id=dhead.dataset.daytoggle;
@@ -1086,6 +1229,18 @@ function bindEvents(){
     }
   });
 
+  // exercise substitute picker
+  weeksEl.addEventListener('change',e=>{
+    const sel=e.target;
+    if(!sel||!sel.dataset||!sel.dataset.pick)return;
+    const parts=sel.dataset.pick.split('|');
+    const dayId=parts[0], blockKey=parts[1];
+    setPickedOpt(dayId, blockKey, sel.value);
+    stopTimer();
+    saveData();
+    renderPlan();
+  });
+
   weeksEl.addEventListener('input',e=>{
     const inp=e.target;
     if(!inp.dataset||inp.dataset.set===undefined)return;
@@ -1126,10 +1281,9 @@ function bindEvents(){
     window.scrollTo({top:0,behavior:'smooth'});
   });
   document.getElementById('wiSave').addEventListener('click',()=>{
-    const w=parseInt(document.getElementById('wiWeek').value);
     const v=parseFloat(document.getElementById('wiVal').value);
     if(isNaN(v)){return;}
-    DATA.weighIns[w]=v;
+    DATA.weighIns[todayISO()]=v;
     document.getElementById('wiVal').value='';
     saveData();
     renderWeigh();renderGoal();
