@@ -263,14 +263,15 @@
   /* ---- weigh-in ---- */
   .wbox{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:17px 16px;margin-bottom:14px;}
   .wbox h2{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1px;color:var(--red);margin-bottom:11px;}
-  .winrow{display:flex;gap:10px;align-items:flex-end;}
-  .winrow .field{flex:1;}
+  .winrow{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;}
+  .winrow .field{flex:1;min-width:120px;}
   .winrow label{font-size:11px;color:var(--mute);font-weight:700;letter-spacing:1px;display:block;margin-bottom:5px;}
   .winrow select,.winrow input{
     width:100%;background:var(--input);border:1px solid var(--line);border-radius:14px;
     color:var(--cream);font-family:'Barlow',sans-serif;font-size:16px;font-weight:700;padding:12px;
   }
-  .winrow input{text-align:center;}
+  .winrow input[type="number"]{text-align:center;}
+  .winrow input[type="date"]{text-align:left;color-scheme:dark;-webkit-appearance:none;}
   .savew{
     background:var(--redmid);color:#fff;border:none;border-radius:14px;
     font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;
@@ -280,14 +281,121 @@
   .hint{margin-top:8px;font-size:12px;color:var(--mute);}
   .wlist{margin-top:6px;}
   .wlitem{
-    display:flex;justify-content:space-between;padding:10px 2px;
-    border-bottom:1px solid var(--line);font-size:14px;
+    display:flex;justify-content:space-between;align-items:center;
+    gap:10px;padding:10px 2px;border-bottom:1px solid var(--line);font-size:14px;
   }
   .wlitem:last-child{border-bottom:none;}
   .wlitem .ww{font-weight:700;}
   .wlitem .wd{color:var(--green);font-weight:700;}
   .wlitem .wd.up{color:var(--red);}
+  .wlitem .wdate{flex:1;}
+  .wlitem .wxbtn{
+    width:26px;height:26px;flex-shrink:0;border:none;border-radius:8px;cursor:pointer;
+    background:rgba(255,77,77,.15);color:var(--red);
+    font-size:16px;font-weight:700;line-height:1;
+  }
+  .wlitem .wxbtn:hover{background:rgba(255,77,77,.3);}
   .empty{color:var(--mute);font-size:13px;text-align:center;padding:14px;font-weight:500;}
+  /* ---- meal planner ---- */
+  .mealopts{display:flex;flex-direction:column;gap:10px;margin-bottom:8px;}
+  .mealopts .mopt{display:flex;flex-direction:column;gap:4px;}
+  .moptlbl{font-size:11px;color:var(--mute);font-weight:700;letter-spacing:1px;}
+  .mealopts select{
+    background:var(--input);border:1px solid var(--line);border-radius:14px;
+    color:var(--cream);font-family:'Barlow',sans-serif;font-size:15px;font-weight:600;padding:11px;
+  }
+  .mopttog{
+    display:flex;align-items:center;gap:8px;font-size:14px;color:var(--cream);
+    background:var(--input);border:1px solid var(--line);border-radius:14px;padding:9px 12px;cursor:pointer;
+  }
+  .mopttog input{width:18px;height:18px;accent-color:var(--red);}
+  .mealday{
+    background:var(--input);border:1px solid var(--line);border-radius:14px;
+    padding:12px;margin-bottom:9px;
+  }
+  .mealday .mdayhd{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;
+    color:var(--gold);margin-bottom:6px;
+  }
+  .mealday .mname{font-size:16px;font-weight:700;color:var(--cream);line-height:1.25;}
+  .mealday .mmeta{font-size:11px;color:var(--mute);font-weight:600;margin-top:3px;}
+  .mealday .mtags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px;}
+  .mealday .macros{
+    display:flex;flex-wrap:wrap;gap:6px;margin-top:7px;
+  }
+  .mealday .macros .m{
+    font-size:11px;font-weight:700;padding:4px 8px;border-radius:8px;
+    background:var(--input);border:1px solid var(--line);
+  }
+  .mealday .macros .m-cal{color:var(--gold);}
+  .mealday .macros .m-pro{color:#9be39b;}
+  .mealday .macros .m-carb{color:#9bd6ff;}
+  .mealday .macros .m-fat{color:#ffb39b;}
+  .mealday .sideline{
+    margin-top:8px;padding:7px 10px;background:rgba(224,178,92,.10);
+    border-left:3px solid var(--gold);border-radius:8px;
+    font-size:12px;color:var(--cream);line-height:1.4;
+  }
+  .mealday .sideline .sidetag{
+    display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;
+    color:var(--gold);margin-right:5px;
+  }
+  .daytotal{
+    display:flex;flex-wrap:wrap;align-items:center;gap:8px;
+    margin-top:14px;margin-bottom:6px;padding:8px 12px;
+    background:linear-gradient(90deg, rgba(184,46,46,.18), rgba(224,178,92,.10));
+    border-left:3px solid var(--red);border-radius:8px;
+  }
+  .daytotal .dtlabel{
+    font-size:11px;font-weight:800;letter-spacing:1.5px;color:var(--cream);
+    flex:1;min-width:100%;
+  }
+  .daytotal .dtmac{
+    font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;
+    background:rgba(0,0,0,.25);
+  }
+  .daytotal .dtcal{color:var(--gold);}
+  .daytotal .dtpro{color:#9be39b;}
+  .daytotal .dtcarb{color:#9bd6ff;}
+  .daytotal .dtfat{color:#ffb39b;}
+  .mtag{font-size:10px;font-weight:700;padding:3px 7px;border-radius:8px;letter-spacing:.5px;}
+  .mtag.pot{background:rgba(95,208,126,.18);color:var(--green);}
+  .mtag.fast{background:rgba(224,178,92,.18);color:var(--gold);}
+  .mtag.spicy{background:rgba(255,77,77,.18);color:var(--red);}
+  .mtag.style{background:rgba(255,255,255,.08);color:var(--cream);}
+  .mealday details{margin-top:8px;}
+  .mealday details summary{
+    cursor:pointer;font-size:13px;font-weight:700;color:var(--gold);
+    padding:6px 0;list-style:none;
+  }
+  .mealday details summary::-webkit-details-marker{display:none;}
+  .mealday details summary:before{content:"▸ ";color:var(--red);}
+  .mealday details[open] summary:before{content:"▾ ";}
+  .mealday .recipe{font-size:13px;color:var(--cream);line-height:1.5;}
+  .mealday .recipe h4{font-size:12px;font-weight:700;color:var(--gold);margin-top:8px;letter-spacing:1px;}
+  .mealday .recipe ul,.mealday .recipe ol{padding-left:18px;margin-top:3px;}
+  .mealday .recipe li{margin-bottom:2px;}
+  .mealday .subbtn{
+    margin-top:8px;background:transparent;border:1px solid var(--line);
+    color:var(--mute);font-family:'Bebas Neue',sans-serif;font-size:12px;
+    letter-spacing:1px;padding:6px 10px;border-radius:9px;cursor:pointer;
+  }
+  .mealday .subbtn:hover{color:var(--red);border-color:var(--red);}
+  .grocerysplit{display:flex;flex-direction:column;gap:12px;}
+  .grocerycol h3.storehd{
+    font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;
+    padding:8px 12px;border-radius:10px;margin-bottom:8px;
+  }
+  .storehd.walmart{background:rgba(0,113,206,.18);color:#5ca8ff;}
+  .storehd.hyvee{background:rgba(220,38,38,.18);color:#ff7070;}
+  .gline{
+    display:flex;justify-content:space-between;font-size:13px;
+    padding:5px 0;border-bottom:1px solid rgba(74,68,60,.5);
+  }
+  .gline .gqty{color:var(--gold);font-weight:700;}
+  .budgetline{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);
+    font-size:13px;color:var(--cream);font-weight:600;}
   /* ---- rules ---- */
   .rule{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:16px;margin-bottom:12px;}
   .rule h3{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:var(--red);margin-bottom:9px;}
@@ -329,6 +437,7 @@
 <nav>
   <div class="tab on" data-page="plan">The Plan</div>
   <div class="tab" data-page="weigh">Weigh-In</div>
+  <div class="tab" data-page="meals">Meals</div>
   <div class="tab" data-page="rules">Rules</div>
 </nav>
 
@@ -346,20 +455,86 @@
 
 <div class="page" id="weigh">
   <div class="wbox">
-    <h2>Log Today's Weigh-In</h2>
+    <h2>Log a Weigh-In</h2>
     <div class="winrow">
+      <div class="field">
+        <label>DATE</label>
+        <input type="date" id="wiDate">
+      </div>
       <div class="field">
         <label>WEIGHT (LBS)</label>
         <input type="number" id="wiVal" inputmode="decimal" placeholder="—">
       </div>
       <button class="savew" id="wiSave">Save</button>
     </div>
-    <div class="hint" id="wiHint">Logs to today's date. Re-saving the same day overwrites it.</div>
+    <div class="hint" id="wiHint">Defaults to today. Tap the date to log a different day. Saving twice on the same date overwrites.</div>
   </div>
   <div class="wbox">
     <h2>Your Progress</h2>
     <div class="chart" id="chart"></div>
     <div class="wlist" id="wlist"></div>
+  </div>
+</div>
+
+<div class="page" id="meals">
+  <div class="wbox">
+    <h2>Weekly Meal Plan</h2>
+    <div class="mealopts">
+      <div class="mopt">
+        <label class="moptlbl">STYLE</label>
+        <select id="mealStyle">
+          <option value="mix">Mix (all styles)</option>
+          <option value="mediterranean">Mediterranean</option>
+          <option value="highprotein">High Protein</option>
+          <option value="keto">Keto Friendly</option>
+          <option value="mexican">Mexican</option>
+          <option value="indian">Indian</option>
+          <option value="american">American</option>
+          <option value="chinese">Chinese</option>
+          <option value="japanese">Japanese</option>
+          <option value="vietnamese">Vietnamese</option>
+          <option value="ethiopian">Ethiopian</option>
+          <option value="south_american">South American</option>
+        </select>
+      </div>
+      <div class="mopt">
+        <label class="moptlbl">QUICK FILTER</label>
+        <select id="mealFilter">
+          <option value="any">Any (default)</option>
+          <option value="crockpot">Crockpot only</option>
+          <option value="fast">Under 35 min only</option>
+        </select>
+      </div>
+      <label class="mopttog">
+        <input type="checkbox" id="mealBreakfast"> <span>Include breakfast</span>
+      </label>
+      <label class="mopttog">
+        <input type="checkbox" id="mealSnacks"> <span>Include snacks</span>
+      </label>
+      <button class="savew" id="mealGen">Generate Week</button>
+    </div>
+    <div class="hint">3 adults. No corn (his dislike). Light on shrimp (her dislike). Spicy welcome. Lunches = last night's leftovers.</div>
+  </div>
+
+  <div class="wbox" id="mealWeekBox" style="display:none;">
+    <h2 id="mealWeekTitle">Your Week</h2>
+    <div id="mealWeek"></div>
+  </div>
+
+  <div class="wbox" id="mealGroceryBox" style="display:none;">
+    <h2>Grocery List</h2>
+    <div class="hint">Split for Sioux Falls — Walmart for pantry & staples, Hy-Vee for fresh meat & produce specials.</div>
+    <div class="grocerysplit">
+      <div class="grocerycol">
+        <h3 class="storehd walmart">Walmart</h3>
+        <div id="groceryWalmart"></div>
+      </div>
+      <div class="grocerycol">
+        <h3 class="storehd hyvee">Hy-Vee</h3>
+        <div id="groceryHyvee"></div>
+      </div>
+    </div>
+    <div class="budgetline" id="budgetLine"></div>
   </div>
 </div>
 
@@ -535,6 +710,676 @@ const TPL = {
   }
 };
 const DAYS=['Mon','Wed','Fri'];
+
+/* ========== MEAL PLANNER ==========
+   Recipes serve 6 by default (3 dinners + 3 next-day lunch leftovers).
+   Breakfasts serve 3. Snacks list per-portion.
+   Store codes: w=Walmart, h=Hy-Vee, e=either (treated as Walmart by default).
+   No-corn rule: anything with corn:true is auto-excluded.
+   Shrimp shows up rarely — at most once a week. */
+const RECIPES = [
+  // ===== DINNERS — CROCKPOT =====
+  {id:'d_pot_salsa', n:'Crockpot Salsa Chicken', cat:'dinner', style:['mexican','highprotein','keto'], time:10, pot:true, spicy:true, corn:false, shrimp:false, serv:6, cal:540, pro:52, carb:34, fat:22, complete:true, side:"",
+    ing:[[3,'lb','boneless skinless chicken breasts','h'],[2,'cups','salsa (medium)','w'],[1,'tbsp','taco seasoning','w'],[1,'cup','shredded Mexican cheese','e'],[1,'cup','sour cream','e'],[12,'count','low-carb tortillas','w']],
+    steps:['Put chicken in crockpot.','Pour salsa and seasoning over top.','Cook on LOW 6 hours or HIGH 3 hours.','Shred with two forks. Serve in tortillas with cheese and sour cream. Leftovers: build burrito bowls over greens.']
+  },
+  {id:'d_pot_curry', n:'Crockpot Chicken Tikka Masala', cat:'dinner', style:['indian','highprotein'], time:15, pot:true, spicy:true, corn:false, shrimp:false, serv:6, cal:610, pro:42, carb:48, fat:26, complete:true, side:"",
+    ing:[[3,'lb','boneless skinless chicken thighs','h'],[1,'jar (15 oz)','tikka masala simmer sauce','w'],[1,'can (14 oz)','diced tomatoes','w'],[1,'cup','heavy cream','e'],[2,'cups','basmati rice','w'],[1,'tbsp','garam masala','w']],
+    steps:['Cube chicken. Place in crockpot with sauce, tomatoes, and garam masala.','Cook LOW 6 hours.','Stir in cream during last 15 minutes.','Cook rice on stove (rinse, 2 cups rice + 4 cups water, boil, cover, simmer 18 min).','Serve over rice.']
+  },
+  {id:'d_pot_pork', n:'Crockpot Carnitas', cat:'dinner', style:['mexican','highprotein','keto'], time:10, pot:true, spicy:true, corn:false, shrimp:false, serv:6, cal:620, pro:40, carb:38, fat:32, complete:true, side:"",
+    ing:[[3,'lb','pork shoulder','h'],[1,'tbsp','cumin','w'],[1,'tbsp','chili powder','w'],[1,'tsp','salt','w'],[1,'count','orange (juiced)','h'],[2,'count','limes','h'],[1,'count','onion, diced','h'],[12,'count','small flour tortillas','w'],[1,'cup','queso fresco or feta','e']],
+    steps:['Rub pork with cumin, chili powder, salt.','Place in crockpot with onion, orange juice, juice of 1 lime.','Cook LOW 8 hours.','Shred. Crisp under broiler 5 min if desired.','Serve in tortillas with cheese and lime wedges.']
+  },
+  {id:'d_pot_beef', n:'Crockpot Beef Barbacoa', cat:'dinner', style:['mexican','highprotein','keto'], time:12, pot:true, spicy:true, corn:false, shrimp:false, serv:6, cal:480, pro:45, carb:12, fat:28, complete:false, side:"Serve with cilantro lime rice (2 cups rice + lime juice + cilantro).",
+    ing:[[3,'lb','chuck roast','h'],[1,'can (4 oz)','chipotle peppers in adobo','w'],[3,'cloves','garlic','h'],[1,'tbsp','cumin','w'],[1,'tsp','oregano','w'],[1,'cup','beef broth','w'],[2,'count','limes','h'],[1,'head','romaine lettuce','h']],
+    steps:['Blend chipotles, garlic, cumin, oregano, broth, juice of 2 limes.','Pour over beef in crockpot.','Cook LOW 8 hours.','Shred. Serve in lettuce wraps or low-carb tortillas.']
+  },
+  {id:'d_pot_indian_lamb', n:'Crockpot Indian Lamb Curry', cat:'dinner', style:['indian','highprotein'], time:20, pot:true, spicy:true, corn:false, shrimp:false, serv:6, cal:650, pro:44, carb:42, fat:34, complete:true, side:"",
+    ing:[[2.5,'lb','lamb stew meat or chuck','h'],[1,'count','onion','h'],[4,'cloves','garlic','h'],[1,'tbsp','fresh ginger','h'],[2,'tbsp','curry powder','w'],[1,'can (14 oz)','coconut milk','w'],[1,'can (14 oz)','diced tomatoes','w'],[2,'cups','basmati rice','w']],
+    steps:['Sear lamb if you have time, or skip.','Add all ingredients except rice to crockpot.','Cook LOW 8 hours.','Cook rice. Serve curry over rice.']
+  },
+  {id:'d_pot_med_chicken', n:'Crockpot Greek Lemon Chicken', cat:'dinner', style:['mediterranean','highprotein','keto'], time:10, pot:true, spicy:false, corn:false, shrimp:false, serv:6, cal:580, pro:48, carb:12, fat:36, complete:true, side:"",
+    ing:[[3,'lb','chicken thighs, bone-in','h'],[3,'count','lemons','h'],[1,'tbsp','dried oregano','w'],[6,'cloves','garlic','h'],[0.5,'cup','olive oil','w'],[1,'cup','kalamata olives','h'],[2,'cups','green beans','e']],
+    steps:['Place chicken in crockpot.','Mix lemon juice, oregano, garlic, olive oil. Pour over.','Add olives.','Cook LOW 6 hours.','Steam green beans last 30 min.','Serve with juices spooned over.']
+  },
+  {id:'d_pot_chili', n:'Crockpot Beef Chili', cat:'dinner', style:['american','highprotein'], time:15, pot:true, spicy:true, corn:false, shrimp:false, serv:6, cal:520, pro:42, carb:28, fat:26, complete:true, side:"",
+    ing:[[2,'lb','ground beef','h'],[1,'count','onion','h'],[1,'count','bell pepper','h'],[2,'cans (14 oz)','diced tomatoes','w'],[2,'cans (14 oz)','kidney beans','w'],[2,'tbsp','chili powder','w'],[1,'tbsp','cumin','w'],[1,'cup','shredded cheddar','e'],[1,'cup','sour cream','e']],
+    steps:['Brown beef with onion and pepper. Drain.','Add to crockpot with tomatoes, beans, spices.','Cook LOW 6 hours.','Serve with cheese and sour cream.']
+  },
+  {id:'d_pot_french_dip', n:'Crockpot French Dip Sandwiches', cat:'dinner', style:['american','highprotein'], time:10, pot:true, spicy:false, corn:false, shrimp:false, serv:6, cal:620, pro:48, carb:42, fat:28, complete:false, side:"Side of steamed green beans or simple side salad.",
+    ing:[[3,'lb','chuck roast','h'],[2,'cans (10 oz)','beef consommé','w'],[1,'packet','onion soup mix','w'],[6,'count','hoagie rolls','e'],[6,'slices','provolone','e']],
+    steps:['Place roast in crockpot. Add consommé and soup mix.','Cook LOW 8 hours.','Shred. Pile on rolls with provolone.','Broil 2 min to melt cheese.','Dip sandwiches in cooking liquid.']
+  },
+  // ===== DINNERS — FAST (under 35 min) =====
+  {id:'d_fast_stirfry', n:'Beef & Broccoli Stir-Fry', cat:'dinner', style:['american','highprotein'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:540, pro:42, carb:52, fat:18, complete:true, side:"",
+    ing:[[2,'lb','flank steak or sirloin, sliced thin','h'],[2,'heads','broccoli','h'],[0.33,'cup','soy sauce','w'],[3,'tbsp','brown sugar','w'],[2,'tbsp','sesame oil','w'],[3,'cloves','garlic','h'],[1,'tbsp','fresh ginger','h'],[2,'cups','jasmine rice','w']],
+    steps:['Start rice (2 cups + 4 cups water, simmer 18 min).','Whisk soy sauce, brown sugar, sesame oil, garlic, ginger.','Heat skillet HOT. Sear beef 2 min per side. Remove.','Add broccoli with 3 tbsp water, cover 3 min.','Return beef, pour sauce, toss 1 min.','Serve over rice.']
+  },
+  {id:'d_fast_taco_skillet', n:'One-Skillet Beef Tacos', cat:'dinner', style:['mexican','highprotein','keto'], time:25, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:560, pro:40, carb:42, fat:26, complete:true, side:"",
+    ing:[[2,'lb','ground beef','h'],[1,'count','onion','h'],[2,'tbsp','taco seasoning','w'],[1,'cup','black beans','w'],[1,'cup','salsa','w'],[1,'cup','shredded cheddar','e'],[12,'count','small flour tortillas','w'],[1,'count','avocado','h']],
+    steps:['Brown beef with onion. Drain.','Add seasoning, beans, salsa. Simmer 5 min.','Top with cheese, cover until melted.','Serve in tortillas with avocado slices.']
+  },
+  {id:'d_fast_salmon', n:'Sheet Pan Salmon & Veg', cat:'dinner', style:['mediterranean','highprotein','keto'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:520, pro:42, carb:18, fat:30, complete:true, side:"",
+    ing:[[2.5,'lb','salmon fillets','h'],[2,'cups','cherry tomatoes','h'],[2,'heads','broccoli','h'],[3,'tbsp','olive oil','w'],[2,'count','lemons','h'],[2,'tsp','garlic powder','w'],[1,'tsp','salt','w']],
+    steps:['Heat oven to 425°F.','Toss broccoli and tomatoes with olive oil, garlic powder, salt. Spread on sheet pan.','Roast 10 min.','Add salmon, drizzle with lemon juice and oil. Roast 12 more min.','Serve hot.']
+  },
+  {id:'d_fast_chicken_fajita', n:'Chicken Fajita Skillet', cat:'dinner', style:['mexican','highprotein','keto'], time:30, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:540, pro:42, carb:38, fat:22, complete:true, side:"",
+    ing:[[2,'lb','chicken breasts, sliced','h'],[2,'count','bell peppers','h'],[1,'count','onion','h'],[2,'tbsp','fajita seasoning','w'],[2,'tbsp','olive oil','w'],[1,'count','lime','h'],[12,'count','small flour tortillas','w'],[1,'cup','shredded cheese','e']],
+    steps:['Slice chicken and peppers.','Heat oil in skillet. Cook chicken 6 min.','Add peppers and onions, sprinkle seasoning, cook 6 min.','Squeeze lime over top.','Serve in tortillas with cheese.']
+  },
+  {id:'d_fast_steak', n:'Pan-Seared Steak with Garlic Butter Veg', cat:'dinner', style:['american','highprotein','keto'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:620, pro:52, carb:16, fat:40, complete:true, side:"",
+    ing:[[3,'lb','sirloin steak','h'],[2,'tbsp','butter','e'],[4,'cloves','garlic','h'],[2,'heads','broccoli','h'],[1,'lb','mushrooms','h'],[1,'tbsp','olive oil','w'],[1,'tsp','salt','w'],[1,'tsp','black pepper','w']],
+    steps:['Salt and pepper steak. Heat pan with oil until smoking.','Sear steak 4 min per side for medium. Rest.','In same pan add butter, garlic, mushrooms. Cook 5 min.','Steam broccoli 4 min.','Slice steak against grain, plate with mushrooms and broccoli.']
+  },
+  {id:'d_fast_indian_chicken', n:'15-Min Butter Chicken (jarred)', cat:'dinner', style:['indian','highprotein'], time:20, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:580, pro:42, carb:48, fat:22, complete:true, side:"",
+    ing:[[2,'lb','chicken breasts, cubed','h'],[1,'jar (15 oz)','butter chicken simmer sauce','w'],[0.5,'cup','heavy cream','e'],[2,'cups','basmati rice','w'],[1,'count','onion','h'],[2,'tbsp','olive oil','w']],
+    steps:['Start rice.','Sauté onion in oil 3 min.','Add chicken, brown 5 min.','Pour in jarred sauce, simmer 8 min.','Stir in cream. Serve over rice.']
+  },
+  {id:'d_fast_med_chicken', n:'Greek Chicken Bowls', cat:'dinner', style:['mediterranean','highprotein','keto'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:580, pro:48, carb:36, fat:26, complete:true, side:"",
+    ing:[[2.5,'lb','chicken breasts','h'],[2,'tbsp','olive oil','w'],[1,'tbsp','dried oregano','w'],[1,'count','lemon','h'],[2,'cups','cherry tomatoes','h'],[1,'count','cucumber','h'],[1,'cup','feta cheese','e'],[1,'cup','kalamata olives','h'],[6,'count','pita breads','w']],
+    steps:['Marinate cubed chicken in oil, oregano, lemon juice 10 min.','Sear in skillet 8 min until cooked through.','Build bowls: chicken, tomatoes, cucumber, feta, olives.','Warm pita to serve alongside.']
+  },
+  {id:'d_fast_shrimp', n:'Garlic Butter Shrimp Pasta', cat:'dinner', style:['mediterranean','highprotein'], time:25, pot:false, spicy:false, corn:false, shrimp:true, serv:6, cal:560, pro:40, carb:52, fat:22, complete:false, side:"Side of green salad with olive oil and lemon.",
+    ing:[[2,'lb','shrimp, peeled','h'],[1,'lb','penne pasta','w'],[4,'tbsp','butter','e'],[6,'cloves','garlic','h'],[0.5,'cup','grated parmesan','e'],[1,'count','lemon','h'],[2,'tbsp','olive oil','w']],
+    steps:['Boil pasta. Reserve 1 cup water before draining.','Melt butter with garlic 2 min.','Add shrimp, cook 3 min per side.','Toss with pasta, parmesan, lemon, and a splash of pasta water.']
+  },
+  {id:'d_fast_burger', n:'Smash Burgers & Side Salad', cat:'dinner', style:['american','highprotein'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:680, pro:42, carb:34, fat:40, complete:true, side:"",
+    ing:[[2.5,'lb','ground beef 80/20','h'],[6,'count','hamburger buns','w'],[6,'slices','American cheese','e'],[1,'count','onion','h'],[1,'head','lettuce','h'],[2,'count','tomatoes','h'],[8,'cups','mixed greens','h']],
+    steps:['Heat cast iron HOT.','Form beef into 6 balls. Smash hard on pan with spatula.','30 sec, flip, top with cheese, cook 30 sec more.','Toast buns. Build with lettuce, tomato, onion.','Serve with side salad.']
+  },
+  {id:'d_fast_meatballs', n:'Italian Meatballs with Spaghetti', cat:'dinner', style:['mediterranean','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:640, pro:42, carb:58, fat:24, complete:true, side:"",
+    ing:[[2,'lb','ground beef','h'],[1,'cup','breadcrumbs','w'],[2,'count','eggs','e'],[0.5,'cup','grated parmesan','e'],[1,'jar (24 oz)','marinara sauce','w'],[1,'lb','spaghetti','w'],[3,'cloves','garlic','h'],[1,'tsp','italian seasoning','w']],
+    steps:['Mix beef, breadcrumbs, eggs, parmesan, garlic, seasoning.','Roll into 18 balls. Brown in skillet 8 min.','Add marinara, simmer 10 min.','Cook spaghetti. Top with meatballs and sauce.']
+  },
+  {id:'d_fast_indian_dal', n:'Quick Chicken Curry over Rice', cat:'dinner', style:['indian','highprotein'], time:30, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:540, pro:40, carb:42, fat:22, complete:true, side:"",
+    ing:[[2,'lb','chicken thighs, cubed','h'],[1,'count','onion','h'],[3,'cloves','garlic','h'],[1,'tbsp','fresh ginger','h'],[2,'tbsp','curry powder','w'],[1,'can (14 oz)','coconut milk','w'],[1,'can (14 oz)','diced tomatoes','w'],[2,'cups','basmati rice','w']],
+    steps:['Start rice.','Sauté onion, garlic, ginger 4 min.','Add chicken, brown 6 min.','Add curry, tomatoes, coconut milk. Simmer 12 min.','Serve over rice.']
+  },
+  {id:'d_fast_chicken_thigh', n:'Crispy Chicken Thighs & Roasted Veg', cat:'dinner', style:['mediterranean','highprotein','keto'], time:35, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:580, pro:42, carb:32, fat:30, complete:true, side:"",
+    ing:[[3,'lb','bone-in chicken thighs','h'],[2,'tbsp','olive oil','w'],[1,'tbsp','italian seasoning','w'],[1,'lb','baby potatoes','h'],[1,'lb','brussels sprouts','h'],[1,'tsp','salt','w'],[1,'tsp','black pepper','w']],
+    steps:['Heat oven to 425°F.','Toss potatoes and sprouts with oil, salt, pepper. Spread on sheet pan.','Pat thighs dry, rub with oil and seasoning. Place skin-up on pan.','Roast 35 min until skin crisp and meat 165°F.']
+  },
+  {id:'d_fast_pork_chop', n:'Pan-Seared Pork Chops with Apples', cat:'dinner', style:['american','highprotein'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:540, pro:48, carb:24, fat:28, complete:true, side:"",
+    ing:[[3,'lb','bone-in pork chops','h'],[2,'count','apples','h'],[2,'tbsp','butter','e'],[1,'tbsp','olive oil','w'],[2,'tsp','cinnamon','w'],[1,'lb','green beans','h'],[1,'tsp','salt','w']],
+    steps:['Salt chops. Heat oil in skillet.','Sear 4 min per side. Remove.','Add butter, sliced apples, cinnamon. Cook 5 min.','Steam green beans 5 min.','Plate chops with apples and green beans.']
+  },
+  {id:'d_fast_shakshuka', n:'Shakshuka (Eggs in Spicy Tomato)', cat:'dinner', style:['mediterranean','highprotein','keto'], time:30, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:420, pro:24, carb:38, fat:22, complete:true, side:"",
+    ing:[[8,'count','large eggs','e'],[2,'cans (14 oz)','diced tomatoes','w'],[1,'count','onion','h'],[1,'count','bell pepper','h'],[3,'cloves','garlic','h'],[1,'tbsp','paprika','w'],[1,'tsp','cumin','w'],[1,'cup','feta','e'],[6,'count','pita','w']],
+    steps:['Sauté onion, pepper, garlic 6 min.','Add spices, tomatoes. Simmer 8 min.','Make 8 wells, crack an egg into each.','Cover, cook 7 min until whites set.','Top with feta. Serve with pita.']
+  },
+  {id:'d_fast_chicken_med', n:'Mediterranean Chicken Tray Bake', cat:'dinner', style:['mediterranean','highprotein','keto'], time:35, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:540, pro:44, carb:12, fat:34, complete:false, side:"Side of basmati rice or warm pita.",
+    ing:[[3,'lb','chicken thighs','h'],[2,'cups','cherry tomatoes','h'],[1,'count','red onion','h'],[1,'cup','kalamata olives','h'],[3,'tbsp','olive oil','w'],[1,'tbsp','dried oregano','w'],[1,'count','lemon','h'],[1,'cup','feta','e']],
+    steps:['Heat oven to 425°F.','Toss everything except feta on sheet pan.','Roast 30 min.','Top with feta last 5 min.']
+  },
+  // ===== BREAKFASTS =====
+  {id:'b_eggs_bacon', n:'Eggs, Bacon & Avocado', cat:'breakfast', style:['american','highprotein','keto'], time:15, pot:false, spicy:false, corn:false, shrimp:false, serv:3, cal:420, pro:24, carb:8, fat:34, complete:true, side:"",
+    ing:[[6,'count','large eggs','e'],[6,'slices','bacon','h'],[1,'count','avocado','h'],[1,'tbsp','butter','e'],[1,'tsp','salt','w']],
+    steps:['Crisp bacon in pan. Drain.','Scramble eggs in butter.','Plate with sliced avocado.']
+  },
+  {id:'b_oats_protein', n:'Protein Oatmeal Bowls', cat:'breakfast', style:['american','highprotein'], time:10, pot:false, spicy:false, corn:false, shrimp:false, serv:3, cal:540, pro:38, carb:58, fat:18, complete:true, side:"",
+    ing:[[1.5,'cups','rolled oats','w'],[3,'cups','milk','e'],[3,'scoops','vanilla protein powder','w'],[1,'cup','blueberries','h'],[0.25,'cup','peanut butter','w'],[1,'tbsp','honey','w']],
+    steps:['Cook oats with milk 5 min.','Stir in protein powder.','Top with PB, blueberries, drizzle of honey.']
+  },
+  {id:'b_omelet', n:'Veggie Cheese Omelets', cat:'breakfast', style:['mediterranean','highprotein','keto'], time:15, pot:false, spicy:false, corn:false, shrimp:false, serv:3, cal:420, pro:28, carb:6, fat:32, complete:true, side:"",
+    ing:[[9,'count','large eggs','e'],[1,'count','bell pepper','h'],[1,'cup','spinach','h'],[1,'cup','shredded cheese','e'],[2,'tbsp','butter','e']],
+    steps:['Whisk 3 eggs per person.','Sauté veggies in butter 3 min.','Pour eggs in pan. When set, sprinkle cheese, fold.','Repeat for each person.']
+  },
+  {id:'b_burrito', n:'Breakfast Burritos', cat:'breakfast', style:['mexican','highprotein'], time:20, pot:false, spicy:true, corn:false, shrimp:false, serv:3, cal:520, pro:28, carb:40, fat:28, complete:true, side:"",
+    ing:[[6,'count','large eggs','e'],[6,'slices','bacon','h'],[1,'cup','shredded cheese','e'],[3,'count','large flour tortillas','w'],[0.5,'cup','salsa','w'],[1,'count','avocado','h']],
+    steps:['Cook bacon, chop.','Scramble eggs.','Warm tortillas.','Fill with eggs, bacon, cheese, salsa, avocado. Roll tight.']
+  },
+  {id:'b_greek_yog', n:'Greek Yogurt Parfaits', cat:'breakfast', style:['mediterranean','highprotein'], time:5, pot:false, spicy:false, corn:false, shrimp:false, serv:3, cal:380, pro:24, carb:42, fat:12, complete:true, side:"",
+    ing:[[3,'cups','plain Greek yogurt','e'],[1.5,'cups','berries','h'],[0.5,'cup','granola','w'],[3,'tbsp','honey','w'],[0.25,'cup','sliced almonds','w']],
+    steps:['Layer yogurt, berries, granola in bowls or jars.','Top with honey and almonds.']
+  },
+  {id:'b_pancakes_protein', n:'Protein Pancakes', cat:'breakfast', style:['american','highprotein'], time:20, pot:false, spicy:false, corn:false, shrimp:false, serv:3, cal:480, pro:32, carb:58, fat:12, complete:true, side:"",
+    ing:[[3,'count','large bananas','h'],[6,'count','eggs','e'],[3,'scoops','vanilla protein powder','w'],[1,'tsp','baking powder','w'],[1,'tbsp','butter','e'],[0.5,'cup','maple syrup','w']],
+    steps:['Mash bananas. Whisk with eggs, protein powder, baking powder.','Cook in butter 2 min per side.','Serve with syrup.']
+  },
+  {id:'b_chia', n:'Chia Pudding with Berries', cat:'breakfast', style:['mediterranean','highprotein','keto'], time:5, pot:false, spicy:false, corn:false, shrimp:false, serv:3, cal:380, pro:12, carb:34, fat:22, complete:true, side:"",
+    ing:[[9,'tbsp','chia seeds','w'],[3,'cups','milk or almond milk','e'],[3,'tbsp','honey','w'],[1.5,'cups','berries','h']],
+    steps:['Mix chia, milk, honey. Refrigerate overnight (or 4 hours).','Top with berries.']
+  },
+  {id:'b_eggs_avo_toast', n:'Avocado Toast with Eggs', cat:'breakfast', style:['mediterranean','highprotein'], time:10, pot:false, spicy:false, corn:false, shrimp:false, serv:3, cal:440, pro:22, carb:34, fat:26, complete:true, side:"",
+    ing:[[6,'count','eggs','e'],[2,'count','avocados','h'],[6,'slices','whole grain bread','w'],[1,'count','lemon','h'],[1,'tsp','red pepper flakes','w'],[1,'tsp','salt','w']],
+    steps:['Toast bread. Fry or poach eggs.','Mash avocado with lemon juice and salt.','Spread on toast, top with eggs and pepper flakes.']
+  },
+  // ===== SNACKS (high protein) =====
+  {id:'s_eggs', n:'Hard-Boiled Eggs', cat:'snack', style:['highprotein','keto','mediterranean','american'], time:15, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:140, pro:12, carb:1, fat:10, complete:true, side:"",
+    ing:[[12,'count','large eggs','e'],[1,'tsp','salt','w']],
+    steps:['Cover eggs with water. Boil 12 min.','Ice bath. Peel.','Keeps 7 days in fridge.']
+  },
+  {id:'s_yog_pb', n:'Greek Yogurt + Peanut Butter', cat:'snack', style:['highprotein','mediterranean','american'], time:2, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:260, pro:18, carb:18, fat:14, complete:true, side:"",
+    ing:[[3,'cups','plain Greek yogurt','e'],[0.5,'cup','peanut butter','w'],[0.25,'cup','honey','w']],
+    steps:['Scoop ½ cup yogurt per serving.','Drizzle with PB and honey.']
+  },
+  {id:'s_jerky', n:'Beef Jerky', cat:'snack', style:['highprotein','keto','american'], time:0, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:160, pro:22, carb:8, fat:4, complete:true, side:"",
+    ing:[[12,'oz','beef jerky','w']],
+    steps:['Pre-made. Portion as needed.']
+  },
+  {id:'s_cheese_meat', n:'Cheese & Deli Meat Plate', cat:'snack', style:['highprotein','keto','american'], time:5, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:260, pro:22, carb:4, fat:18, complete:true, side:"",
+    ing:[[12,'oz','sliced turkey or ham','h'],[8,'oz','cheddar cheese','e'],[1,'count','cucumber','h']],
+    steps:['Slice cheese and cucumber.','Roll deli meat. Serve cold.']
+  },
+  {id:'s_cottage', n:'Cottage Cheese with Berries', cat:'snack', style:['highprotein','mediterranean'], time:2, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:180, pro:18, carb:14, fat:4, complete:true, side:"",
+    ing:[[3,'cups','cottage cheese','e'],[1.5,'cups','berries','h'],[2,'tbsp','honey','w']],
+    steps:['Scoop ½ cup cottage cheese per serving.','Top with berries and honey.']
+  },
+  {id:'s_almonds', n:'Almonds & Dark Chocolate', cat:'snack', style:['highprotein','keto','mediterranean','american'], time:1, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:280, pro:8, carb:14, fat:22, complete:true, side:"",
+    ing:[[2,'cups','raw almonds','w'],[6,'oz','dark chocolate (70%+)','w']],
+    steps:['Portion 1/3 cup almonds and 1 oz chocolate per serving.']
+  },
+  {id:'s_tuna', n:'Tuna Salad on Cucumber', cat:'snack', style:['highprotein','keto','mediterranean'], time:8, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:160, pro:22, carb:4, fat:8, complete:true, side:"",
+    ing:[[3,'cans','tuna in water','w'],[3,'tbsp','mayo','w'],[1,'count','cucumber','h'],[1,'tsp','salt','w'],[1,'tsp','black pepper','w']],
+    steps:['Mix tuna with mayo, salt, pepper.','Slice cucumber thick.','Top each cucumber slice with tuna.']
+  },
+  {id:'s_shake', n:'Protein Shake', cat:'snack', style:['highprotein','american'], time:3, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:220, pro:28, carb:14, fat:6, complete:true, side:"",
+    ing:[[6,'scoops','vanilla protein powder','w'],[1.5,'cups','milk','e'],[1.5,'cups','frozen berries','h'],[2,'tbsp','peanut butter','w']],
+    steps:['Blend per portion: 1 scoop, ¼ cup milk, ¼ cup berries, 1 tsp PB.','Drink fresh.']
+  },
+
+  // ===== JAPANESE DINNERS =====
+  {id:'d_teriyaki_chicken', n:'Chicken Teriyaki Bowls', cat:'dinner', style:['japanese','highprotein'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:580, pro:45, carb:52, fat:18, complete:true, side:"",
+    ing:[[2.5,'lb','boneless skinless chicken thighs','h'],[0.5,'cup','soy sauce','w'],[0.33,'cup','mirin or rice vinegar','w'],[3,'tbsp','brown sugar','w'],[1,'tbsp','fresh ginger','h'],[3,'cloves','garlic','h'],[2,'cups','jasmine rice','w'],[2,'heads','broccoli','h'],[2,'count','green onions','h']],
+    steps:['Start rice (2 cups + 4 cups water, simmer 18 min).','Mix soy sauce, mirin, brown sugar, ginger, garlic for teriyaki sauce.','Cube chicken. Sear in hot pan 6 min.','Pour in sauce, simmer 6 min until glazed.','Steam broccoli 4 min.','Plate over rice, top with green onions.']
+  },
+  {id:'d_salmon_teriyaki', n:'Sheet Pan Salmon Teriyaki', cat:'dinner', style:['japanese','highprotein','keto'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:580, pro:42, carb:48, fat:22, complete:true, side:"",
+    ing:[[2.5,'lb','salmon fillets','h'],[0.5,'cup','soy sauce','w'],[0.25,'cup','honey','w'],[2,'tbsp','rice vinegar','w'],[1,'tbsp','fresh ginger','h'],[2,'cups','jasmine rice','w'],[1,'lb','asparagus','h'],[2,'tsp','sesame seeds','w']],
+    steps:['Heat oven 425°F. Start rice.','Whisk soy, honey, vinegar, ginger.','Place salmon and asparagus on sheet pan. Brush salmon with sauce.','Roast 12 min.','Plate over rice. Drizzle with extra sauce, top with sesame seeds.']
+  },
+  {id:'d_gyudon', n:'Gyudon (Japanese Beef Bowls)', cat:'dinner', style:['japanese','highprotein'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:620, pro:42, carb:54, fat:24, complete:true, side:"",
+    ing:[[2,'lb','thinly sliced ribeye or sirloin','h'],[2,'count','onions','h'],[0.5,'cup','soy sauce','w'],[0.33,'cup','mirin','w'],[3,'tbsp','brown sugar','w'],[1,'tbsp','fresh ginger','h'],[2,'cups','jasmine rice','w'],[6,'count','soft-boiled eggs','e']],
+    steps:['Start rice. Soft-boil eggs (6 min in boiling water, ice bath).','Slice onions thin.','Simmer onions in soy, mirin, sugar, ginger, ½ cup water 5 min.','Add beef, simmer 5 min.','Plate over rice. Top with halved soft-boiled egg.']
+  },
+  {id:'d_chicken_katsu', n:'Chicken Katsu', cat:'dinner', style:['japanese','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:680, pro:48, carb:58, fat:24, complete:true, side:"",
+    ing:[[3,'lb','chicken breasts','h'],[2,'cups','panko breadcrumbs','w'],[3,'count','eggs','e'],[1,'cup','flour','w'],[0.5,'cup','tonkatsu sauce','w'],[2,'cups','jasmine rice','w'],[4,'cups','shredded cabbage','h'],[0.5,'cup','vegetable oil','w']],
+    steps:['Start rice. Pound chicken to ½" thick.','Set up flour, beaten eggs, panko in three dishes.','Dredge chicken: flour → egg → panko.','Heat oil in skillet. Fry 4 min per side until golden.','Slice. Serve over rice with cabbage and tonkatsu sauce.']
+  },
+  {id:'d_yakisoba', n:'Yakisoba Stir-Fry', cat:'dinner', style:['japanese','highprotein'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:560, pro:36, carb:52, fat:22, complete:true, side:"",
+    ing:[[2,'lb','sliced pork or chicken','h'],[1,'lb','yakisoba noodles or ramen','w'],[1,'count','cabbage, shredded','h'],[2,'count','carrots','h'],[0.5,'cup','soy sauce','w'],[3,'tbsp','worcestershire','w'],[2,'tbsp','oyster sauce','w'],[2,'tbsp','vegetable oil','w']],
+    steps:['Cook noodles per package. Drain.','Stir-fry meat in oil 5 min.','Add cabbage and carrots, cook 4 min.','Toss in noodles plus soy, worcestershire, oyster sauce.','Stir-fry 3 more min until coated.']
+  },
+  {id:'d_miso_salmon', n:'Miso-Glazed Salmon with Rice', cat:'dinner', style:['japanese','highprotein','keto'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:520, pro:42, carb:42, fat:20, complete:true, side:"",
+    ing:[[2.5,'lb','salmon fillets','h'],[0.33,'cup','white miso paste','h'],[2,'tbsp','honey','w'],[2,'tbsp','soy sauce','w'],[1,'tbsp','rice vinegar','w'],[2,'cups','jasmine rice','w'],[1,'lb','bok choy','h']],
+    steps:['Start rice. Heat oven 400°F.','Whisk miso, honey, soy, vinegar.','Brush salmon with glaze. Place on lined sheet pan.','Roast 12 min.','Sauté bok choy in oil 4 min.','Serve over rice.']
+  },
+  {id:'d_oyakodon', n:'Oyakodon (Chicken & Egg Rice Bowl)', cat:'dinner', style:['japanese','highprotein'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:620, pro:48, carb:52, fat:22, complete:true, side:"",
+    ing:[[2.5,'lb','boneless skinless chicken thighs','h'],[2,'count','onions','h'],[8,'count','eggs','e'],[0.5,'cup','soy sauce','w'],[0.33,'cup','mirin','w'],[2,'tbsp','sugar','w'],[2,'cups','jasmine rice','w'],[2,'count','green onions','h']],
+    steps:['Start rice. Slice onions and cube chicken.','Simmer onions in soy, mirin, sugar, ½ cup water 4 min.','Add chicken, simmer 8 min.','Beat eggs, pour over. Cover 2 min until just set.','Spoon over rice, top with green onions.']
+  },
+
+  // ===== CHINESE DINNERS =====
+  {id:'d_kung_pao', n:'Kung Pao Chicken', cat:'dinner', style:['chinese','highprotein'], time:25, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:580, pro:42, carb:48, fat:22, complete:true, side:"",
+    ing:[[2.5,'lb','chicken breasts, cubed','h'],[0.5,'cup','soy sauce','w'],[3,'tbsp','rice vinegar','w'],[2,'tbsp','brown sugar','w'],[1,'tbsp','cornstarch','w'],[1,'cup','roasted peanuts','w'],[6,'count','dried red chiles','w'],[3,'cloves','garlic','h'],[1,'tbsp','fresh ginger','h'],[2,'cups','jasmine rice','w']],
+    steps:['Start rice. Whisk soy, vinegar, sugar, cornstarch.','Stir-fry chicken in hot pan 5 min.','Add chiles, garlic, ginger. Cook 1 min.','Pour sauce, simmer 3 min.','Toss in peanuts. Serve over rice.']
+  },
+  {id:'d_sesame_chicken', n:'Sesame Chicken', cat:'dinner', style:['chinese','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:620, pro:42, carb:58, fat:22, complete:true, side:"",
+    ing:[[3,'lb','chicken breasts, cubed','h'],[0.5,'cup','cornstarch','w'],[0.5,'cup','soy sauce','w'],[0.33,'cup','honey','w'],[3,'tbsp','rice vinegar','w'],[2,'tbsp','sesame oil','w'],[3,'tbsp','sesame seeds','w'],[2,'cups','jasmine rice','w'],[1,'head','broccoli','h']],
+    steps:['Start rice. Toss chicken in cornstarch.','Pan-fry chicken in oil 8 min until crispy.','Whisk soy, honey, vinegar, sesame oil.','Pour over chicken, simmer 3 min.','Steam broccoli 4 min.','Top chicken with sesame seeds. Serve over rice with broccoli.']
+  },
+  {id:'d_lo_mein', n:'Chicken Lo Mein', cat:'dinner', style:['chinese','highprotein'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:580, pro:36, carb:58, fat:22, complete:true, side:"",
+    ing:[[2,'lb','chicken breasts, sliced','h'],[1,'lb','lo mein or spaghetti noodles','w'],[0.5,'cup','soy sauce','w'],[3,'tbsp','oyster sauce','w'],[2,'tbsp','sesame oil','w'],[2,'cups','snap peas or green beans','h'],[2,'count','carrots','h'],[1,'count','bell pepper','h'],[3,'cloves','garlic','h']],
+    steps:['Boil noodles. Drain.','Stir-fry chicken in oil 5 min.','Add vegetables and garlic, cook 4 min.','Toss in noodles, soy, oyster sauce, sesame oil. Stir 2 min.']
+  },
+  {id:'d_orange_chicken', n:'Orange Chicken', cat:'dinner', style:['chinese','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:620, pro:42, carb:62, fat:20, complete:true, side:"",
+    ing:[[3,'lb','chicken breasts, cubed','h'],[0.5,'cup','cornstarch','w'],[3,'count','oranges (juice + zest)','h'],[0.5,'cup','soy sauce','w'],[0.33,'cup','brown sugar','w'],[3,'tbsp','rice vinegar','w'],[3,'cloves','garlic','h'],[2,'cups','jasmine rice','w'],[1,'head','broccoli','h']],
+    steps:['Start rice. Toss chicken in cornstarch.','Pan-fry in oil 8 min until crispy. Remove.','In same pan: orange juice, zest, soy, sugar, vinegar, garlic. Simmer 5 min.','Toss chicken in sauce.','Steam broccoli. Serve over rice.']
+  },
+  {id:'d_mongolian_beef', n:'Mongolian Beef', cat:'dinner', style:['chinese','highprotein'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:580, pro:40, carb:52, fat:22, complete:true, side:"",
+    ing:[[2.5,'lb','flank steak, sliced','h'],[0.5,'cup','cornstarch','w'],[0.5,'cup','soy sauce','w'],[0.33,'cup','brown sugar','w'],[3,'cloves','garlic','h'],[1,'tbsp','fresh ginger','h'],[6,'count','green onions','h'],[2,'cups','jasmine rice','w']],
+    steps:['Start rice. Toss beef in cornstarch.','Sear beef in hot oil 3 min. Remove.','Add garlic, ginger to pan 30 sec.','Add soy, brown sugar, simmer 3 min.','Return beef and green onions, toss 2 min.','Serve over rice.']
+  },
+  {id:'d_pepper_steak', n:'Pepper Steak Stir-Fry', cat:'dinner', style:['chinese','highprotein','keto'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:520, pro:42, carb:48, fat:18, complete:true, side:"",
+    ing:[[2.5,'lb','sirloin, sliced','h'],[3,'count','bell peppers','h'],[1,'count','onion','h'],[0.33,'cup','soy sauce','w'],[2,'tbsp','oyster sauce','w'],[2,'tbsp','rice vinegar','w'],[1,'tbsp','cornstarch','w'],[3,'cloves','garlic','h'],[2,'cups','jasmine rice','w']],
+    steps:['Start rice. Slice beef, peppers, onion.','Sear beef in hot oil 3 min. Remove.','Stir-fry peppers and onion 4 min.','Add garlic, soy, oyster, vinegar, cornstarch with 2 tbsp water.','Return beef, toss until sauce thickens.','Serve over rice.']
+  },
+  {id:'d_general_tso', n:'General Tso\'s Chicken', cat:'dinner', style:['chinese','highprotein'], time:35, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:620, pro:42, carb:58, fat:22, complete:true, side:"",
+    ing:[[3,'lb','chicken thighs, cubed','h'],[0.5,'cup','cornstarch','w'],[0.5,'cup','soy sauce','w'],[0.33,'cup','brown sugar','w'],[3,'tbsp','rice vinegar','w'],[1,'tbsp','sriracha','w'],[3,'cloves','garlic','h'],[6,'count','dried red chiles','w'],[2,'cups','jasmine rice','w'],[1,'head','broccoli','h']],
+    steps:['Start rice. Toss chicken in cornstarch.','Pan-fry in oil 8 min until crispy. Remove.','In pan: garlic, chiles, soy, sugar, vinegar, sriracha. Simmer 4 min.','Toss chicken in sauce.','Steam broccoli. Serve over rice.']
+  },
+  {id:'d_pork_fried_rice', n:'Pork Fried Rice', cat:'dinner', style:['chinese','highprotein'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:580, pro:38, carb:56, fat:22, complete:true, side:"",
+    ing:[[2,'lb','pork tenderloin, diced','h'],[5,'cups','cold cooked jasmine rice','w'],[4,'count','eggs','e'],[2,'count','carrots','h'],[2,'cups','peas','w'],[0.5,'cup','soy sauce','w'],[2,'tbsp','sesame oil','w'],[3,'cloves','garlic','h'],[4,'count','green onions','h']],
+    steps:['Use day-old rice if possible. Otherwise cook and chill.','Stir-fry pork in oil 5 min.','Push to side, scramble eggs in same pan.','Add carrots, peas, garlic, cook 3 min.','Add rice, soy, sesame oil. Stir 4 min until hot.','Top with green onions.']
+  },
+  {id:'d_kung_pao_pork', n:'Kung Pao Pork', cat:'dinner', style:['chinese','highprotein'], time:25, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:580, pro:42, carb:48, fat:22, complete:true, side:"",
+    ing:[[2.5,'lb','pork tenderloin, cubed','h'],[0.5,'cup','soy sauce','w'],[3,'tbsp','rice vinegar','w'],[2,'tbsp','brown sugar','w'],[1,'cup','roasted peanuts','w'],[6,'count','dried chiles','w'],[3,'cloves','garlic','h'],[1,'tbsp','ginger','h'],[2,'cups','jasmine rice','w'],[2,'count','bell peppers','h']],
+    steps:['Start rice. Stir-fry pork 5 min.','Add bell peppers, garlic, ginger, chiles. Cook 3 min.','Pour soy, vinegar, sugar. Simmer 3 min.','Toss in peanuts. Serve over rice.']
+  },
+
+  // ===== VIETNAMESE DINNERS =====
+  {id:'d_pho_beef', n:'Weeknight Beef Pho', cat:'dinner', style:['vietnamese','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:520, pro:38, carb:58, fat:12, complete:true, side:"",
+    ing:[[2,'lb','thinly sliced sirloin or eye of round','h'],[8,'cups','beef broth','w'],[2,'tbsp','fish sauce','w'],[1,'count','onion','h'],[1,'tbsp','fresh ginger','h'],[3,'count','star anise','w'],[1,'count','cinnamon stick','w'],[1,'lb','rice noodles (banh pho)','w'],[1,'bunch','cilantro','h'],[1,'bunch','thai basil','h'],[2,'count','limes','h'],[3,'count','jalapeños','h'],[2,'cups','bean sprouts','h']],
+    steps:['Char onion and ginger in dry pan 3 min per side.','Add broth, fish sauce, star anise, cinnamon. Simmer 20 min.','Soak rice noodles in hot water 8 min. Drain.','Slice raw beef paper-thin (easier if partly frozen).','Strain broth into bowls. Add noodles.','Lay raw beef on top — boiling broth cooks it.','Serve with cilantro, basil, lime, jalapeño, sprouts on the side.']
+  },
+  {id:'d_pho_chicken', n:'Weeknight Chicken Pho', cat:'dinner', style:['vietnamese','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:480, pro:36, carb:56, fat:10, complete:true, side:"",
+    ing:[[2,'lb','chicken breasts','h'],[8,'cups','chicken broth','w'],[2,'tbsp','fish sauce','w'],[1,'count','onion','h'],[1,'tbsp','fresh ginger','h'],[2,'count','star anise','w'],[1,'lb','rice noodles','w'],[1,'bunch','cilantro','h'],[2,'count','limes','h'],[2,'count','jalapeños','h'],[2,'cups','bean sprouts','h']],
+    steps:['Char onion and ginger 3 min per side.','Simmer in broth with fish sauce, star anise, chicken 20 min.','Remove chicken, shred.','Soak rice noodles in hot water 8 min.','Build bowls: noodles, shredded chicken, broth.','Top with herbs, lime, jalapeño, sprouts.']
+  },
+  {id:'d_banh_mi', n:'Vietnamese Banh Mi Sandwiches', cat:'dinner', style:['vietnamese','highprotein'], time:30, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:540, pro:36, carb:48, fat:20, complete:true, side:"",
+    ing:[[2,'lb','pork tenderloin, sliced','h'],[3,'tbsp','soy sauce','w'],[2,'tbsp','fish sauce','w'],[2,'tbsp','brown sugar','w'],[3,'cloves','garlic','h'],[6,'count','crusty rolls or baguette','w'],[2,'count','carrots','h'],[1,'count','cucumber','h'],[1,'bunch','cilantro','h'],[3,'count','jalapeños','h'],[0.5,'cup','mayo','w'],[2,'count','limes','h']],
+    steps:['Marinate pork in soy, fish sauce, sugar, garlic 10 min.','Sear pork in hot pan 3 min per side.','Julienne carrots, slice cucumber, soak in lime juice + pinch sugar 10 min.','Toast rolls. Spread mayo, layer pork, pickled veg, cilantro, jalapeños.']
+  },
+  {id:'d_lemongrass_chicken', n:'Vietnamese Lemongrass Chicken Bowls', cat:'dinner', style:['vietnamese','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:540, pro:40, carb:48, fat:18, complete:true, side:"",
+    ing:[[2.5,'lb','chicken thighs, cubed','h'],[3,'tbsp','fish sauce','w'],[3,'tbsp','brown sugar','w'],[2,'tbsp','soy sauce','w'],[3,'cloves','garlic','h'],[2,'stalks','lemongrass (or 2 tbsp paste)','h'],[2,'cups','jasmine rice','w'],[1,'cup','shredded carrots','h'],[1,'count','cucumber','h'],[1,'bunch','cilantro','h']],
+    steps:['Start rice. Marinate chicken in fish sauce, sugar, soy, garlic, lemongrass 10 min.','Sear chicken in hot oil 8 min until caramelized.','Build bowls: rice, chicken, carrots, cucumber, cilantro.']
+  },
+  {id:'d_bun_bo', n:'Bun Bo Xao (Vietnamese Beef Noodle Salad)', cat:'dinner', style:['vietnamese','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:580, pro:38, carb:58, fat:18, complete:true, side:"",
+    ing:[[2,'lb','flank steak, sliced','h'],[3,'tbsp','fish sauce','w'],[3,'tbsp','brown sugar','w'],[3,'cloves','garlic','h'],[1,'lb','rice vermicelli','w'],[1,'count','cucumber','h'],[2,'count','carrots','h'],[1,'head','romaine lettuce','h'],[1,'cup','roasted peanuts','w'],[1,'bunch','cilantro','h'],[3,'count','limes','h']],
+    steps:['Marinate beef in fish sauce, sugar, garlic 10 min.','Cook vermicelli per package. Rinse cold.','Sear beef in hot oil 4 min.','Build bowls: lettuce, noodles, beef, cucumber, carrots, cilantro, peanuts.','Drizzle with lime juice + fish sauce + a pinch of sugar.']
+  },
+
+  // ===== ETHIOPIAN DINNERS (over rice) =====
+  {id:'d_doro_wat', n:'Doro Wat (Ethiopian Chicken Stew) over Rice', cat:'dinner', style:['ethiopian','highprotein'], time:35, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:620, pro:48, carb:42, fat:28, complete:true, side:"",
+    ing:[[3,'lb','chicken thighs','h'],[3,'count','onions','h'],[6,'cloves','garlic','h'],[2,'tbsp','fresh ginger','h'],[3,'tbsp','berbere spice (or 2 tbsp paprika + 1 tbsp cayenne)','w'],[3,'tbsp','tomato paste','w'],[6,'count','hard-boiled eggs','e'],[3,'tbsp','butter','e'],[2,'cups','jasmine rice','w']],
+    steps:['Boil eggs (10 min), peel.','Start rice.','Sauté finely chopped onions in butter 8 min until very soft.','Add garlic, ginger, berbere, tomato paste. Cook 3 min.','Add chicken and 2 cups water. Simmer 15 min.','Add eggs last 5 min.','Serve over rice.']
+  },
+  {id:'d_misir_wat', n:'Misir Wat (Spicy Red Lentils) over Rice', cat:'dinner', style:['ethiopian','highprotein'], time:30, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:420, pro:18, carb:58, fat:12, complete:false, side:"Add a side of grilled chicken thighs (or any protein) to bring this up to 35g+ protein.",
+    ing:[[2,'cups','red lentils','w'],[2,'count','onions','h'],[5,'cloves','garlic','h'],[2,'tbsp','berbere spice','w'],[3,'tbsp','tomato paste','w'],[3,'tbsp','olive oil','w'],[2,'cups','jasmine rice','w'],[1,'tsp','salt','w']],
+    steps:['Start rice.','Sauté chopped onions in oil 10 min.','Add garlic, berbere, tomato paste. Stir 2 min.','Add rinsed lentils and 5 cups water. Simmer 18 min until soft.','Salt to taste. Serve over rice.']
+  },
+  {id:'d_tibs', n:'Tibs (Ethiopian Beef) over Rice', cat:'dinner', style:['ethiopian','highprotein','keto'], time:30, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:580, pro:42, carb:42, fat:24, complete:true, side:"",
+    ing:[[2.5,'lb','sirloin or stew beef, cubed','h'],[2,'count','onions','h'],[2,'count','bell peppers','h'],[5,'cloves','garlic','h'],[1,'tbsp','fresh ginger','h'],[2,'tbsp','berbere spice','w'],[3,'tbsp','butter','e'],[1,'count','rosemary sprig','h'],[2,'cups','jasmine rice','w']],
+    steps:['Start rice.','Sear beef in butter, very hot pan, 4 min.','Add onions, peppers, garlic, ginger. Cook 6 min.','Stir in berbere and rosemary. Cook 3 min.','Serve over rice.']
+  },
+  {id:'d_atakilt', n:'Atakilt Wat (Ethiopian Cabbage & Potatoes)', cat:'dinner', style:['ethiopian'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:480, pro:32, carb:52, fat:16, complete:true, side:"",
+    ing:[[1,'head','green cabbage','h'],[2,'lb','potatoes','h'],[3,'count','carrots','h'],[1,'count','onion','h'],[4,'cloves','garlic','h'],[1,'tbsp','fresh ginger','h'],[1,'tbsp','turmeric','w'],[0.33,'cup','olive oil','w'],[1.5,'lb','chicken breasts (for protein)','h'],[2,'cups','jasmine rice','w']],
+    steps:['Start rice. Cube potatoes and chicken; chop cabbage and carrots.','Sauté onion and chicken in oil 6 min.','Add garlic, ginger, turmeric, potatoes, carrots, ½ cup water. Cover 10 min.','Add cabbage, cover 8 more min.','Salt to taste. Serve over rice.']
+  },
+  {id:'d_kitfo', n:'Kitfo-Inspired Beef Bowls', cat:'dinner', style:['ethiopian','highprotein','keto'], time:25, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:620, pro:42, carb:42, fat:32, complete:true, side:"",
+    ing:[[2.5,'lb','ground beef','h'],[3,'tbsp','butter','e'],[2,'tbsp','berbere spice','w'],[1,'tsp','cardamom','w'],[2,'cups','jasmine rice','w'],[8,'cups','kale or collards','h'],[2,'cloves','garlic','h'],[1,'tsp','salt','w']],
+    steps:['Start rice. Sauté garlic and chopped greens in oil 5 min.','Brown beef in butter 6 min.','Stir in berbere, cardamom, salt. Cook 2 min.','Plate: rice, greens, beef.']
+  },
+
+  // ===== SOUTH AMERICAN DINNERS =====
+  {id:'d_lomo_saltado', n:'Lomo Saltado (Peruvian Stir-Fry)', cat:'dinner', style:['south_american','highprotein'], time:30, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:640, pro:42, carb:58, fat:24, complete:true, side:"",
+    ing:[[2.5,'lb','sirloin, sliced','h'],[2,'count','red onions','h'],[2,'count','tomatoes','h'],[3,'cloves','garlic','h'],[0.33,'cup','soy sauce','w'],[2,'tbsp','red wine vinegar','w'],[2,'count','jalapeños','h'],[2,'lb','french fries (frozen)','w'],[2,'cups','jasmine rice','w'],[1,'bunch','cilantro','h']],
+    steps:['Bake fries per package. Start rice.','Sear beef in very hot oil 3 min.','Add onion, tomato, garlic, jalapeño. Cook 4 min.','Splash soy sauce and vinegar, toss 1 min.','Toss in fries at the very end.','Serve over rice with cilantro.']
+  },
+  {id:'d_arroz_pollo', n:'Arroz con Pollo (Latin Chicken & Rice)', cat:'dinner', style:['south_american','highprotein'], time:35, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:620, pro:42, carb:58, fat:18, complete:true, side:"",
+    ing:[[3,'lb','bone-in chicken thighs','h'],[2,'cups','long-grain rice','w'],[4,'cups','chicken broth','w'],[1,'count','onion','h'],[1,'count','bell pepper','h'],[4,'cloves','garlic','h'],[1,'can (14 oz)','diced tomatoes','w'],[2,'tsp','cumin','w'],[2,'tsp','paprika','w'],[1,'tsp','turmeric','w']],
+    steps:['Brown chicken thighs in oil 5 min per side. Remove.','Sauté onion, pepper, garlic 4 min.','Stir in rice, spices, tomatoes, broth.','Nestle chicken back in. Simmer covered 25 min.']
+  },
+  {id:'d_chimichurri_steak', n:'Argentinian Chimichurri Steak', cat:'dinner', style:['south_american','highprotein','keto'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:620, pro:48, carb:38, fat:30, complete:true, side:"",
+    ing:[[3,'lb','flank or skirt steak','h'],[1,'bunch','parsley','h'],[6,'cloves','garlic','h'],[0.5,'cup','olive oil','w'],[3,'tbsp','red wine vinegar','w'],[1,'tsp','red pepper flakes','w'],[2,'lb','baby potatoes','h'],[1,'lb','green beans','h'],[1,'tsp','salt','w']],
+    steps:['Heat oven 425°F. Roast halved potatoes with oil and salt 25 min.','Mince parsley and garlic. Mix with oil, vinegar, pepper flakes, salt for chimichurri.','Salt steak heavily. Sear in screaming hot pan 4 min per side.','Rest 5 min. Slice against grain.','Steam green beans. Plate everything, spoon chimichurri over steak.']
+  },
+  {id:'d_picadillo', n:'Cuban Picadillo', cat:'dinner', style:['south_american','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:620, pro:42, carb:52, fat:24, complete:true, side:"",
+    ing:[[2.5,'lb','ground beef','h'],[1,'count','onion','h'],[1,'count','bell pepper','h'],[4,'cloves','garlic','h'],[1,'can (14 oz)','diced tomatoes','w'],[0.5,'cup','green olives','w'],[0.33,'cup','raisins','w'],[2,'tsp','cumin','w'],[1,'tsp','oregano','w'],[2,'cups','jasmine rice','w'],[1,'can (14 oz)','black beans','w']],
+    steps:['Start rice. Heat black beans separately.','Brown beef with onion, pepper, garlic 8 min.','Add tomatoes, olives, raisins, spices. Simmer 10 min.','Plate: rice, beans, picadillo.']
+  },
+  {id:'d_brazilian_pork', n:'Brazilian-Style Pork & Beans', cat:'dinner', style:['south_american','highprotein'], time:35, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:680, pro:42, carb:58, fat:28, complete:true, side:"",
+    ing:[[2,'lb','pork shoulder, cubed','h'],[2,'cans (14 oz)','black beans','w'],[1,'lb','smoked sausage','h'],[1,'count','onion','h'],[5,'cloves','garlic','h'],[2,'count','bay leaves','w'],[2,'tsp','cumin','w'],[2,'cups','jasmine rice','w'],[2,'count','oranges','h']],
+    steps:['Start rice. Brown pork and sausage in pot 8 min.','Add onion and garlic, cook 4 min.','Add beans, bay, cumin, 1 cup water. Simmer 20 min.','Serve over rice with orange wedges (cuts the richness).']
+  },
+  {id:'d_chicken_milanesa', n:'Argentine Chicken Milanesa', cat:'dinner', style:['south_american','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:620, pro:48, carb:42, fat:26, complete:true, side:"",
+    ing:[[3,'lb','chicken breasts','h'],[2,'cups','breadcrumbs','w'],[3,'count','eggs','e'],[1,'cup','flour','w'],[0.5,'cup','grated parmesan','e'],[0.5,'cup','vegetable oil','w'],[2,'count','lemons','h'],[8,'cups','mixed greens','h'],[1,'count','tomato','h']],
+    steps:['Pound chicken to ½" thick.','Set up flour, beaten eggs, breadcrumbs + parmesan in three dishes.','Dredge chicken: flour → egg → breadcrumb.','Pan-fry in oil 4 min per side until golden.','Serve with lemon wedges, side salad of greens and tomato.']
+  },
+  {id:'d_pollo_asado', n:'Pollo Asado (Latin Roasted Chicken)', cat:'dinner', style:['south_american','highprotein','keto'], time:35, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:580, pro:44, carb:48, fat:22, complete:true, side:"",
+    ing:[[3,'lb','chicken thighs','h'],[3,'tbsp','olive oil','w'],[2,'count','oranges (juice + zest)','h'],[3,'count','limes','h'],[4,'cloves','garlic','h'],[2,'tsp','cumin','w'],[2,'tsp','paprika','w'],[1,'tsp','oregano','w'],[2,'cups','jasmine rice','w'],[2,'count','avocados','h']],
+    steps:['Heat oven 425°F. Start rice.','Marinate chicken in oil, citrus, garlic, spices 10 min.','Roast skin-up 30 min until 165°F.','Serve over rice with avocado slices.']
+  },
+
+  // ===== CLASSIC AMERICAN STEAK & POTATOES =====
+  {id:'d_steak_potatoes', n:'Steak, Baked Potato & Asparagus', cat:'dinner', style:['american','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:680, pro:48, carb:58, fat:30, complete:true, side:"",
+    ing:[[3,'lb','ribeye or NY strip','h'],[6,'count','russet potatoes','h'],[2,'lb','asparagus','h'],[3,'tbsp','butter','e'],[2,'tbsp','olive oil','w'],[1,'cup','sour cream','e'],[1,'cup','shredded cheddar','e'],[1,'tsp','salt','w'],[1,'tsp','pepper','w']],
+    steps:['Heat oven 425°F. Bake potatoes 60 min (or microwave 10 min if rushed).','Salt and pepper steak. Sear in hot pan 4 min per side.','Rest steak. Roast asparagus with oil 12 min.','Top potatoes with butter, sour cream, cheese.']
+  },
+  {id:'d_ribeye_mashed', n:'Ribeye with Garlic Mashed Potatoes', cat:'dinner', style:['american','highprotein'], time:35, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:720, pro:48, carb:52, fat:36, complete:true, side:"",
+    ing:[[3,'lb','ribeye','h'],[3,'lb','russet potatoes','h'],[6,'cloves','garlic','h'],[0.5,'cup','butter','e'],[0.75,'cup','milk','e'],[1,'lb','green beans','h'],[1,'tsp','salt','w'],[1,'tsp','pepper','w']],
+    steps:['Boil cubed potatoes with garlic 18 min until soft.','Drain, mash with butter and milk. Salt.','Salt steaks heavily. Sear in cast iron 4 min per side.','Rest 5 min. Steam green beans 4 min.','Slice steak. Serve with mash and beans.']
+  },
+  {id:'d_pot_roast', n:'Crockpot Pot Roast', cat:'dinner', style:['american','highprotein'], time:15, pot:true, spicy:false, corn:false, shrimp:false, serv:6, cal:620, pro:48, carb:42, fat:28, complete:true, side:"",
+    ing:[[3,'lb','chuck roast','h'],[2,'lb','baby potatoes','h'],[1,'lb','carrots','h'],[1,'count','onion','h'],[2,'cups','beef broth','w'],[1,'packet','onion soup mix','w'],[2,'tbsp','worcestershire','w'],[3,'cloves','garlic','h']],
+    steps:['Place roast in crockpot. Surround with veg.','Mix broth, soup mix, worcestershire. Pour over.','Cook LOW 8 hours.','Shred meat, serve with veg and pan juices.']
+  },
+  {id:'d_meatloaf', n:'Classic Meatloaf with Mashed Potatoes', cat:'dinner', style:['american','highprotein'], time:35, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:680, pro:42, carb:52, fat:32, complete:true, side:"",
+    ing:[[2.5,'lb','ground beef','h'],[1,'cup','breadcrumbs','w'],[2,'count','eggs','e'],[1,'count','onion','h'],[0.5,'cup','ketchup','w'],[2,'tbsp','worcestershire','w'],[3,'lb','potatoes','h'],[0.5,'cup','butter','e'],[0.5,'cup','milk','e'],[1,'lb','green beans','h']],
+    steps:['Heat oven 375°F.','Mix beef, breadcrumbs, eggs, diced onion, half the ketchup, worcestershire.','Shape into loaf. Top with rest of ketchup. Bake 30 min.','Boil potatoes 18 min, mash with butter and milk.','Steam green beans.']
+  },
+  {id:'d_pork_chops_potato', n:'Pork Chops with Roasted Potatoes', cat:'dinner', style:['american','highprotein'], time:35, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:620, pro:48, carb:42, fat:28, complete:true, side:"",
+    ing:[[3,'lb','bone-in pork chops','h'],[2,'lb','baby potatoes','h'],[3,'tbsp','olive oil','w'],[1,'tbsp','italian seasoning','w'],[1,'lb','brussels sprouts','h'],[1,'tsp','salt','w'],[1,'tsp','pepper','w']],
+    steps:['Heat oven 425°F. Toss halved potatoes and sprouts with oil, salt, pepper.','Roast 25 min.','Pat chops dry, salt heavily. Sear in skillet 4 min per side.','Rest 3 min.']
+  },
+
+  // ===== CHICKEN-VEGGIE-RICE STAPLES =====
+  {id:'d_chicken_rice_basic', n:'Simple Chicken, Veg & Rice', cat:'dinner', style:['american','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:520, pro:48, carb:52, fat:12, complete:true, side:"",
+    ing:[[2.5,'lb','chicken breasts','h'],[2,'cups','jasmine rice','w'],[2,'tbsp','olive oil','w'],[1,'tsp','garlic powder','w'],[1,'tsp','paprika','w'],[1,'tsp','salt','w'],[2,'heads','broccoli','h'],[2,'count','carrots','h']],
+    steps:['Start rice.','Season chicken with garlic powder, paprika, salt. Cube.','Heat oil, sear chicken 8 min until cooked through.','Steam broccoli and carrots 5 min.','Plate rice, chicken, veg.']
+  },
+  {id:'d_chicken_rice_lemon', n:'Lemon Herb Chicken & Rice', cat:'dinner', style:['american','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:540, pro:48, carb:48, fat:16, complete:true, side:"",
+    ing:[[2.5,'lb','chicken breasts','h'],[2,'cups','jasmine rice','w'],[2,'count','lemons','h'],[3,'cloves','garlic','h'],[2,'tbsp','olive oil','w'],[1,'tbsp','italian seasoning','w'],[1,'lb','asparagus','h'],[1,'tsp','salt','w']],
+    steps:['Start rice.','Marinate chicken in lemon juice, garlic, oil, seasoning 5 min.','Sear 8 min until 165°F.','Roast asparagus 12 min at 425°F.','Plate.']
+  },
+  {id:'d_chicken_rice_garlic', n:'Garlic Butter Chicken & Rice', cat:'dinner', style:['american','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:560, pro:48, carb:48, fat:18, complete:true, side:"",
+    ing:[[2.5,'lb','chicken thighs','h'],[2,'cups','jasmine rice','w'],[4,'tbsp','butter','e'],[6,'cloves','garlic','h'],[1,'tbsp','italian seasoning','w'],[2,'heads','broccoli','h'],[1,'tsp','salt','w']],
+    steps:['Start rice.','Salt chicken. Sear in butter 6 min per side.','In last 2 min add minced garlic and seasoning.','Steam broccoli. Plate everything, spoon garlic butter over.']
+  },
+  {id:'d_chicken_rice_bbq', n:'BBQ Chicken & Rice', cat:'dinner', style:['american','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:580, pro:48, carb:58, fat:14, complete:true, side:"",
+    ing:[[2.5,'lb','chicken thighs','h'],[2,'cups','jasmine rice','w'],[1,'cup','BBQ sauce','w'],[1,'tbsp','olive oil','w'],[2,'lb','green beans','h'],[1,'tsp','salt','w']],
+    steps:['Start rice.','Sear chicken in oil 4 min per side.','Brush with BBQ sauce, finish under broiler 4 min.','Steam green beans 5 min.','Plate.']
+  },
+  {id:'d_chicken_rice_ranch', n:'Ranch Chicken & Rice', cat:'dinner', style:['american','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:640, pro:52, carb:48, fat:26, complete:true, side:"",
+    ing:[[2.5,'lb','chicken breasts','h'],[2,'cups','jasmine rice','w'],[1,'packet','ranch seasoning','w'],[2,'tbsp','olive oil','w'],[1,'cup','shredded cheddar','e'],[6,'slices','bacon','h'],[1,'lb','broccoli','h']],
+    steps:['Start rice. Crisp bacon, chop.','Toss chicken with ranch seasoning and oil. Sear 8 min.','Top with cheese and bacon last min.','Steam broccoli. Plate.']
+  },
+  {id:'d_chicken_rice_curry', n:'Curry Chicken & Rice', cat:'dinner', style:['american','highprotein'], time:30, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:580, pro:42, carb:52, fat:22, complete:true, side:"",
+    ing:[[2.5,'lb','chicken breasts','h'],[2,'cups','jasmine rice','w'],[2,'tbsp','curry powder','w'],[1,'can (14 oz)','coconut milk','w'],[1,'count','onion','h'],[3,'cloves','garlic','h'],[2,'tbsp','olive oil','w'],[2,'cups','spinach','h']],
+    steps:['Start rice.','Sauté onion and garlic 3 min.','Add cubed chicken, curry powder. Cook 6 min.','Pour coconut milk, simmer 8 min.','Stir in spinach last min.','Serve over rice.']
+  },
+
+  // ===== MORE AMERICAN / COMFORT =====
+  {id:'d_chicken_alfredo', n:'Chicken Alfredo', cat:'dinner', style:['american','highprotein'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:680, pro:42, carb:52, fat:34, complete:true, side:"",
+    ing:[[2.5,'lb','chicken breasts','h'],[1,'lb','fettuccine','w'],[1,'cup','heavy cream','e'],[1,'cup','grated parmesan','e'],[4,'tbsp','butter','e'],[4,'cloves','garlic','h'],[1,'tsp','salt','w'],[1,'tsp','pepper','w']],
+    steps:['Boil pasta.','Sear cubed chicken in butter 6 min.','Add garlic, cream, parmesan. Simmer 3 min.','Toss with pasta. Salt and pepper to taste.']
+  },
+  {id:'d_chicken_parm', n:'Chicken Parmesan with Spaghetti', cat:'dinner', style:['mediterranean','highprotein'], time:35, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:720, pro:52, carb:58, fat:28, complete:true, side:"",
+    ing:[[3,'lb','chicken breasts','h'],[2,'cups','breadcrumbs','w'],[3,'count','eggs','e'],[1,'cup','flour','w'],[2,'cups','marinara','w'],[2,'cups','shredded mozzarella','e'],[0.5,'cup','parmesan','e'],[1,'lb','spaghetti','w']],
+    steps:['Heat oven 400°F. Pound chicken to ½".','Dredge: flour → egg → breadcrumbs. Pan-fry 4 min per side.','Top with marinara, mozzarella, parmesan. Bake 8 min.','Boil pasta. Serve under chicken with extra sauce.']
+  },
+  {id:'d_pot_chicken_soup', n:'Crockpot Chicken Noodle Soup', cat:'dinner', style:['american','highprotein'], time:15, pot:true, spicy:false, corn:false, shrimp:false, serv:6, cal:420, pro:36, carb:42, fat:10, complete:true, side:"",
+    ing:[[2.5,'lb','chicken breasts','h'],[8,'cups','chicken broth','w'],[3,'count','carrots','h'],[3,'stalks','celery','h'],[1,'count','onion','h'],[1,'lb','egg noodles','w'],[1,'tbsp','italian seasoning','w'],[3,'cloves','garlic','h']],
+    steps:['Place chicken, broth, chopped veg, garlic, seasoning in crockpot.','Cook LOW 6 hours.','Remove chicken, shred. Return to pot.','Add noodles, cook on HIGH 15 min until tender.']
+  },
+  {id:'d_pulled_pork', n:'Crockpot Pulled Pork Sandwiches', cat:'dinner', style:['american','highprotein'], time:10, pot:true, spicy:false, corn:false, shrimp:false, serv:6, cal:680, pro:42, carb:52, fat:28, complete:true, side:"",
+    ing:[[3,'lb','pork shoulder','h'],[1,'cup','BBQ sauce','w'],[1,'tbsp','smoked paprika','w'],[2,'tsp','garlic powder','w'],[1,'tsp','salt','w'],[6,'count','brioche buns','w'],[4,'cups','coleslaw mix','h'],[0.5,'cup','mayo','w'],[2,'tbsp','vinegar','w']],
+    steps:['Rub pork with paprika, garlic powder, salt.','Place in crockpot. Pour ½ cup BBQ sauce over.','Cook LOW 8 hours.','Shred, mix with remaining BBQ sauce.','Toss coleslaw mix with mayo and vinegar.','Pile pork on buns with slaw.']
+  },
+  {id:'d_taco_bowls', n:'Taco Salad Bowls', cat:'dinner', style:['mexican','highprotein','keto'], time:20, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:520, pro:40, carb:24, fat:30, complete:true, side:"",
+    ing:[[2,'lb','ground beef','h'],[2,'tbsp','taco seasoning','w'],[8,'cups','romaine lettuce','h'],[1,'cup','black beans','w'],[2,'count','tomatoes','h'],[1,'count','avocado','h'],[1,'cup','shredded cheese','e'],[1,'cup','salsa','w'],[1,'cup','sour cream','e']],
+    steps:['Brown beef with taco seasoning.','Build bowls: lettuce, beef, beans, tomato, avocado, cheese.','Top with salsa and sour cream.']
+  },
+  {id:'d_pot_chicken_taco', n:'Crockpot Chicken Tacos', cat:'dinner', style:['mexican','highprotein'], time:10, pot:true, spicy:true, corn:false, shrimp:false, serv:6, cal:540, pro:42, carb:42, fat:22, complete:true, side:"",
+    ing:[[3,'lb','chicken breasts','h'],[2,'tbsp','taco seasoning','w'],[1,'cup','salsa','w'],[1,'cup','chicken broth','w'],[12,'count','small flour tortillas','w'],[1,'cup','shredded cheese','e'],[1,'count','avocado','h'],[2,'count','limes','h']],
+    steps:['Place chicken, seasoning, salsa, broth in crockpot.','Cook LOW 6 hours.','Shred chicken in cooking liquid.','Serve in tortillas with cheese, avocado, lime.']
+  },
+  {id:'d_buffalo_chicken', n:'Buffalo Chicken Bowls', cat:'dinner', style:['american','highprotein','keto'], time:30, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:520, pro:48, carb:18, fat:28, complete:true, side:"",
+    ing:[[2.5,'lb','chicken breasts','h'],[0.75,'cup','buffalo sauce','w'],[3,'tbsp','butter','e'],[8,'cups','romaine lettuce','h'],[1,'cup','blue cheese crumbles','e'],[1,'count','cucumber','h'],[2,'count','carrots','h'],[0.75,'cup','ranch dressing','w']],
+    steps:['Sear cubed chicken in butter 8 min.','Toss with buffalo sauce.','Build bowls: lettuce, chicken, cucumber, carrots, blue cheese.','Drizzle with ranch.']
+  },
+  {id:'d_pot_chili_white', n:'Crockpot White Chicken Chili', cat:'dinner', style:['american','highprotein'], time:15, pot:true, spicy:true, corn:false, shrimp:false, serv:6, cal:540, pro:48, carb:38, fat:22, complete:true, side:"",
+    ing:[[2.5,'lb','chicken breasts','h'],[2,'cans (14 oz)','great northern beans','w'],[1,'can (4 oz)','diced green chiles','w'],[4,'cups','chicken broth','w'],[1,'count','onion','h'],[3,'cloves','garlic','h'],[2,'tsp','cumin','w'],[1,'cup','sour cream','e'],[1,'cup','shredded monterey jack','e']],
+    steps:['Place chicken, beans, chiles, broth, onion, garlic, cumin in crockpot.','Cook LOW 6 hours.','Shred chicken. Stir in sour cream.','Top with cheese.']
+  },
+  {id:'d_breakfast_dinner', n:'Breakfast for Dinner (Eggs + Sausage + Hash)', cat:'dinner', style:['american','highprotein'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:680, pro:36, carb:48, fat:36, complete:true, side:"",
+    ing:[[12,'count','eggs','e'],[1.5,'lb','breakfast sausage','h'],[2,'lb','potatoes','h'],[1,'count','onion','h'],[1,'count','bell pepper','h'],[3,'tbsp','butter','e'],[1,'cup','shredded cheese','e'],[1,'tsp','salt','w']],
+    steps:['Dice potatoes, onion, pepper. Cook in butter 15 min until crispy.','Brown sausage in separate pan 8 min.','Scramble eggs in butter.','Plate hash, sausage, eggs, top with cheese.']
+  },
+  {id:'d_baked_ziti', n:'Baked Ziti with Sausage', cat:'dinner', style:['mediterranean','highprotein'], time:35, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:680, pro:36, carb:58, fat:32, complete:true, side:"",
+    ing:[[1,'lb','ziti or penne','w'],[1.5,'lb','italian sausage','h'],[1,'jar (24 oz)','marinara','w'],[2,'cups','shredded mozzarella','e'],[1,'cup','ricotta','e'],[0.5,'cup','parmesan','e'],[3,'cloves','garlic','h']],
+    steps:['Heat oven 400°F. Boil pasta until just shy of done.','Brown sausage with garlic. Add marinara.','Mix pasta with sauce, half the mozzarella, ricotta.','Top with rest of cheese. Bake 18 min.']
+  },
+  {id:'d_korean_beef', n:'Korean Ground Beef Bowls', cat:'dinner', style:['highprotein','american'], time:20, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:620, pro:42, carb:52, fat:26, complete:true, side:"",
+    ing:[[2.5,'lb','ground beef','h'],[0.5,'cup','soy sauce','w'],[0.33,'cup','brown sugar','w'],[2,'tbsp','sesame oil','w'],[4,'cloves','garlic','h'],[1,'tbsp','fresh ginger','h'],[2,'cups','jasmine rice','w'],[4,'count','green onions','h'],[2,'tsp','sesame seeds','w']],
+    steps:['Start rice.','Brown beef with garlic and ginger 8 min. Drain.','Add soy, brown sugar, sesame oil. Simmer 3 min.','Plate over rice. Top with green onions and sesame seeds.']
+  },
+  {id:'d_pot_indian_chicken', n:'Crockpot Indian Chicken Curry', cat:'dinner', style:['indian','highprotein'], time:15, pot:true, spicy:true, corn:false, shrimp:false, serv:6, cal:580, pro:42, carb:48, fat:22, complete:true, side:"",
+    ing:[[3,'lb','chicken thighs','h'],[1,'can (14 oz)','coconut milk','w'],[1,'can (14 oz)','diced tomatoes','w'],[1,'count','onion','h'],[5,'cloves','garlic','h'],[1,'tbsp','fresh ginger','h'],[3,'tbsp','curry powder','w'],[2,'cups','basmati rice','w']],
+    steps:['Place chicken, coconut milk, tomatoes, chopped onion, garlic, ginger, curry powder in crockpot.','Cook LOW 6 hours.','Cook rice. Serve curry over rice.']
+  },
+  {id:'d_chana_masala', n:'Chana Masala (Chickpea Curry)', cat:'dinner', style:['indian','highprotein'], time:30, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:520, pro:36, carb:58, fat:14, complete:true, side:"",
+    ing:[[2,'cans (14 oz)','chickpeas','w'],[1,'lb','chicken breasts (for protein)','h'],[1,'count','onion','h'],[5,'cloves','garlic','h'],[1,'tbsp','ginger','h'],[2,'tbsp','curry powder','w'],[1,'tsp','garam masala','w'],[1,'can (14 oz)','diced tomatoes','w'],[2,'cups','basmati rice','w']],
+    steps:['Start rice. Cube chicken.','Sauté onion 5 min. Add garlic, ginger, spices 1 min.','Add tomatoes and chicken. Cook 8 min.','Add chickpeas (drained), simmer 8 min.','Serve over rice.']
+  },
+  {id:'d_med_salmon_quinoa', n:'Mediterranean Salmon Quinoa Bowls', cat:'dinner', style:['mediterranean','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:620, pro:42, carb:52, fat:26, complete:true, side:"",
+    ing:[[2.5,'lb','salmon','h'],[2,'cups','quinoa','w'],[2,'cups','cherry tomatoes','h'],[1,'count','cucumber','h'],[1,'cup','feta','e'],[1,'cup','kalamata olives','h'],[3,'tbsp','olive oil','w'],[2,'count','lemons','h']],
+    steps:['Cook quinoa per package (about 15 min).','Roast salmon at 425°F for 12 min.','Build bowls: quinoa, salmon, tomatoes, cucumber, feta, olives.','Drizzle with oil and lemon juice.']
+  },
+  {id:'d_med_pork_loin', n:'Mediterranean Pork Tenderloin', cat:'dinner', style:['mediterranean','highprotein','keto'], time:35, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:580, pro:48, carb:38, fat:24, complete:true, side:"",
+    ing:[[3,'lb','pork tenderloin','h'],[3,'tbsp','olive oil','w'],[1,'tbsp','oregano','w'],[4,'cloves','garlic','h'],[1,'count','lemon','h'],[1,'lb','green beans','h'],[2,'lb','baby potatoes','h']],
+    steps:['Heat oven 425°F. Toss potatoes with oil and salt, roast 25 min.','Rub pork with oil, oregano, garlic, lemon zest. Sear 2 min per side.','Roast pork to 145°F (about 18 min).','Steam green beans last 5 min.','Slice pork, plate.']
+  },
+  {id:'d_pot_short_ribs', n:'Crockpot Beer-Braised Short Ribs', cat:'dinner', style:['american','highprotein'], time:15, pot:true, spicy:false, corn:false, shrimp:false, serv:6, cal:780, pro:48, carb:52, fat:42, complete:true, side:"",
+    ing:[[4,'lb','beef short ribs','h'],[1,'count','onion','h'],[4,'cloves','garlic','h'],[12,'oz','beef broth','w'],[12,'oz','beer (or more broth)','w'],[3,'tbsp','tomato paste','w'],[2,'tbsp','worcestershire','w'],[3,'lb','potatoes','h'],[0.5,'cup','butter','e'],[0.5,'cup','milk','e']],
+    steps:['Place ribs in crockpot with onion, garlic, broth, beer, tomato paste, worcestershire.','Cook LOW 8 hours.','Boil potatoes, mash with butter and milk.','Serve ribs over mash, spoon braising liquid.']
+  },
+  {id:'d_med_lamb', n:'Lamb Gyros (Pita Wraps)', cat:'dinner', style:['mediterranean','highprotein'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:620, pro:42, carb:42, fat:30, complete:true, side:"",
+    ing:[[2.5,'lb','ground lamb (or beef)','h'],[3,'cloves','garlic','h'],[1,'tbsp','oregano','w'],[1,'tsp','cumin','w'],[1,'cup','plain Greek yogurt','e'],[1,'count','cucumber','h'],[2,'count','tomatoes','h'],[1,'count','red onion','h'],[6,'count','pita breads','w']],
+    steps:['Mix lamb with garlic, oregano, cumin, salt.','Form into patties, sear 4 min per side.','Make tzatziki: grated cucumber + yogurt + garlic + salt.','Warm pita, fill with lamb, tomato, onion, tzatziki.']
+  },
+
+  // ===== MORE BREAKFASTS =====
+  {id:'b_smoothie_bowl', n:'Berry Protein Smoothie Bowls', cat:'breakfast', style:['highprotein','american'], time:5, pot:false, spicy:false, corn:false, shrimp:false, serv:3, cal:380, pro:32, carb:52, fat:8, complete:true, side:"",
+    ing:[[3,'cups','frozen berries','h'],[3,'scoops','vanilla protein powder','w'],[1.5,'cups','milk','e'],[0.5,'cup','granola','w'],[0.25,'cup','almonds','w']],
+    steps:['Blend berries, protein powder, milk to thick consistency.','Pour in bowl. Top with granola and almonds.']
+  },
+  {id:'b_eggs_sausage', n:'Eggs & Sausage Plate', cat:'breakfast', style:['american','highprotein','keto'], time:15, pot:false, spicy:false, corn:false, shrimp:false, serv:3, cal:540, pro:32, carb:6, fat:42, complete:true, side:"",
+    ing:[[6,'count','eggs','e'],[1,'lb','breakfast sausage','h'],[2,'tbsp','butter','e'],[1,'count','avocado','h'],[1,'tsp','salt','w']],
+    steps:['Cook sausage 8 min.','Scramble eggs in butter.','Plate with avocado.']
+  },
+  {id:'b_breakfast_skillet', n:'Sausage & Egg Breakfast Skillet', cat:'breakfast', style:['american','highprotein'], time:25, pot:false, spicy:false, corn:false, shrimp:false, serv:3, cal:540, pro:32, carb:32, fat:32, complete:true, side:"",
+    ing:[[1,'lb','breakfast sausage','h'],[2,'count','potatoes','h'],[1,'count','onion','h'],[1,'count','bell pepper','h'],[6,'count','eggs','e'],[1,'cup','shredded cheese','e']],
+    steps:['Cook diced potato, onion, pepper in oil 12 min.','Add crumbled sausage, cook 6 min.','Make 6 wells, crack an egg into each.','Cover, cook 5 min until whites set. Top with cheese.']
+  },
+  {id:'b_egg_muffins', n:'Make-Ahead Egg Muffins', cat:'breakfast', style:['american','highprotein','keto'], time:30, pot:false, spicy:false, corn:false, shrimp:false, serv:3, cal:320, pro:24, carb:4, fat:22, complete:true, side:"",
+    ing:[[9,'count','eggs','e'],[1,'cup','shredded cheese','e'],[6,'slices','bacon, cooked and crumbled','h'],[1,'cup','spinach','h'],[1,'tsp','salt','w']],
+    steps:['Heat oven 350°F. Grease 9-cup muffin tin.','Whisk eggs with salt. Stir in cheese, bacon, spinach.','Divide into cups. Bake 22 min.','Refrigerate up to 5 days. Reheat 30 sec in microwave.']
+  },
+  {id:'b_cottage_cheese_eggs', n:'Cottage Cheese Eggs with Toast', cat:'breakfast', style:['highprotein'], time:10, pot:false, spicy:false, corn:false, shrimp:false, serv:3, cal:380, pro:28, carb:24, fat:18, complete:true, side:"",
+    ing:[[6,'count','eggs','e'],[1,'cup','cottage cheese','e'],[6,'slices','whole grain bread','w'],[2,'tbsp','butter','e'],[1,'tsp','salt','w'],[1,'tsp','pepper','w']],
+    steps:['Whisk eggs with cottage cheese.','Cook in butter low and slow, stirring 4 min for creamy curds.','Toast bread, butter it.','Plate eggs on toast.']
+  },
+  {id:'b_overnight_oats', n:'Overnight Protein Oats', cat:'breakfast', style:['highprotein','american'], time:5, pot:false, spicy:false, corn:false, shrimp:false, serv:3, cal:540, pro:34, carb:62, fat:18, complete:true, side:"",
+    ing:[[1.5,'cups','rolled oats','w'],[3,'cups','milk','e'],[3,'scoops','protein powder','w'],[3,'tbsp','chia seeds','w'],[3,'tbsp','peanut butter','w'],[3,'tbsp','honey','w']],
+    steps:['Mix everything in 3 jars/containers.','Refrigerate overnight.','Eat cold or warm 60 sec in microwave.']
+  },
+
+  // ===== MORE SNACKS =====
+  {id:'s_edamame', n:'Salted Edamame', cat:'snack', style:['highprotein','japanese'], time:8, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:180, pro:16, carb:14, fat:6, complete:true, side:"",
+    ing:[[2,'lb','frozen edamame in pods','w'],[1,'tbsp','sea salt','w']],
+    steps:['Boil 5 min in salted water.','Drain, toss with salt.','Eat warm or cold.']
+  },
+  {id:'s_chickpeas', n:'Roasted Chickpeas', cat:'snack', style:['highprotein','mediterranean','indian'], time:30, pot:false, spicy:true, corn:false, shrimp:false, serv:6, cal:220, pro:10, carb:28, fat:8, complete:true, side:"",
+    ing:[[2,'cans (14 oz)','chickpeas','w'],[2,'tbsp','olive oil','w'],[1,'tsp','paprika','w'],[1,'tsp','garlic powder','w'],[0.5,'tsp','cayenne','w'],[1,'tsp','salt','w']],
+    steps:['Heat oven 400°F.','Drain and dry chickpeas. Toss with oil and spices.','Roast 25 min, shaking pan halfway.','Cool. Store in airtight container.']
+  },
+  {id:'s_protein_balls', n:'No-Bake Peanut Butter Protein Balls', cat:'snack', style:['highprotein','american'], time:15, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:220, pro:12, carb:22, fat:10, complete:true, side:"",
+    ing:[[1.5,'cups','rolled oats','w'],[1,'cup','peanut butter','w'],[0.5,'cup','honey','w'],[3,'scoops','protein powder','w'],[0.5,'cup','mini chocolate chips','w']],
+    steps:['Mix everything in a bowl.','Roll into 18 balls.','Chill 30 min. Keeps 1 week refrigerated.']
+  },
+  {id:'s_turkey_rollups', n:'Turkey & Cheese Roll-Ups', cat:'snack', style:['highprotein','keto','american'], time:5, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:160, pro:14, carb:4, fat:10, complete:true, side:"",
+    ing:[[12,'oz','sliced turkey','h'],[8,'oz','cream cheese','e'],[1,'count','cucumber','h']],
+    steps:['Spread cream cheese on each turkey slice.','Add cucumber spear, roll up tight.']
+  },
+  {id:'s_apple_pb', n:'Apple & Peanut Butter', cat:'snack', style:['highprotein','american'], time:3, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:260, pro:8, carb:28, fat:16, complete:true, side:"",
+    ing:[[6,'count','apples','h'],[0.75,'cup','peanut butter','w']],
+    steps:['Slice apples.','Serve with 2 tbsp peanut butter per portion.']
+  },
+  {id:'s_cucumber_hummus', n:'Cucumber with Hummus', cat:'snack', style:['mediterranean','highprotein'], time:5, pot:false, spicy:false, corn:false, shrimp:false, serv:6, cal:220, pro:8, carb:24, fat:12, complete:true, side:"",
+    ing:[[2,'count','cucumbers','h'],[2,'cups','hummus','e'],[1,'tsp','paprika','w']],
+    steps:['Slice cucumbers thick.','Scoop hummus into bowls, sprinkle paprika.','Dip and eat.']
+  }
+];
+
+/* ----- meal planner state ----- */
+function loadMealPlan(){
+  if(!DATA.mealPlan)DATA.mealPlan=null;
+  if(!DATA.mealOpts)DATA.mealOpts={style:'mix', filter:'any', breakfast:false, snacks:false};
+}
+
+function filterRecipes(cat, opts){
+  return RECIPES.filter(r=>{
+    if(r.cat!==cat)return false;
+    if(r.corn)return false; // hard rule
+    if(opts.style!=='mix' && !r.style.includes(opts.style))return false;
+    if(opts.filter==='crockpot' && !r.pot)return false;
+    if(opts.filter==='fast' && r.time>35)return false;
+    return true;
+  });
+}
+
+function pickWeek(opts){
+  // pick 7 dinners
+  let pool = filterRecipes('dinner', opts);
+  if(pool.length===0)return null;
+  // shuffle (Fisher-Yates)
+  pool = pool.slice();
+  for(let i=pool.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [pool[i],pool[j]]=[pool[j],pool[i]];
+  }
+  // downweight shrimp: allow at most one shrimp recipe per week
+  let dinners=[], shrimpUsed=false;
+  for(const r of pool){
+    if(dinners.length>=7)break;
+    if(r.shrimp){
+      if(shrimpUsed)continue;
+      shrimpUsed=true;
+    }
+    dinners.push(r);
+  }
+  // if pool is small, repeat the pool to fill 7
+  while(dinners.length<7 && pool.length>0){
+    for(const r of pool){
+      if(dinners.length>=7)break;
+      if(r.shrimp && shrimpUsed)continue;
+      dinners.push(r);
+    }
+  }
+  // breakfasts (3 unique rotated through the week)
+  let breakfasts=null;
+  if(opts.breakfast){
+    let bPool=filterRecipes('breakfast',opts);
+    if(bPool.length===0)bPool=RECIPES.filter(r=>r.cat==='breakfast'&&!r.corn);
+    bPool=bPool.slice();
+    for(let i=bPool.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [bPool[i],bPool[j]]=[bPool[j],bPool[i]];
+    }
+    breakfasts=[];
+    for(let d=0;d<7;d++)breakfasts.push(bPool[d%bPool.length]);
+  }
+  // snacks (3 unique for the week)
+  let snacks=null;
+  if(opts.snacks){
+    let sPool=filterRecipes('snack',opts);
+    if(sPool.length===0)sPool=RECIPES.filter(r=>r.cat==='snack'&&!r.corn);
+    sPool=sPool.slice();
+    for(let i=sPool.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [sPool[i],sPool[j]]=[sPool[j],sPool[i]];
+    }
+    snacks=sPool.slice(0,3);
+  }
+  return {dinners, breakfasts, snacks};
+}
+
+function buildGroceryList(plan){
+  // tally ingredients by store
+  const lists={w:{}, h:{}};
+  function add(ing){
+    const [qty,unit,name,store]=ing;
+    const s=(store==='e'||store==='w')?'w':'h'; // 'either' goes to Walmart
+    const key=name+'|'+unit;
+    if(!lists[s][key])lists[s][key]={qty:0,unit:unit,name:name};
+    lists[s][key].qty+=qty;
+  }
+  plan.dinners.forEach(r=>r.ing.forEach(add));
+  if(plan.breakfasts)plan.breakfasts.forEach(r=>r.ing.forEach(add));
+  if(plan.snacks)plan.snacks.forEach(r=>r.ing.forEach(add));
+  // format
+  function fmt(obj){
+    return Object.values(obj).sort((a,b)=>a.name.localeCompare(b.name)).map(x=>{
+      const q = (x.qty % 1 === 0) ? x.qty : x.qty.toFixed(2);
+      return {qty:q+' '+x.unit, name:x.name};
+    });
+  }
+  return {walmart:fmt(lists.w), hyvee:fmt(lists.h)};
+}
+
+function renderMealPlan(){
+  if(!DATA.mealPlan)return;
+  const box=document.getElementById('mealWeekBox');
+  const week=document.getElementById('mealWeek');
+  box.style.display='';
+  const dayNames=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  let h='';
+  DATA.mealPlan.dinners.forEach((r,i)=>{
+    // calculate daily total (dinner + breakfast if on, snacks divided across week if on)
+    let dCal=r.cal||0, dPro=r.pro||0, dCarb=r.carb||0, dFat=r.fat||0;
+    if(DATA.mealPlan.breakfasts){
+      const b=DATA.mealPlan.breakfasts[i];
+      dCal+=b.cal||0; dPro+=b.pro||0; dCarb+=b.carb||0; dFat+=b.fat||0;
+    }
+    if(DATA.mealPlan.snacks){
+      // average snacks across 7 days (3 snacks / 7 days)
+      let sCal=0,sPro=0,sCarb=0,sFat=0;
+      DATA.mealPlan.snacks.forEach(s=>{ sCal+=s.cal||0;sPro+=s.pro||0;sCarb+=s.carb||0;sFat+=s.fat||0; });
+      dCal+=Math.round(sCal/7); dPro+=Math.round(sPro/7); dCarb+=Math.round(sCarb/7); dFat+=Math.round(sFat/7);
+    }
+    h+=`<div class="daytotal">
+      <span class="dtlabel">${dayNames[i]} TOTAL</span>
+      <span class="dtmac dtcal">${dCal} cal</span>
+      <span class="dtmac dtpro">${dPro}g pro</span>
+      <span class="dtmac dtcarb">${dCarb}g carb</span>
+      <span class="dtmac dtfat">${dFat}g fat</span>
+    </div>`;
+    h+=mealCardHTML(dayNames[i], r, 'dinner', i);
+    if(DATA.mealPlan.breakfasts){
+      h+=mealCardHTML(dayNames[i]+' breakfast', DATA.mealPlan.breakfasts[i], 'breakfast', i);
+    }
+  });
+  if(DATA.mealPlan.snacks){
+    h+=`<h3 class="storehd" style="background:rgba(224,178,92,.16);color:var(--gold);margin-top:14px;">High-Protein Snacks This Week</h3>`;
+    DATA.mealPlan.snacks.forEach((r,i)=>{ h+=mealCardHTML('Snack '+(i+1), r, 'snack', i); });
+  }
+  week.innerHTML=h;
+  // grocery list
+  const g=buildGroceryList(DATA.mealPlan);
+  const w=document.getElementById('groceryWalmart');
+  const hv=document.getElementById('groceryHyvee');
+  w.innerHTML = g.walmart.map(x=>`<div class="gline"><span>${x.name}</span><span class="gqty">${x.qty}</span></div>`).join('');
+  hv.innerHTML = g.hyvee.map(x=>`<div class="gline"><span>${x.name}</span><span class="gqty">${x.qty}</span></div>`).join('');
+  document.getElementById('mealGroceryBox').style.display='';
+  // rough budget estimate ($1000/month → $250/week target)
+  document.getElementById('budgetLine').textContent =
+    `${g.walmart.length} items at Walmart, ${g.hyvee.length} at Hy-Vee. Target: $250/week ($1000/month) for 3 adults. Check Hy-Vee weekly meat ad before you go for biggest savings.`;
+}
+
+function mealCardHTML(dayLabel, r, kind, idx){
+  let tags='';
+  if(r.pot)tags+='<span class="mtag pot">CROCKPOT</span>';
+  if(r.time<=30 && !r.pot)tags+=`<span class="mtag fast">${r.time} MIN</span>`;
+  if(r.spicy)tags+='<span class="mtag spicy">SPICY</span>';
+  if(r.style && r.style[0])tags+=`<span class="mtag style">${r.style[0].toUpperCase()}</span>`;
+  let ingList=r.ing.map(i=>`<li>${i[0]} ${i[1]} ${i[2]}</li>`).join('');
+  let stepList=r.steps.map(s=>`<li>${s}</li>`).join('');
+  // macros row (per serving)
+  let macros='';
+  if(r.cal!=null){
+    macros=`<div class="macros">
+      <span class="m m-cal">${r.cal} cal</span>
+      <span class="m m-pro">${r.pro}g protein</span>
+      <span class="m m-carb">${r.carb}g carbs</span>
+      <span class="m m-fat">${r.fat}g fat</span>
+    </div>`;
+  }
+  // side dish line (only if it has one — i.e. not a complete meal)
+  let sideLine='';
+  if(r.complete===false && r.side){
+    sideLine=`<div class="sideline"><span class="sidetag">SIDE</span> ${r.side}</div>`;
+  }
+  return `<div class="mealday">
+    <div class="mdayhd"><span>${dayLabel}</span><span style="font-size:11px;color:var(--mute);">${kind==='dinner'?'cook + leftovers for lunch':kind}</span></div>
+    <div class="mname">${r.n}</div>
+    <div class="mmeta">Serves ${r.serv} · ${r.time} min${r.pot?' (crockpot)':''}</div>
+    ${macros}
+    <div class="mtags">${tags}</div>
+    ${sideLine}
+    <details>
+      <summary>Recipe</summary>
+      <div class="recipe">
+        <h4>INGREDIENTS</h4>
+        <ul>${ingList}</ul>
+        <h4>STEPS</h4>
+        <ol>${stepList}</ol>
+      </div>
+    </details>
+    <button class="subbtn" data-mealsub="${kind}|${idx}">Swap this meal</button>
+  </div>`;
+}
+
 function phase(w){
   if(w<=2)return'Learn It';
   if(w<=6)return'Add Weight';
@@ -606,7 +1451,9 @@ function prettyDate(iso){
   const [y,m,d]=iso.split('-').map(n=>parseInt(n));
   const dt=new Date(y,m-1,d);
   const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  return months[dt.getMonth()]+' '+dt.getDate();
+  const thisYr=new Date().getFullYear();
+  const yearTag = (y!==thisYr) ? (', '+y) : '';
+  return months[dt.getMonth()]+' '+dt.getDate()+yearTag;
 }
 function saveData(){
   try{
@@ -944,13 +1791,15 @@ function renderGoal(){
 }
 function renderWeigh(){
   const list=document.getElementById('wlist');
+  // make sure the date input defaults to today (if empty)
+  const di=document.getElementById('wiDate');
+  if(di && !di.value) di.value=todayISO();
   const dates=sortedWeighInDates();
   const entries=dates.map(d=>[d,DATA.weighIns[d]]);
   if(entries.length===0){
     list.innerHTML='<div class="empty">No weigh-ins yet. Log your first one above.</div>';
   }else{
     let h='';let prev=null;
-    // newest first in the list, but track diffs in chronological order
     const diffs={};
     entries.forEach(([d,v])=>{
       if(prev!=null){
@@ -962,8 +1811,11 @@ function renderWeigh(){
       prev=v;
     });
     entries.slice().reverse().forEach(([d,v])=>{
-      h+=`<div class="wlitem"><span>${prettyDate(d)}</span>
-           <span class="ww">${v} lbs</span>${diffs[d]}</div>`;
+      h+=`<div class="wlitem">
+            <span class="wdate">${prettyDate(d)}</span>
+            <span class="ww">${v} lbs</span>${diffs[d]}
+            <button class="wxbtn" data-wxdel="${d}" aria-label="Delete">&times;</button>
+          </div>`;
     });
     list.innerHTML=h;
   }
@@ -1283,10 +2135,27 @@ function bindEvents(){
   document.getElementById('wiSave').addEventListener('click',()=>{
     const v=parseFloat(document.getElementById('wiVal').value);
     if(isNaN(v)){return;}
-    DATA.weighIns[todayISO()]=v;
+    const di=document.getElementById('wiDate');
+    let dateKey = (di && di.value) ? di.value : todayISO();
+    // basic validation: must be YYYY-MM-DD; fall back to today if not
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) dateKey=todayISO();
+    DATA.weighIns[dateKey]=v;
     document.getElementById('wiVal').value='';
+    if(di) di.value=todayISO();
     saveData();
     renderWeigh();renderGoal();
+  });
+  // delete a weigh-in entry from the list
+  document.getElementById('wlist').addEventListener('click',e=>{
+    const btn=e.target.closest('.wxbtn');
+    if(!btn)return;
+    const key=btn.dataset.wxdel;
+    if(!key)return;
+    if(confirm('Delete this weigh-in?')){
+      delete DATA.weighIns[key];
+      saveData();
+      renderWeigh();renderGoal();
+    }
   });
   document.getElementById('expBtn').addEventListener('click',exportBackup);
   document.getElementById('impBtn').addEventListener('click',()=>{
@@ -1296,9 +2165,65 @@ function bindEvents(){
     if(e.target.files&&e.target.files[0]){importBackup(e.target.files[0]);}
     e.target.value='';
   });
+
+  // ----- meal planner events -----
+  function syncMealOpts(){
+    document.getElementById('mealStyle').value = DATA.mealOpts.style;
+    document.getElementById('mealFilter').value = DATA.mealOpts.filter;
+    document.getElementById('mealBreakfast').checked = !!DATA.mealOpts.breakfast;
+    document.getElementById('mealSnacks').checked = !!DATA.mealOpts.snacks;
+  }
+  syncMealOpts();
+  if(DATA.mealPlan)renderMealPlan();
+  document.getElementById('mealStyle').addEventListener('change',e=>{
+    DATA.mealOpts.style=e.target.value; saveData();
+  });
+  document.getElementById('mealFilter').addEventListener('change',e=>{
+    DATA.mealOpts.filter=e.target.value; saveData();
+  });
+  document.getElementById('mealBreakfast').addEventListener('change',e=>{
+    DATA.mealOpts.breakfast=e.target.checked; saveData();
+  });
+  document.getElementById('mealSnacks').addEventListener('change',e=>{
+    DATA.mealOpts.snacks=e.target.checked; saveData();
+  });
+  document.getElementById('mealGen').addEventListener('click',()=>{
+    const plan = pickWeek(DATA.mealOpts);
+    if(!plan){
+      alert('No recipes match those filters yet. Try a different style or filter.');
+      return;
+    }
+    DATA.mealPlan=plan;
+    saveData();
+    renderMealPlan();
+  });
+  // swap an individual meal
+  document.getElementById('mealWeek').addEventListener('click',e=>{
+    const sub=e.target.closest('.subbtn');
+    if(!sub)return;
+    const [kind,idxStr]=sub.dataset.mealsub.split('|');
+    const idx=parseInt(idxStr);
+    const opts=DATA.mealOpts;
+    const cat = kind==='dinner'?'dinner':(kind==='breakfast'?'breakfast':'snack');
+    let pool=filterRecipes(cat,opts);
+    if(pool.length===0)pool=RECIPES.filter(r=>r.cat===cat&&!r.corn);
+    // exclude meals already in the plan to avoid swapping for the same thing
+    let inUse=new Set();
+    if(kind==='dinner')DATA.mealPlan.dinners.forEach(r=>inUse.add(r.id));
+    if(kind==='breakfast'&&DATA.mealPlan.breakfasts)DATA.mealPlan.breakfasts.forEach(r=>inUse.add(r.id));
+    if(kind==='snack'&&DATA.mealPlan.snacks)DATA.mealPlan.snacks.forEach(r=>inUse.add(r.id));
+    const fresh=pool.filter(r=>!inUse.has(r.id));
+    const choice = fresh.length?fresh[Math.floor(Math.random()*fresh.length)] : pool[Math.floor(Math.random()*pool.length)];
+    if(kind==='dinner')DATA.mealPlan.dinners[idx]=choice;
+    if(kind==='breakfast'&&DATA.mealPlan.breakfasts)DATA.mealPlan.breakfasts[idx]=choice;
+    if(kind==='snack'&&DATA.mealPlan.snacks)DATA.mealPlan.snacks[idx]=choice;
+    saveData();
+    renderMealPlan();
+  });
 }
 
 loadData();
+loadMealPlan();
 renderAll();
 bindEvents();
 </script>
