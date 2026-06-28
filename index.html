@@ -359,6 +359,48 @@
   .daytotal .dtpro{color:#9be39b;}
   .daytotal .dtcarb{color:#9bd6ff;}
   .daytotal .dtfat{color:#ffb39b;}
+  .weekhd{
+    display:flex;justify-content:space-between;align-items:center;
+    gap:10px;flex-wrap:wrap;margin-bottom:12px;
+  }
+  .weekbtns{display:flex;gap:8px;flex-wrap:wrap;}
+  .actbtn{
+    background:var(--input);color:var(--cream);border:1px solid var(--line);
+    padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;
+    cursor:pointer;
+  }
+  .actbtn:active{background:var(--red);color:#fff;}
+  #undoSwap{border-color:var(--gold);color:var(--gold);}
+
+  /* PRINT STYLES */
+  @media print {
+    body{background:#fff !important;color:#000 !important;font-family:Georgia,serif;}
+    .tabbar, .savew, .subbtn, .actbtn, .weekbtns, footer, nav, header,
+    #wkRow, #weighBox, #planBox, #rulesBox, .mealopts, .hint {display:none !important;}
+    .wbox{background:#fff !important;border:none !important;box-shadow:none !important;page-break-inside:auto;}
+    .mealday{
+      background:#fff !important;border:1px solid #999 !important;
+      page-break-inside:avoid;margin:8px 0 !important;padding:10px !important;
+    }
+    .mname{color:#000 !important;font-weight:700;}
+    .mmeta, .recipe, .macros .m, .mtag, .sideline{color:#000 !important;}
+    .macros .m{background:#f0f0f0 !important;border:1px solid #999 !important;}
+    .daytotal{
+      background:#eee !important;border-left:3px solid #000 !important;
+      page-break-after:avoid;
+    }
+    .daytotal .dtlabel, .daytotal .dtmac{color:#000 !important;}
+    /* expand all recipe details so they print */
+    details{display:block !important;}
+    details > summary{display:none;}
+    details > .recipe{display:block !important;}
+    /* grocery list */
+    #mealGroceryBox{page-break-before:always;}
+    .grocerysplit{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+    .storehd{background:#000 !important;color:#fff !important;padding:6px;}
+    .gline{border-bottom:1px solid #ccc;padding:3px 0;color:#000 !important;}
+    h2, h3{color:#000 !important;}
+  }
   .mtag{font-size:10px;font-weight:700;padding:3px 7px;border-radius:8px;letter-spacing:.5px;}
   .mtag.pot{background:rgba(95,208,126,.18);color:var(--green);}
   .mtag.fast{background:rgba(224,178,92,.18);color:var(--gold);}
@@ -517,7 +559,13 @@
   </div>
 
   <div class="wbox" id="mealWeekBox" style="display:none;">
-    <h2 id="mealWeekTitle">Your Week</h2>
+    <div class="weekhd">
+      <h2 id="mealWeekTitle" style="margin:0;">Your Week</h2>
+      <div class="weekbtns">
+        <button class="actbtn" id="undoSwap" style="display:none;">↶ Undo Swap</button>
+        <button class="actbtn" id="printMeals">🖨 Print</button>
+      </div>
+    </div>
     <div id="mealWeek"></div>
   </div>
 
@@ -1335,6 +1383,9 @@ function renderMealPlan(){
   // rough budget estimate ($1000/month → $250/week target)
   document.getElementById('budgetLine').textContent =
     `${g.walmart.length} items at Walmart, ${g.hyvee.length} at Hy-Vee. Target: $250/week ($1000/month) for 3 adults. Check Hy-Vee weekly meat ad before you go for biggest savings.`;
+  // toggle undo button
+  const undoBtn=document.getElementById('undoSwap');
+  if(undoBtn) undoBtn.style.display = (DATA.lastSwap && DATA.lastSwap.prev) ? '' : 'none';
 }
 
 function mealCardHTML(dayLabel, r, kind, idx){
@@ -2194,6 +2245,7 @@ function bindEvents(){
       return;
     }
     DATA.mealPlan=plan;
+    DATA.lastSwap=null;
     saveData();
     renderMealPlan();
   });
@@ -2214,11 +2266,35 @@ function bindEvents(){
     if(kind==='snack'&&DATA.mealPlan.snacks)DATA.mealPlan.snacks.forEach(r=>inUse.add(r.id));
     const fresh=pool.filter(r=>!inUse.has(r.id));
     const choice = fresh.length?fresh[Math.floor(Math.random()*fresh.length)] : pool[Math.floor(Math.random()*pool.length)];
+    // SAVE PREVIOUS for undo (only the most recent swap)
+    let prev=null;
+    if(kind==='dinner')prev=DATA.mealPlan.dinners[idx];
+    if(kind==='breakfast'&&DATA.mealPlan.breakfasts)prev=DATA.mealPlan.breakfasts[idx];
+    if(kind==='snack'&&DATA.mealPlan.snacks)prev=DATA.mealPlan.snacks[idx];
+    DATA.lastSwap={kind:kind, idx:idx, prev:prev};
     if(kind==='dinner')DATA.mealPlan.dinners[idx]=choice;
     if(kind==='breakfast'&&DATA.mealPlan.breakfasts)DATA.mealPlan.breakfasts[idx]=choice;
     if(kind==='snack'&&DATA.mealPlan.snacks)DATA.mealPlan.snacks[idx]=choice;
     saveData();
     renderMealPlan();
+  });
+  // UNDO LAST SWAP
+  document.getElementById('undoSwap').addEventListener('click',()=>{
+    if(!DATA.lastSwap)return;
+    const {kind,idx,prev}=DATA.lastSwap;
+    if(!prev)return;
+    if(kind==='dinner')DATA.mealPlan.dinners[idx]=prev;
+    if(kind==='breakfast'&&DATA.mealPlan.breakfasts)DATA.mealPlan.breakfasts[idx]=prev;
+    if(kind==='snack'&&DATA.mealPlan.snacks)DATA.mealPlan.snacks[idx]=prev;
+    DATA.lastSwap=null;
+    saveData();
+    renderMealPlan();
+  });
+  // PRINT
+  document.getElementById('printMeals').addEventListener('click',()=>{
+    // make sure grocery box is visible for printing
+    document.getElementById('mealGroceryBox').style.display='';
+    window.print();
   });
 }
 
