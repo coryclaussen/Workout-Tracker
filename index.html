@@ -760,9 +760,22 @@
   <div class="rule">
     <h3>The Game Plan</h3>
     <p><b>Weeks 1–4:</b> Build volume. 3 sets of 8–12. Learn the moves and the Hammer machines. The last 2 reps should feel hard.</p>
-    <p><b>Weeks 5–8:</b> Strength and size. 4 sets of 6–10, heavier weight. The curl move changes.</p>
+    <p><b>Weeks 5–8:</b> Strength and size. 6–10 reps, heavier weight. The chest press on Push Day and the row or pulldown on Pull Day get 4 sets. The rest get 3. The curl move changes.</p>
     <p><b>Weeks 9–12:</b> Peak. One push lift each day, 4 sets of 6–8. The curl move changes again.</p>
     <p><b>Week 13:</b> Easy week, half the sets. On Friday, test your push lift. Then weigh in and see how far you came.</p>
+    <p><b>Effort:</b> End each set with 1–3 good reps left. You do not need to go to failure.</p>
+    <p><b>Short on time:</b> Skip Bonus first. Still short? Do the first 3 lifts and go. That still counts.</p>
+  </div>
+  <div class="rule">
+    <h3>Clear Head, More Energy</h3>
+    <ul>
+      <li>Keep your Monday, Wednesday, Friday gym time. The same time each week builds the habit.</li>
+      <li>Walk on your days off. It helps your head, not just your weight.</li>
+      <li>Sleep comes first. Short sleep hurts focus and makes a diet burn less fat.</li>
+      <li>Last coffee at least 9 hours before bed.</li>
+      <li>Between clients, walk 5 minutes when you can.</li>
+      <li>Worn out all week? Eat a bit more and sleep more before you cut lifts. A clear head comes first.</li>
+    </ul>
   </div>
   <div class="rule">
     <h3>Food — Keep It Simple</h3>
@@ -785,6 +798,7 @@
     <b>Cardio guide</b>
     <ul>
       <li>Fat loss and health: 150–300 min a week at a moderate pace (a brisk walk, about 3.5 mph), or 75–150 min of hard cardio.</li>
+      <li>Build up: 2 walks a week in weeks 1–4, 3 in weeks 5–8, 5 in weeks 9–12. Five 30 min walks is 150 min.</li>
       <li>Keep it easy on lifting days so your legs can recover.</li>
       <li>A 30 min walk at 3.5 mph burns about 150 cal for a 210 lb man (estimate).</li>
     </ul>
@@ -1042,19 +1056,19 @@ const TPL = {
       {kind:'main', rest:105, note:'Builds shoulders.',
         tip:'Wrist tip: palms facing in is easier on the wrists.',
         opts:['Dumbbell Shoulder Press','Hammer Strength Shoulder Press']},
-      {kind:'opt', rest:105, note:'Optional. Upper back. Skip it if you are short on time.',
+      {kind:'main', rest:105, note:'Upper back. This one builds the thick back.',
         opts:['One-Arm Dumbbell Row','Hammer Strength Iso-Lateral Row','Chest-Supported DB Row']},
-      {kind:'iso', repLo:10, repHi:12, rest:75, note:'No swinging. Slow on the way down.',
-        tip:'Wrist tip: use the EZ-bar angled grip, not a straight bar.',
-        rot:['EZ-Bar Curl','Hammer Strength Preacher Curl','DB Incline Curl'],
-        opts:['EZ-Bar Curl','Hammer Strength Preacher Curl','DB Incline Curl','Cable Curl','DB Hammer Curl']}
+      {kind:'iso', repLo:12, repHi:15, rest:75, note:'Shoulders. Light weight. Lead with your elbows.',
+        opts:['Dumbbell Lateral Raise','Hammer Strength Lateral Raise','Cable Lateral Raise']}
     ],
     bonus:[
       {kind:'bonus', sets:2, repLo:10, repHi:10, rest:150, note:'Soft knees, hinge at hips.',
         tip:'Wrist tip: lifting straps take the load off your hands.',
         opts:['Romanian Deadlift','Dumbbell RDL','Seated Leg Curl']},
-      {kind:'bonus', sets:2, repLo:12, repHi:15, rest:75, note:'Light weight. Lead with your elbows.',
-        opts:['Dumbbell Lateral Raise','Hammer Strength Lateral Raise','Cable Lateral Raise']}
+      {kind:'bonus', sets:2, repLo:10, repHi:12, rest:75, note:'No swinging. Slow on the way down.',
+        tip:'Wrist tip: use the EZ-bar angled grip, not a straight bar.',
+        rot:['EZ-Bar Curl','Hammer Strength Preacher Curl','DB Incline Curl'],
+        opts:['EZ-Bar Curl','Hammer Strength Preacher Curl','DB Incline Curl','Cable Curl','DB Hammer Curl']}
     ]
   },
   B:{
@@ -1786,7 +1800,7 @@ function scheme(block,w){
   let sets,lo,hi,tag='';
   if(block.kind==='main'||block.kind==='opt'){
     if(w<=4){sets=3;lo=8;hi=12;}
-    else if(w<=8){sets=4;lo=6;hi=10;}
+    else if(w<=8){sets=(block.kind==='main'&&block.push)?4:3;lo=6;hi=10;}
     else if(w<=12){
       if(block.kind==='main'&&block.push){sets=4;lo=6;hi=8;tag='push';}
       else{sets=3;lo=6;hi=10;}
@@ -2017,6 +2031,9 @@ function pickedName(block,dayId,blockKey,w){
   const p=dl&&dl.picked&&dl.picked[blockKey];
   const al=allowedOpts(block,dayLoc(dayId));
   if(p&&al.indexOf(p)>=0)return p;
+  /* a lift can move between slots when the plan changes: keep showing the one that already holds sets on this day */
+  const had=al.find(n=>setsLogged(dayId,n)>0);
+  if(had)return had;
   return defaultName(block,dayLoc(dayId),w);
 }
 function setPickedOpt(dayId, blockKey, optName){
@@ -2217,7 +2234,7 @@ function dayHTML(w,d){
         <span class="dlocsub">${loc==='home'?'Home — DBs to 45 lb, no machines':'Gym — Hammer Strength first'}</span>
       </div>`;
   if(w===13)h+=`<div class="weeknote">Easy week. Half the sets, lighter weight. Let your body catch up.</div>`;
-  h+=`<div class="grouplabel">Core · 30 Min</div>`;
+  h+=`<div class="grouplabel">Core · 50 Min</div>`;
   let num=1;
   t.core.forEach((block,i)=>{ h+=exHTML(block,'core_'+i,num,dayId,dIdx,w,d); num++; });
   h+=`<div class="grouplabel bonus">Bonus · 15 Min (if time)</div>`;
