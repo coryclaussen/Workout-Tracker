@@ -740,11 +740,11 @@
   </div>
   <div class="rule">
     <h3>Home or Gym Switch</h3>
-    <p>Each day has its own <b>Home</b> / <b>Gym</b> switch. Open a day to set it. On <b>Home</b>, Hammer Strength and other machines are hidden, and any dumbbell tip past your 45 lb dumbbells shows a red flag — use the barbell, a kettlebell, or Rapid Fitness. On <b>Gym</b>, Hammer Strength moves come first, and no flags.</p>
+    <p>Each day has its own <b>Home</b> / <b>Gym</b> switch. Open a day to set it. On <b>Home</b>, machines are hidden, and any dumbbell tip past your 45 lb dumbbells shows a red flag — use the barbell, a kettlebell, or Rapid Fitness. On <b>Gym</b>, your gym lifts come first, and no flags.</p>
   </div>
   <div class="rule">
     <h3>How the Weight Tips Work</h3>
-    <p><b>First time</b> on a move: it starts from your old weights when it can — from your first 12 weeks, or from a similar lift. Hammer Strength numbers are estimates, so adjust on set one. With no history, it shows a start range.</p>
+    <p><b>First time</b> on a move: it starts from your old weights when it can — from your first 12 weeks, or from a similar lift. Those numbers are estimates, so adjust on set one. With no history, it shows a start range.</p>
     <p><b>After that</b>: it averages your sets. Average hits the top reps? Add weight. Mid-range? Hold and build reps. The tip is a guide — your body has the final say.</p>
   </div>
   <div class="rule">
@@ -759,7 +759,7 @@
   </div>
   <div class="rule">
     <h3>The Game Plan</h3>
-    <p><b>Weeks 1–4:</b> Build volume. 3 sets of 8–12. Learn the moves and the Hammer machines. The last 2 reps should feel hard.</p>
+    <p><b>Weeks 1–4:</b> Build volume. 3 sets of 8–12. Learn the moves. The last 2 reps should feel hard.</p>
     <p><b>Weeks 5–8:</b> Strength and size. 6–10 reps, heavier weight. The chest press on Push Day and the row or pulldown on Pull Day get 4 sets. The rest get 3. The curl move changes.</p>
     <p><b>Weeks 9–12:</b> Peak. One push lift each day, 4 sets of 6–8. The curl move changes again.</p>
     <p><b>Week 13:</b> Easy week, half the sets. On Friday, test your push lift. Then weigh in and see how far you came.</p>
@@ -956,21 +956,22 @@
 const HOME_DB=45;
 /*  v2 exercise library. Every lift name used by the plan (plus a few v1-only names,
     so old v1 logs can still feed a first guess). Each entry:
-     - loc: 'home' | 'gym' | 'both'   (Hammer Strength is always 'gym')
+     - loc: 'home' | 'gym' | 'both'   (machines are always 'gym')
      - unit: 'lbs' (barbell / stack / all plates), 'each' (one dumbbell),
-             'side' (plates on ONE side of a Hammer Strength iso-lateral machine)
+             'side' (plates on ONE side of the one iso-lateral machine, the chest press)
      - lo / hi: first-time start range, step: how much to add when you progress
      - fam + r: lift family and ratio to that family's reference lift (r:1).
        Used to turn a weight on one lift into a first guess on another:
-       guess = otherWeight / other.r * this.r. Hammer ratios are ESTIMATES.
-     - hs: Hammer Strength machine, v1: old name kept only for the archive  */
+       guess = otherWeight / other.r * this.r. Machine ratios are ESTIMATES.
+     - hs: the one Hammer Strength machine he has (chest press), v1: old name kept only for the archive
+     - gone: lift that left the plan. Its saved sets stay on the phone, it shows only on a day that holds them, and it never feeds a guess  */
     /* label: the name shown on screen when it differs from the saved name. The saved name stays so old logs still match.
-       gymFirst: lift that leads the swap list at the gym even though it is not a Hammer machine. */
+       gymFirst: lift that leads the swap list at the gym. */
 const EX={
   /* squat family: reference = Barbell Back Squat (total lbs) */
   'Barbell Back Squat':            {loc:'both',unit:'lbs', lo:95, hi:135,step:10,fam:'squat',r:1},
   'Hammer Strength Leg Press':     {label:'Leg Press',gymFirst:1,loc:'gym', unit:'lbs', lo:180,hi:270,step:10,fam:'squat',r:2.5},
-  'Hammer Strength Hack Squat':    {loc:'gym', unit:'lbs', lo:90, hi:140,step:10,fam:'squat',r:1.2,hs:1},
+  'Hammer Strength Hack Squat':    {label:'Hack Squat Machine',gymFirst:1,loc:'gym', unit:'lbs', lo:90, hi:140,step:10,fam:'squat',r:1.2},
   'Goblet Squat':                  {loc:'both',unit:'lbs', lo:30, hi:45, step:5, fam:'squat',r:0.35},
   'Leg Press':                     {loc:'gym', unit:'lbs', lo:180,hi:270,step:10,fam:'squat',r:2.5,v1:1},
   'Hack Squat Machine':            {loc:'gym', unit:'lbs', lo:90, hi:140,step:10,fam:'squat',r:1.2,v1:1},
@@ -981,36 +982,36 @@ const EX={
   'Chest Press Machine':           {loc:'gym', unit:'lbs', lo:70, hi:95, step:5, fam:'chest',r:2.2,v1:1},
   /* shoulder press: reference = Dumbbell Shoulder Press (one DB) */
   'Dumbbell Shoulder Press':       {loc:'both',unit:'each',lo:20, hi:35, step:5, fam:'shoulder',r:1},
-  'Hammer Strength Shoulder Press':{loc:'gym', unit:'side',lo:25, hi:40, step:5, fam:'shoulder',r:1.1,hs:1},
+  'Hammer Strength Shoulder Press':{label:'Shoulder Press (old log)',gone:1,loc:'gym', unit:'side',lo:25, hi:40, step:5, fam:'shoulder',r:1.1},
   'Barbell Overhead Press':        {loc:'both',unit:'lbs', lo:45, hi:65, step:5, fam:'shoulder',r:2.0,v1:1},
-  'Shoulder Press Machine':        {loc:'gym', unit:'lbs', lo:50, hi:75, step:5, fam:'shoulder',r:2.3,v1:1},
+  'Shoulder Press Machine':        {loc:'gym', unit:'lbs', lo:50, hi:75, step:5, fam:'shoulder',r:2.3},
   /* row: reference = One-Arm Dumbbell Row (one DB) */
   'One-Arm Dumbbell Row':          {loc:'both',unit:'each',lo:35, hi:50, step:5, fam:'row',r:1},
-  'Hammer Strength Iso-Lateral Row':{loc:'gym',unit:'side',lo:45, hi:70, step:5, fam:'row',r:1.2,hs:1},
-  'Chest-Supported DB Row':        {loc:'both',unit:'each',lo:30, hi:45, step:5, fam:'row',r:0.95},
-  'Seated Cable Row':              {loc:'gym', unit:'lbs', lo:70, hi:90, step:10,fam:'row',r:2.0,v1:1},
+  'Hammer Strength Iso-Lateral Row':{label:'Row (old log)',gone:1,loc:'gym',unit:'side',lo:45, hi:70, step:5, fam:'row',r:1.2},
+  'Chest-Supported DB Row':        {gymFirst:1,loc:'both',unit:'each',lo:30, hi:45, step:5, fam:'row',r:0.95},
+  'Seated Cable Row':              {loc:'gym', unit:'lbs', lo:70, hi:90, step:10,fam:'row',r:2.0},
   /* vertical pull: reference = Lat Pulldown (cable stack) */
   'Lat Pulldown':                  {loc:'gym', unit:'lbs', lo:90, hi:130,step:10,fam:'vpull',r:1},
-  'Hammer Strength Lat Pulldown':  {loc:'gym', unit:'side',lo:45, hi:65, step:5, fam:'vpull',r:0.5,hs:1},
+  'Hammer Strength Lat Pulldown':  {label:'Pulldown (old log)',gone:1,loc:'gym', unit:'side',lo:45, hi:65, step:5, fam:'vpull',r:0.5},
   /* incline press: reference = Incline Dumbbell Press (one DB) */
   'Incline Dumbbell Press':        {loc:'both',unit:'each',lo:25, hi:40, step:5, fam:'incline',r:1},
-  'Hammer Strength Incline Press': {loc:'gym', unit:'side',lo:30, hi:45, step:5, fam:'incline',r:1.1,hs:1},
+  'Hammer Strength Incline Press': {label:'Incline Press (old log)',gone:1,loc:'gym', unit:'side',lo:30, hi:45, step:5, fam:'incline',r:1.1},
   'Incline Barbell Press':         {loc:'both',unit:'lbs', lo:65, hi:85, step:5, fam:'incline',r:2.35,v1:1},
-  'Incline Press Machine':         {loc:'gym', unit:'lbs', lo:60, hi:85, step:5, fam:'incline',r:2.2,v1:1},
+  'Incline Press Machine':         {loc:'gym', unit:'lbs', lo:60, hi:85, step:5, fam:'incline',r:2.2},
   /* curl: reference = EZ-Bar Curl (total lbs) */
   'EZ-Bar Curl':                   {loc:'both',unit:'lbs', lo:30, hi:50, step:5, fam:'curl',r:1},
-  'Hammer Strength Preacher Curl': {loc:'gym', unit:'lbs', lo:25, hi:45, step:5, fam:'curl',r:0.9,hs:1},
+  'Hammer Strength Preacher Curl': {label:'Preacher Curl (old log)',gone:1,loc:'gym', unit:'lbs', lo:25, hi:45, step:5, fam:'curl',r:0.9},
   'Cable Curl':                    {loc:'gym', unit:'lbs', lo:30, hi:50, step:5, fam:'curl',r:0.9},
   'DB Incline Curl':               {loc:'both',unit:'each',lo:10, hi:20, step:5, fam:'curl',r:0.4},
   'DB Hammer Curl':                {loc:'both',unit:'each',lo:15, hi:25, step:5, fam:'curl',r:0.55},
-  'Dumbbell Curl':                 {loc:'both',unit:'each',lo:15, hi:25, step:5, fam:'curl',r:0.47,v1:1},
+  'Dumbbell Curl':                 {loc:'both',unit:'each',lo:15, hi:25, step:5, fam:'curl',r:0.47},
   /* hinge: reference = Romanian Deadlift (barbell) */
   'Romanian Deadlift':             {loc:'both',unit:'lbs', lo:95, hi:135,step:10,fam:'hinge',r:1},
   'Dumbbell RDL':                  {loc:'both',unit:'each',lo:30, hi:45, step:5, fam:'hinge',r:0.5},
   'Seated Leg Curl':               {loc:'gym', unit:'lbs', lo:50, hi:90, step:10,fam:'legcurl',r:1},
   /* lateral raise: reference = Dumbbell Lateral Raise (one DB) */
   'Dumbbell Lateral Raise':        {loc:'both',unit:'each',lo:10, hi:15, step:5, fam:'lateral',r:1},
-  'Hammer Strength Lateral Raise': {loc:'gym', unit:'lbs', lo:15, hi:30, step:5, fam:'lateral',r:1.5,hs:1},
+  'Hammer Strength Lateral Raise': {label:'Lateral Raise (old log)',gone:1,loc:'gym', unit:'lbs', lo:15, hi:30, step:5, fam:'lateral',r:1.5},
   'Cable Lateral Raise':           {loc:'gym', unit:'lbs', lo:10, hi:20, step:5, fam:'lateral',r:0.9},
   'Lateral Raise Machine':         {loc:'gym', unit:'lbs', lo:15, hi:30, step:5, fam:'lateral',r:1.1,v1:1},
   /* triceps: reference = Cable Triceps Pushdown */
@@ -1055,11 +1056,14 @@ const TPL = {
         opts:['Dumbbell Bench Press','Hammer Strength Chest Press','Barbell Bench Press']},
       {kind:'main', rest:105, note:'Builds shoulders.',
         tip:'Wrist tip: palms facing in is easier on the wrists.',
-        opts:['Dumbbell Shoulder Press','Hammer Strength Shoulder Press']},
+        opts:['Dumbbell Shoulder Press','Shoulder Press Machine'],
+        was:['Hammer Strength Shoulder Press']},
       {kind:'main', rest:105, note:'Upper back. This one builds the thick back.',
-        opts:['One-Arm Dumbbell Row','Hammer Strength Iso-Lateral Row','Chest-Supported DB Row']},
+        opts:['One-Arm Dumbbell Row','Chest-Supported DB Row','Seated Cable Row'],
+        was:['Hammer Strength Iso-Lateral Row']},
       {kind:'iso', repLo:12, repHi:15, rest:75, note:'Shoulders. Light weight. Lead with your elbows.',
-        opts:['Dumbbell Lateral Raise','Hammer Strength Lateral Raise','Cable Lateral Raise']}
+        opts:['Dumbbell Lateral Raise','Cable Lateral Raise'],
+        was:['Hammer Strength Lateral Raise']}
     ],
     bonus:[
       {kind:'bonus', sets:2, repLo:10, repHi:10, rest:150, note:'Soft knees, hinge at hips.',
@@ -1067,8 +1071,9 @@ const TPL = {
         opts:['Romanian Deadlift','Dumbbell RDL','Seated Leg Curl']},
       {kind:'bonus', sets:2, repLo:10, repHi:12, rest:75, note:'No swinging. Slow on the way down.',
         tip:'Wrist tip: use the EZ-bar angled grip, not a straight bar.',
-        rot:['EZ-Bar Curl','Hammer Strength Preacher Curl','DB Incline Curl'],
-        opts:['EZ-Bar Curl','Hammer Strength Preacher Curl','DB Incline Curl','Cable Curl','DB Hammer Curl']}
+        rot:['EZ-Bar Curl','Dumbbell Curl','DB Incline Curl'],
+        opts:['EZ-Bar Curl','Dumbbell Curl','DB Incline Curl','Cable Curl','DB Hammer Curl'],
+        was:['Hammer Strength Preacher Curl']}
     ]
   },
   B:{
@@ -1078,16 +1083,20 @@ const TPL = {
         tip:'Wrist tip: cup the top of the dumbbell with both palms.',
         opts:['Goblet Squat','Hammer Strength Hack Squat','Hammer Strength Leg Press']},
       {kind:'main', push:true, rest:105, note:'Pull your elbows back. Squeeze.',
-        tip:'Wrist tip: the Hammer row handles let you grip light. Straps help on heavy sets.',
-        opts:['Hammer Strength Iso-Lateral Row','Lat Pulldown','Hammer Strength Lat Pulldown','One-Arm Dumbbell Row']},
+        tip:'Wrist tip: grip light. Straps help on heavy sets.',
+        opts:['One-Arm Dumbbell Row','Chest-Supported DB Row','Seated Cable Row','Lat Pulldown'],
+        was:['Hammer Strength Iso-Lateral Row','Hammer Strength Lat Pulldown']},
       {kind:'main', rest:105, note:'Upper chest.',
-        tip:'Wrist tip: the Hammer handles keep wrists straight.',
-        opts:['Incline Dumbbell Press','Hammer Strength Incline Press']},
+        tip:'Wrist tip: on dumbbells, palms can turn in a little.',
+        opts:['Incline Dumbbell Press','Incline Press Machine'],
+        was:['Hammer Strength Incline Press']},
       {kind:'iso', repLo:12, repHi:15, rest:75, note:'Shoulders. Light and smooth.',
-        opts:['Cable Lateral Raise','Hammer Strength Lateral Raise','Dumbbell Lateral Raise']},
+        opts:['Cable Lateral Raise','Dumbbell Lateral Raise'],
+        was:['Hammer Strength Lateral Raise']},
       {kind:'iso', repLo:10, repHi:12, rest:75, note:'Smooth pull, slow lower.',
-        rot:['Cable Curl','DB Hammer Curl','Hammer Strength Preacher Curl'],
-        opts:['Cable Curl','DB Hammer Curl','Hammer Strength Preacher Curl','EZ-Bar Curl','DB Incline Curl']}
+        rot:['Cable Curl','DB Hammer Curl','Dumbbell Curl'],
+        opts:['Cable Curl','DB Hammer Curl','Dumbbell Curl','EZ-Bar Curl','DB Incline Curl'],
+        was:['Hammer Strength Preacher Curl']}
     ],
     bonus:[
       {kind:'bonus', sets:2, repLo:12, repHi:12, rest:75, note:'Elbows pinned. Slow on the way up.',
@@ -2009,11 +2018,15 @@ function setDayLoc(dayId,loc){
   if(!DATA.logs[dayId])DATA.logs[dayId]={ex:{}};
   DATA.logs[dayId].loc=loc;
 }
-/* lift names allowed at a location (Home hides Hammer Strength and other machines) */
+/* lift names allowed at a location (Home hides machines) */
 function allowedOpts(block,loc){
   return block.opts.filter(n=>{const l=EX[n].loc;return l==='both'||l===loc;});
 }
-/* default pick: the rotating curl for this 4-week block, else Hammer or gymFirst first at the gym */
+/* the lifts this day can show: the allowed ones, plus a lift that left the plan when this day already holds its sets */
+function dayOpts(block,dayId){
+  return allowedOpts(block,dayLoc(dayId)).concat((block.was||[]).filter(n=>setsLogged(dayId,n)>0));
+}
+/* default pick: the rotating curl for this 4-week block, else the Hammer chest press or a gymFirst lift first at the gym */
 function defaultName(block,loc,w){
   const al=allowedOpts(block,loc);
   if(block.rot){
@@ -2029,7 +2042,7 @@ function defaultName(block,loc,w){
 function pickedName(block,dayId,blockKey,w){
   const dl=DATA.logs[dayId];
   const p=dl&&dl.picked&&dl.picked[blockKey];
-  const al=allowedOpts(block,dayLoc(dayId));
+  const al=dayOpts(block,dayId);
   if(p&&al.indexOf(p)>=0)return p;
   /* a lift can move between slots when the plan changes: keep showing the one that already holds sets on this day */
   const had=al.find(n=>setsLogged(dayId,n)>0);
@@ -2057,7 +2070,7 @@ function famGuess(logs,name,beforeIdx){
   if(!me||!me.fam||!logs)return null;
   let best=null;
   for(const k in EX){
-    if(k===name||EX[k].fam!==me.fam)continue;
+    if(k===name||EX[k].fam!==me.fam||EX[k].gone)continue;
     const r=lastSets(logs,k,beforeIdx);
     if(r&&(!best||r.idx>best.idx))best={sets:r.sets,idx:r.idx,from:k};
   }
@@ -2150,7 +2163,7 @@ function exHTML(block,blockKey,num,dayId,dIdx,w,d){
   const loc=dayLoc(dayId);
   const name=pickedName(block,dayId,blockKey,w);
   const x=EX[name];
-  const allowed=allowedOpts(block,loc);
+  const allowed=dayOpts(block,dayId);
   const e=exLog(dayId,name);
   const hint=weightHint(name,sch,dIdx);
   const fade=fadeNote(name,dIdx);
@@ -2231,7 +2244,7 @@ function dayHTML(w,d){
           <button data-loc="home"${loc==='home'?' class="on"':''}>Home</button>
           <button data-loc="gym"${loc==='gym'?' class="on"':''}>Gym</button>
         </div>
-        <span class="dlocsub">${loc==='home'?'Home — DBs to 45 lb, no machines':'Gym — Hammer Strength first'}</span>
+        <span class="dlocsub">${loc==='home'?'Home — DBs to 45 lb, no machines':'Gym — gym lifts first'}</span>
       </div>`;
   if(w===13)h+=`<div class="weeknote">Easy week. Half the sets, lighter weight. Let your body catch up.</div>`;
   h+=`<div class="grouplabel">Core · 50 Min</div>`;
