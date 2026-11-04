@@ -4,38 +4,40 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#f6f2ea">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="Workout">
 <title>90-Day Plan — Cory Claussen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ---- panels are BLACK, input areas are GRAY ---- */
+  /* ---- light look: panels are WHITE, input areas are WARM GRAY ---- */
   :root{
-    --bg:#000000;
-    --panel:#000000;      /* main panels: weeks, days, exercise cards */
-    --panel2:#0c0b0a;     /* slight lift for nested panels */
-    --input:#3a352f;      /* gray behind set/rep inputs */
-    --input2:#4a443c;     /* input field fill */
-    --line:#4a443c;
-    --red:#ff4d4d;
-    --reddark:#a00000;
-    --redmid:#d62828;
-    --cream:#f6f1e7;
-    --mute:#bcb3a5;
-    --green:#5fd07e;
-    --gold:#e0b25c;
+    --bg:#f6f2ea;
+    --panel:#ffffff;      /* main panels: weeks, days, exercise cards */
+    --panel2:#fbf9f4;     /* slight lift for nested panels */
+    --input:#efe9de;      /* gray behind set/rep inputs */
+    --input2:#ffffff;     /* input field fill */
+    --line:#7a7064;
+    --red:#b3141c;
+    --reddark:#8f0f15;
+    --redmid:#c2202a;
+    --cream:#1c1915;
+    --mute:#575047;
+    --green:#136b35;
+    --gold:#7a5200;
     --rad:25px;
   }
   *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
   html,body{background:var(--bg);color:var(--cream);font-family:'Barlow',sans-serif;}
   body{
-    background-image:radial-gradient(circle at 20% 0%, rgba(160,0,0,.22), transparent 55%);
+    background-image:radial-gradient(circle at 20% 0%, rgba(179,20,28,.07), transparent 55%);
     min-height:100vh;padding-bottom:60px;
   }
   header{
     padding:22px 18px 16px;border-bottom:2px solid var(--redmid);
-    background:linear-gradient(180deg, rgba(160,0,0,.28), transparent);
+    background:linear-gradient(180deg, rgba(179,20,28,.09), transparent);
   }
   .kicker{font-size:13px;letter-spacing:3px;color:var(--red);font-weight:700;text-transform:uppercase;}
   h1{
@@ -56,8 +58,8 @@
     padding:4px 10px;border-radius:12px;background:var(--input);color:var(--mute);
     border:1px solid var(--line);text-transform:uppercase;
   }
-  .savepill.ok{color:var(--green);border-color:rgba(95,208,126,.5);}
-  .savepill.warn{color:var(--gold);border-color:rgba(224,178,92,.5);}
+  .savepill.ok{color:var(--green);border-color:var(--green);}
+  .savepill.warn{color:var(--gold);border-color:var(--gold);}
   nav{
     display:flex;position:sticky;top:0;z-index:20;
     background:var(--bg);border-bottom:1px solid var(--line);
@@ -156,7 +158,7 @@
   }
   .grouplabel.bonus{color:var(--gold);}
   /* ---- exercise ---- */
-  .ex{padding:11px 14px;border-bottom:1px solid rgba(74,68,60,.6);}
+  .ex{padding:11px 14px;border-bottom:1px solid var(--line);}
   .exname{
     font-size:17px;font-weight:700;color:var(--red);
     display:flex;align-items:baseline;gap:6px;line-height:1.2;
@@ -184,11 +186,11 @@
   .exhint.start{border-left-color:var(--mute);color:var(--cream);}
   .exfade{
     font-size:11px;font-weight:700;margin-top:5px;padding:5px 9px;border-radius:12px;
-    background:rgba(224,178,92,.14);border-left:4px solid var(--gold);color:var(--gold);
+    background:rgba(122,82,0,.12);border-left:4px solid var(--gold);color:var(--gold);
   }
   .exflag{
     font-size:11px;font-weight:700;margin-top:5px;padding:5px 9px;border-radius:12px;
-    background:rgba(255,77,77,.16);border-left:4px solid var(--red);color:var(--red);
+    background:rgba(179,20,28,.10);border-left:4px solid var(--red);color:var(--red);
   }
   /* ---- per-set logging dropdown (GRAY area) ---- */
   .setstoggle{
@@ -226,7 +228,7 @@
   .setrow input:focus{outline:none;border-color:var(--red);}
   .setrow .delset{
     width:30px;height:30px;flex-shrink:0;border:none;border-radius:9px;cursor:pointer;
-    background:rgba(255,77,77,.18);color:var(--red);font-size:18px;font-weight:700;
+    background:var(--red);color:#fff;font-size:18px;font-weight:700;
     line-height:1;align-self:flex-end;
   }
   .addset{
@@ -245,10 +247,10 @@
   .resttimer .rtlabel{display:flex;align-items:center;gap:8px;}
   .resttimer .rtdot{width:10px;height:10px;border-radius:50%;background:var(--gold);}
   .resttimer .rttime{font-size:20px;color:var(--gold);font-variant-numeric:tabular-nums;}
-  .resttimer.running{border-color:var(--green);background:rgba(95,208,126,.12);}
+  .resttimer.running{border-color:var(--green);background:rgba(19,107,53,.10);}
   .resttimer.running .rtdot{background:var(--green);animation:rtpulse 1s ease-in-out infinite;}
   .resttimer.running .rttime{color:var(--green);}
-  .resttimer.done{border-color:var(--red);background:rgba(255,77,77,.16);}
+  .resttimer.done{border-color:var(--red);background:rgba(179,20,28,.10);}
   .resttimer.done .rtdot{background:var(--red);}
   .resttimer.done .rttime{color:var(--red);}
   @keyframes rtpulse{0%,100%{opacity:1;}50%{opacity:.35;}}
@@ -258,7 +260,7 @@
     font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:1.5px;
     background:var(--input);color:var(--mute);border:1px solid var(--line);
   }
-  .day.done .donebtn{background:var(--green);color:#08220f;border-color:var(--green);}
+  .day.done .donebtn{background:var(--green);color:#fff;border-color:var(--green);}
   .daybtnwrap{padding:11px 14px;}
   /* ---- weigh-in ---- */
   .wbox{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:17px 16px;margin-bottom:14px;}
@@ -271,7 +273,7 @@
     color:var(--cream);font-family:'Barlow',sans-serif;font-size:16px;font-weight:700;padding:12px;
   }
   .winrow input[type="number"]{text-align:center;}
-  .winrow input[type="date"]{text-align:left;color-scheme:dark;-webkit-appearance:none;}
+  .winrow input[type="date"]{text-align:left;color-scheme:light;-webkit-appearance:none;}
   .savew{
     background:var(--redmid);color:#fff;border:none;border-radius:14px;
     font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;
@@ -291,10 +293,10 @@
   .wlitem .wdate{flex:1;}
   .wlitem .wxbtn{
     width:26px;height:26px;flex-shrink:0;border:none;border-radius:8px;cursor:pointer;
-    background:rgba(255,77,77,.15);color:var(--red);
+    background:var(--red);color:#fff;
     font-size:16px;font-weight:700;line-height:1;
   }
-  .wlitem .wxbtn:hover{background:rgba(255,77,77,.3);}
+  .wlitem .wxbtn:hover{background:var(--reddark);}
   .empty{color:var(--mute);font-size:13px;text-align:center;padding:14px;font-weight:500;}
   /* ---- meal planner ---- */
   .mealopts{display:flex;flex-direction:column;gap:10px;margin-bottom:8px;}
@@ -329,11 +331,11 @@
     background:var(--input);border:1px solid var(--line);
   }
   .mealday .macros .m-cal{color:var(--gold);}
-  .mealday .macros .m-pro{color:#9be39b;}
-  .mealday .macros .m-carb{color:#9bd6ff;}
-  .mealday .macros .m-fat{color:#ffb39b;}
+  .mealday .macros .m-pro{color:#136b35;}
+  .mealday .macros .m-carb{color:#0b5cad;}
+  .mealday .macros .m-fat{color:#a8420b;}
   .mealday .sideline{
-    margin-top:8px;padding:7px 10px;background:rgba(224,178,92,.10);
+    margin-top:8px;padding:7px 10px;background:rgba(122,82,0,.10);
     border-left:3px solid var(--gold);border-radius:8px;
     font-size:12px;color:var(--cream);line-height:1.4;
   }
@@ -344,7 +346,7 @@
   .daytotal{
     display:flex;flex-wrap:wrap;align-items:center;gap:8px;
     margin-top:14px;margin-bottom:6px;padding:8px 12px;
-    background:linear-gradient(90deg, rgba(184,46,46,.18), rgba(224,178,92,.10));
+    background:linear-gradient(90deg, rgba(179,20,28,.08), rgba(122,82,0,.08));
     border-left:3px solid var(--red);border-radius:8px;
   }
   .daytotal .dtlabel{
@@ -353,12 +355,12 @@
   }
   .daytotal .dtmac{
     font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;
-    background:rgba(0,0,0,.25);
+    background:rgba(29,26,22,.06);
   }
   .daytotal .dtcal{color:var(--gold);}
-  .daytotal .dtpro{color:#9be39b;}
-  .daytotal .dtcarb{color:#9bd6ff;}
-  .daytotal .dtfat{color:#ffb39b;}
+  .daytotal .dtpro{color:#136b35;}
+  .daytotal .dtcarb{color:#0b5cad;}
+  .daytotal .dtfat{color:#a8420b;}
   .weekhd{
     display:flex;justify-content:space-between;align-items:center;
     gap:10px;flex-wrap:wrap;margin-bottom:12px;
@@ -402,10 +404,10 @@
     h2, h3{color:#000 !important;}
   }
   .mtag{font-size:10px;font-weight:700;padding:3px 7px;border-radius:8px;letter-spacing:.5px;}
-  .mtag.pot{background:rgba(95,208,126,.18);color:var(--green);}
-  .mtag.fast{background:rgba(224,178,92,.18);color:var(--gold);}
-  .mtag.spicy{background:rgba(255,77,77,.18);color:var(--red);}
-  .mtag.style{background:rgba(255,255,255,.08);color:var(--cream);}
+  .mtag.pot{background:rgba(19,107,53,.12);color:var(--green);}
+  .mtag.fast{background:rgba(122,82,0,.12);color:var(--gold);}
+  .mtag.spicy{background:rgba(179,20,28,.10);color:var(--red);}
+  .mtag.style{background:rgba(29,26,22,.08);color:var(--cream);}
   .mealday details{margin-top:8px;}
   .mealday details summary{
     cursor:pointer;font-size:13px;font-weight:700;color:var(--gold);
@@ -429,11 +431,11 @@
     font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;
     padding:8px 12px;border-radius:10px;margin-bottom:8px;
   }
-  .storehd.walmart{background:rgba(0,113,206,.18);color:#5ca8ff;}
-  .storehd.hyvee{background:rgba(220,38,38,.18);color:#ff7070;}
+  .storehd.walmart{background:rgba(0,113,206,.12);color:#0a4f96;}
+  .storehd.hyvee{background:rgba(220,38,38,.10);color:#a31414;}
   .gline{
     display:flex;justify-content:space-between;font-size:13px;
-    padding:5px 0;border-bottom:1px solid rgba(74,68,60,.5);
+    padding:5px 0;border-bottom:1px solid var(--line);
   }
   .gline .gqty{color:var(--gold);font-weight:700;}
   .budgetline{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);
@@ -442,7 +444,7 @@
   .rule{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:16px;margin-bottom:12px;}
   .rule h3{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:var(--red);margin-bottom:9px;}
   .rule ul{list-style:none;}
-  .rule li{font-size:14px;padding:7px 0 7px 22px;position:relative;border-bottom:1px solid rgba(74,68,60,.6);}
+  .rule li{font-size:14px;padding:7px 0 7px 22px;position:relative;border-bottom:1px solid var(--line);}
   .rule li:last-child{border-bottom:none;}
   .rule li:before{content:"";position:absolute;left:4px;top:14px;width:8px;height:8px;background:var(--red);border-radius:3px;}
   .rule p{font-size:14px;color:var(--cream);margin-bottom:7px;}
@@ -459,8 +461,8 @@
   footer{text-align:center;color:var(--mute);font-size:11px;padding:18px 14px 0;font-weight:500;}
   /* ===== v2 additions (meal and weigh-in styles above are unchanged) ===== */
   nav .tab{font-size:16px;letter-spacing:.5px;padding:14px 1px;min-height:48px;}
-  .pendbar{display:none;margin:12px 14px 0;padding:14px 16px;background:rgba(224,178,92,.12);
-    border:1px solid rgba(224,178,92,.5);border-left:4px solid var(--gold);border-radius:var(--rad);
+  .pendbar{display:none;margin:12px 14px 0;padding:14px 16px;background:rgba(122,82,0,.10);
+    border:1px solid var(--gold);border-left:4px solid var(--gold);border-radius:var(--rad);
     font-size:13px;color:var(--cream);font-weight:600;}
   .pendbar.on{display:block;}
   .pendbar b{color:var(--gold);}
@@ -470,23 +472,23 @@
     font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:1px;background:var(--redmid);color:#fff;}
   .bigbtn:active{background:var(--red);}
   .bigbtn.alt{background:var(--input);color:var(--cream);border:1px solid var(--line);}
-  .bigbtn.gold{background:var(--gold);color:#000;}
+  .bigbtn.gold{background:var(--gold);color:#fff;}
   .pbtn{margin-bottom:14px;}
-  .modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;background:rgba(0,0,0,.82);
+  .modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;background:rgba(29,26,22,.45);
     align-items:center;justify-content:center;padding:20px;}
   .modal.on{display:flex;}
-  .modalbox{width:100%;max-width:360px;background:var(--panel2);border:1px solid var(--line);
-    border-left:4px solid var(--red);border-radius:var(--rad);padding:20px 18px;}
+  .modalbox{width:100%;max-width:360px;background:var(--panel2);border:1px solid var(--cream);
+    border-left:4px solid #660b10;border-radius:var(--rad);padding:20px 18px;}
   .modalbox h2{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;color:var(--red);margin-bottom:10px;}
   .modalbox p{font-size:15px;color:var(--cream);margin-bottom:10px;line-height:1.45;}
   .modalbox p.small{font-size:13px;color:var(--mute);}
   .extag{display:inline-block;margin-left:6px;font-size:9px;font-weight:800;letter-spacing:.5px;padding:2px 6px;
     border-radius:6px;vertical-align:middle;font-family:inherit;}
-  .extag.hs{background:rgba(224,178,92,.18);color:var(--gold);}
-  .extag.push{background:rgba(255,77,77,.2);color:var(--red);}
-  .extag.new{background:rgba(95,208,126,.16);color:var(--green);}
+  .extag.hs{background:rgba(122,82,0,.12);color:var(--gold);}
+  .extag.push{background:rgba(179,20,28,.10);color:var(--red);}
+  .extag.new{background:rgba(19,107,53,.12);color:var(--green);}
   .extip{font-size:11px;color:var(--gold);margin-top:3px;font-weight:600;}
-  .weeknote{margin:8px 14px 0;padding:8px 10px;border-radius:12px;background:rgba(224,178,92,.14);
+  .weeknote{margin:8px 14px 0;padding:8px 10px;border-radius:12px;background:rgba(122,82,0,.12);
     color:var(--gold);font-size:12px;font-weight:700;}
   /* bigger tap targets (44pt) for the plan */
   .expicker select{min-height:44px;font-size:16px;}
@@ -511,13 +513,13 @@
   .stat{background:var(--input);border-radius:14px;padding:10px 6px;text-align:center;}
   .stat .sv{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;color:var(--cream);line-height:1.1;}
   .stat .sl{font-size:10px;color:var(--mute);font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
-  .hintbox{background:rgba(224,178,92,.10);border:1px solid rgba(224,178,92,.4);border-left:4px solid var(--gold);
+  .hintbox{background:rgba(122,82,0,.10);border:1px solid var(--gold);border-left:4px solid var(--gold);
     border-radius:var(--rad);padding:14px 16px;font-size:13px;color:var(--cream);margin-bottom:14px;}
   .hintbox b{color:var(--gold);}
   .hintbox ul{list-style:none;margin-top:6px;}
   .hintbox li{padding:4px 0 4px 16px;position:relative;}
   .hintbox li:before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;background:var(--gold);border-radius:2px;}
-  .citem{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(74,68,60,.6);}
+  .citem{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);}
   .citem:last-child{border-bottom:none;}
   .cmain{flex:1;font-size:14px;color:var(--cream);min-width:0;}
   .cmain b{color:var(--red);}
@@ -529,7 +531,7 @@
   .mbar .track{height:12px;}
   .mbar .fill.ok{background:var(--green);}
   .mtable{width:100%;border-collapse:collapse;font-size:12px;color:var(--cream);}
-  .mtable th,.mtable td{padding:8px 3px;text-align:right;border-bottom:1px solid rgba(74,68,60,.6);}
+  .mtable th,.mtable td{padding:8px 3px;text-align:right;border-bottom:1px solid var(--line);}
   .mtable th:first-child,.mtable td:first-child{text-align:left;}
   .mtable th{color:var(--mute);font-size:10px;text-transform:uppercase;letter-spacing:.5px;}
   .mtable td.hit{color:var(--green);font-weight:800;}
@@ -576,8 +578,8 @@
   .rctags{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px;}
   .rctag{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:12px;
     background:var(--input);border:1px solid var(--line);color:var(--mute);}
-  .rctag.crockpot{color:var(--gold);border-color:rgba(224,178,92,.5);}
-  .rctag.quick{color:var(--green);border-color:rgba(95,208,126,.5);}
+  .rctag.crockpot{color:var(--gold);border-color:var(--gold);}
+  .rctag.quick{color:var(--green);border-color:var(--green);}
   .rcfacts{color:var(--mute);font-size:13px;font-weight:600;margin-top:7px;}
   .rcbody{padding:0 16px 16px;border-top:1px solid var(--line);}
   .rcbody h3{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--red);margin:13px 0 5px;}
@@ -586,6 +588,8 @@
   .rcest{color:var(--mute);font-size:12px;margin-top:11px;}
   .rcsafe{color:var(--cream);font-size:14px;line-height:1.45;padding-left:20px;}
   .rcsafe li{margin-bottom:4px;}
+  ::placeholder{color:var(--mute);opacity:1;}
+  #undoSwap:active{color:#fff;}
 </style>
 </head>
 <body>
@@ -946,10 +950,12 @@ const HOME_DB=45;
        Used to turn a weight on one lift into a first guess on another:
        guess = otherWeight / other.r * this.r. Hammer ratios are ESTIMATES.
      - hs: Hammer Strength machine, v1: old name kept only for the archive  */
+    /* label: the name shown on screen when it differs from the saved name. The saved name stays so old logs still match.
+       gymFirst: lift that leads the swap list at the gym even though it is not a Hammer machine. */
 const EX={
   /* squat family: reference = Barbell Back Squat (total lbs) */
   'Barbell Back Squat':            {loc:'both',unit:'lbs', lo:95, hi:135,step:10,fam:'squat',r:1},
-  'Hammer Strength Leg Press':     {loc:'gym', unit:'lbs', lo:180,hi:270,step:10,fam:'squat',r:2.5,hs:1},
+  'Hammer Strength Leg Press':     {label:'Leg Press',gymFirst:1,loc:'gym', unit:'lbs', lo:180,hi:270,step:10,fam:'squat',r:2.5},
   'Hammer Strength Hack Squat':    {loc:'gym', unit:'lbs', lo:90, hi:140,step:10,fam:'squat',r:1.2,hs:1},
   'Goblet Squat':                  {loc:'both',unit:'lbs', lo:30, hi:45, step:5, fam:'squat',r:0.35},
   'Leg Press':                     {loc:'gym', unit:'lbs', lo:180,hi:270,step:10,fam:'squat',r:2.5,v1:1},
@@ -1004,7 +1010,17 @@ const EX={
   /* rear delts: reference = Face Pulls (cable) */
   'Face Pulls':                    {loc:'gym', unit:'lbs', lo:25, hi:40, step:5, fam:'rear',r:1},
   'Reverse Pec-Deck':              {loc:'gym', unit:'lbs', lo:30, hi:50, step:5, fam:'rear',r:1.15},
-  'DB Rear-Delt Fly':              {loc:'both',unit:'each',lo:10, hi:15, step:5, fam:'rear',r:0.3}
+  'DB Rear-Delt Fly':              {loc:'both',unit:'each',lo:10, hi:15, step:5, fam:'rear',r:0.3},
+  /* core and abs: floor moves, no machine, no weight on the hands. bw = bodyweight: log reps, the weight box stays blank */
+  'Reverse Crunch':                {loc:'both',unit:'lbs', lo:0,  hi:0,  step:0, fam:'abs',r:1,bw:1},
+  'Bent-Knee Leg Raise':           {loc:'both',unit:'lbs', lo:0,  hi:0,  step:0, fam:'abs',r:1,bw:1},
+  'Dead Bug':                      {loc:'both',unit:'lbs', lo:0,  hi:0,  step:0, fam:'abs',r:1,bw:1},
+  'Crunch':                        {loc:'both',unit:'lbs', lo:0,  hi:0,  step:0, fam:'abs',r:1,bw:1},
+  'Sit-Up':                        {loc:'both',unit:'lbs', lo:0,  hi:0,  step:0, fam:'abs',r:1,bw:1},
+  'Toe-Reach Crunch':              {loc:'both',unit:'lbs', lo:0,  hi:0,  step:0, fam:'abs',r:1,bw:1},
+  'Bicycle Crunch':                {loc:'both',unit:'lbs', lo:0,  hi:0,  step:0, fam:'abs',r:1,bw:1},
+  'Heel Taps':                     {loc:'both',unit:'lbs', lo:0,  hi:0,  step:0, fam:'abs',r:1,bw:1},
+  'Russian Twist':                 {loc:'both',unit:'lbs', lo:0,  hi:0,  step:0, fam:'abs',r:1,bw:1}
 };
 /*  v2 plan. Day A = Push, Day B = Pull (alternate A-B-A / B-A-B each week, Mon/Wed/Fri).
     kind: 'main' = compound (sets/reps follow the 12-week phases, see scheme())
@@ -1070,6 +1086,18 @@ const TPL = {
     ]
   }
 };
+/*  core and abs: 3 floor moves at the end of every lifting day, about 8 minutes. Same 3 slots each day (lower abs, front abs,
+    sides). The first name in opts is that day's pick, so Mon, Wed and Fri each get a different set. Any slot can be swapped.  */
+const AB_TIP='Wrist tip: no weight goes on your hands in these moves.';
+const AB_LOW={kind:'ab', sets:2, repLo:10, repHi:15, rest:45, note:'Lower abs. Slow and steady, no swinging.', tip:AB_TIP};
+const AB_FRONT={kind:'ab', sets:2, repLo:12, repHi:15, rest:45, note:'Front abs. Lift with your abs, not your neck.', tip:AB_TIP};
+const AB_SIDE={kind:'ab', sets:2, repLo:10, repHi:12, each:'side', rest:45, note:'Side abs. Slow turns, hands off the floor.', tip:AB_TIP};
+const abSlot=(b,opts)=>Object.assign({},b,{opts:opts});
+const ABS=[
+  [abSlot(AB_LOW,['Reverse Crunch','Bent-Knee Leg Raise','Dead Bug']),abSlot(AB_FRONT,['Crunch','Sit-Up','Toe-Reach Crunch']),abSlot(AB_SIDE,['Bicycle Crunch','Heel Taps','Russian Twist'])],
+  [abSlot(AB_LOW,['Bent-Knee Leg Raise','Dead Bug','Reverse Crunch']),abSlot(AB_FRONT,['Sit-Up','Toe-Reach Crunch','Crunch']),abSlot(AB_SIDE,['Heel Taps','Russian Twist','Bicycle Crunch'])],
+  [abSlot(AB_LOW,['Dead Bug','Reverse Crunch','Bent-Knee Leg Raise']),abSlot(AB_FRONT,['Toe-Reach Crunch','Crunch','Sit-Up']),abSlot(AB_SIDE,['Russian Twist','Bicycle Crunch','Heel Taps'])]
+];
 const DAYS=['Mon','Wed','Fri'];
 
 /* ========== MEAL PLANNER ==========
@@ -1682,7 +1710,7 @@ function renderMealPlan(){
     }
   });
   if(DATA.mealPlan.snacks){
-    h+=`<h3 class="storehd" style="background:rgba(224,178,92,.16);color:var(--gold);margin-top:14px;">High-Protein Snacks This Week</h3>`;
+    h+=`<h3 class="storehd" style="background:rgba(122,82,0,.12);color:var(--gold);margin-top:14px;">High-Protein Snacks This Week</h3>`;
     DATA.mealPlan.snacks.forEach((r,i)=>{ h+=mealCardHTML('Snack '+(i+1), r, 'snack', i); });
   }
   week.innerHTML=h;
@@ -1971,7 +1999,7 @@ function setDayLoc(dayId,loc){
 function allowedOpts(block,loc){
   return block.opts.filter(n=>{const l=EX[n].loc;return l==='both'||l===loc;});
 }
-/* default pick: the rotating curl for this 4-week block, else Hammer first at the gym */
+/* default pick: the rotating curl for this 4-week block, else Hammer or gymFirst first at the gym */
 function defaultName(block,loc,w){
   const al=allowedOpts(block,loc);
   if(block.rot){
@@ -1979,7 +2007,7 @@ function defaultName(block,loc,w){
     if(al.indexOf(r)>=0)return r;
   }
   if(loc==='gym'){
-    const h=al.find(n=>EX[n].hs);
+    const h=al.find(n=>EX[n].hs||EX[n].gymFirst);
     if(h)return h;
   }
   return al.length?al[0]:block.opts[0];
@@ -1997,6 +2025,7 @@ function setPickedOpt(dayId, blockKey, optName){
   DATA.logs[dayId].picked[blockKey]=optName;
 }
 function unitTxt(u){return u==='each'?' lbs each':(u==='side'?' lbs per side':' lbs');}
+function exLabel(n){return (EX[n]&&EX[n].label)||n;}
 
 /* ---- old v1 log (archive) for first guesses ---- */
 function archLogs(){return (DATA.archive_v1&&DATA.archive_v1.logs)?DATA.archive_v1.logs:null;}
@@ -2024,6 +2053,7 @@ function famGuess(logs,name,beforeIdx){
 /* Go up / Hold / Stay tip from the last session, or a first guess */
 function weightHint(name, sch, dIdx){
   const x=EX[name], u=unitTxt(x.unit);
+  if(x.bw)return {cls:'start',w:0,text:'Bodyweight. Leave the weight box blank and log your reps.'};
   const last=lastSets(DATA.logs,name,dIdx);
   if(last){
     const sets=last.sets;
@@ -2043,17 +2073,17 @@ function weightHint(name, sch, dIdx){
     return {cls:'hold',w:avgW,text:'Stay at ~'+avgW+u+'. Sets averaged '+avgRtxt+' reps — build to '+sch.repLo+'+ with clean form.'};
   }
   const fg=famGuess(DATA.logs,name,dIdx);
-  if(fg)return {cls:'start',w:fg.w,text:'Start here: '+fg.w+u+' (from your '+fg.from+', est.). Adjust on set one.'};
+  if(fg)return {cls:'start',w:fg.w,text:'Start here: '+fg.w+u+' (from your '+exLabel(fg.from)+', est.). Adjust on set one.'};
   const A=archLogs();
   if(A){
     const end=archEnd(A);
-    const al=lastSets(A,name,end);
+    const al=lastSets(A,x.label||name,end);
     if(al){
       const aw=round5(avg(al.sets.map(s=>s.weight)));
       return {cls:'start',w:aw,text:'Last block you used ~'+aw+u+'. Start there and adjust on set one.'};
     }
     const ag=famGuess(A,name,end);
-    if(ag)return {cls:'start',w:ag.w,text:'Start here: '+ag.w+u+' (from your old '+ag.from+', est.). Adjust on set one.'};
+    if(ag)return {cls:'start',w:ag.w,text:'Start here: '+ag.w+u+' (from your old '+exLabel(ag.from)+', est.). Adjust on set one.'};
   }
   if(x.lo===0)return {cls:'start',w:0,text:'Start: bodyweight, or up to '+x.hi+u+' if it feels easy.'};
   return {cls:'start',w:x.lo,text:'Start: try '+x.lo+'–'+x.hi+u+'. Pick where '+sch.repLo+' reps feels solid.'};
@@ -2117,7 +2147,7 @@ function exHTML(block,blockKey,num,dayId,dIdx,w,d){
   let h=`<div class="ex ${open?'setsopen':''}">
     <div class="exname">
       <span class="exnum">${num}.</span>
-      <span class="extitle">${name}${tags}</span>
+      <span class="extitle">${exLabel(name)}${tags}</span>
     </div>
     <div class="exsets">${sch.s} · Rest ${formatTime(block.rest)}</div>`;
   if(allowed.length>1){
@@ -2127,7 +2157,7 @@ function exHTML(block,blockKey,num,dayId,dIdx,w,d){
           <span>Swap:</span>
           <select data-pick="${dayId}|${blockKey}" aria-label="Swap exercise">`;
     order.forEach(n=>{
-      h+=`<option value="${n}"${n===name?' selected':''}>${n}</option>`;
+      h+=`<option value="${n}"${n===name?' selected':''}>${exLabel(n)}</option>`;
     });
     h+=`</select></div>`;
   }
@@ -2192,6 +2222,8 @@ function dayHTML(w,d){
   t.core.forEach((block,i)=>{ h+=exHTML(block,'core_'+i,num,dayId,dIdx,w,d); num++; });
   h+=`<div class="grouplabel bonus">Bonus · 15 Min (if time)</div>`;
   t.bonus.forEach((block,i)=>{ h+=exHTML(block,'bonus_'+i,num,dayId,dIdx,w,d); num++; });
+  h+=`<div class="grouplabel">Abs · 8 Min</div>`;
+  ABS[d].forEach((block,i)=>{ h+=exHTML(block,'abs_'+i,num,dayId,dIdx,w,d); num++; });
   h+=`<div class="daybtnwrap">
         <button class="donebtn" data-day="${dayId}">${done?'✓ Workout Done':'Mark Workout Done'}</button>
       </div>
@@ -2317,17 +2349,17 @@ function drawChart(entries){
   const yFor=v=>pad+(1-((v-yMin)/(yMax-yMin)))*(H-pad*2);
   let svg=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet">`;
   // goal line
-  svg+=`<line x1="${pad}" y1="${yFor(GOAL)}" x2="${W-pad}" y2="${yFor(GOAL)}" stroke="#5fd07e" stroke-width="1" stroke-dasharray="4 3"/>`;
-  svg+=`<text x="${W-pad}" y="${yFor(GOAL)-4}" fill="#5fd07e" font-size="9" text-anchor="end">Goal 188</text>`;
+  svg+=`<line x1="${pad}" y1="${yFor(GOAL)}" x2="${W-pad}" y2="${yFor(GOAL)}" stroke="#136b35" stroke-width="1" stroke-dasharray="4 3"/>`;
+  svg+=`<text x="${W-pad}" y="${yFor(GOAL)-4}" fill="#136b35" font-size="9" text-anchor="end">Goal 188</text>`;
   // start line
-  svg+=`<line x1="${pad}" y1="${yFor(START)}" x2="${W-pad}" y2="${yFor(START)}" stroke="#4a443c" stroke-width="1"/>`;
-  svg+=`<text x="${pad}" y="${yFor(START)-4}" fill="#bcb3a5" font-size="9">Start 210</text>`;
+  svg+=`<line x1="${pad}" y1="${yFor(START)}" x2="${W-pad}" y2="${yFor(START)}" stroke="#7a7064" stroke-width="1"/>`;
+  svg+=`<text x="${pad}" y="${yFor(START)-4}" fill="#575047" font-size="9">Start 210</text>`;
   let pts=entries.map(([d,v])=>[xFor(d),yFor(v)]);
   if(pts.length>1){
     let path='M'+pts.map(p=>p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' L');
-    svg+=`<path d="${path}" fill="none" stroke="#ff4d4d" stroke-width="2.5" stroke-linejoin="round"/>`;
+    svg+=`<path d="${path}" fill="none" stroke="#b3141c" stroke-width="2.5" stroke-linejoin="round"/>`;
   }
-  pts.forEach(p=>{svg+=`<circle cx="${p[0]}" cy="${p[1]}" r="3.5" fill="#ff4d4d"/>`;});
+  pts.forEach(p=>{svg+=`<circle cx="${p[0]}" cy="${p[1]}" r="3.5" fill="#b3141c"/>`;});
   svg+=`</svg>`;
   box.innerHTML=svg;
 }
@@ -2817,18 +2849,18 @@ function cardioChart(){
   const iw=W-padL-padR, ih=H-padT-padB, bw=iw/30;
   const y=v=>padT+ih-(v/top)*ih;
   let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Cardio minutes per day for the last 30 days">`;
-  s+=`<line x1="${padL}" y1="${y(0)}" x2="${W-padR}" y2="${y(0)}" stroke="#4a443c" stroke-width="1"/>`;
-  s+=`<text x="${padL-4}" y="${y(top)+3}" fill="#bcb3a5" font-size="9" text-anchor="end">${top}</text>`;
-  s+=`<text x="${padL-4}" y="${y(0)+3}" fill="#bcb3a5" font-size="9" text-anchor="end">0</text>`;
-  s+=`<line x1="${padL}" y1="${y(30).toFixed(1)}" x2="${W-padR}" y2="${y(30).toFixed(1)}" stroke="#e0b25c" stroke-width="1" stroke-dasharray="4 3"/>`;
-  s+=`<text x="${W-padR}" y="${(y(30)-3).toFixed(1)}" fill="#e0b25c" font-size="9" text-anchor="end">30 min</text>`;
+  s+=`<line x1="${padL}" y1="${y(0)}" x2="${W-padR}" y2="${y(0)}" stroke="#7a7064" stroke-width="1"/>`;
+  s+=`<text x="${padL-4}" y="${y(top)+3}" fill="#575047" font-size="9" text-anchor="end">${top}</text>`;
+  s+=`<text x="${padL-4}" y="${y(0)+3}" fill="#575047" font-size="9" text-anchor="end">0</text>`;
+  s+=`<line x1="${padL}" y1="${y(30).toFixed(1)}" x2="${W-padR}" y2="${y(30).toFixed(1)}" stroke="#7a5200" stroke-width="1" stroke-dasharray="4 3"/>`;
+  s+=`<text x="${W-padR}" y="${(y(30)-3).toFixed(1)}" fill="#7a5200" font-size="9" text-anchor="end">30 min</text>`;
   days.forEach(([iso,m],i)=>{
     if(m>0){
-      s+=`<rect x="${(padL+i*bw+1).toFixed(1)}" y="${y(m).toFixed(1)}" width="${(bw-2).toFixed(1)}" height="${((m/top)*ih).toFixed(1)}" rx="2" fill="#ff4d4d"><title>${prettyDate(iso)}: ${r1(m)} min</title></rect>`;
+      s+=`<rect x="${(padL+i*bw+1).toFixed(1)}" y="${y(m).toFixed(1)}" width="${(bw-2).toFixed(1)}" height="${((m/top)*ih).toFixed(1)}" rx="2" fill="#b3141c"><title>${prettyDate(iso)}: ${r1(m)} min</title></rect>`;
     }
   });
-  s+=`<text x="${padL}" y="${H-5}" fill="#bcb3a5" font-size="9">${prettyDate(days[0][0])}</text>`;
-  s+=`<text x="${W-padR}" y="${H-5}" fill="#bcb3a5" font-size="9" text-anchor="end">Today</text>`;
+  s+=`<text x="${padL}" y="${H-5}" fill="#575047" font-size="9">${prettyDate(days[0][0])}</text>`;
+  s+=`<text x="${W-padR}" y="${H-5}" fill="#575047" font-size="9" text-anchor="end">Today</text>`;
   s+='</svg>';
   return s;
 }
@@ -2994,10 +3026,10 @@ function printWeek(){
     const t=tplFor(w,d), dayId='w'+w+'d'+d, dIdx=dayIndex(w,d), loc=dayLoc(dayId);
     h+=`<h2>${DAYS[d]} — ${t.name} (${loc==='gym'?'Gym':'Home'})</h2>
       <table><tr><th>#</th><th>Exercise</th><th>Sets x reps</th><th>Rest</th><th>Weight tip</th><th>Done</th></tr>`;
-    const all=t.core.map((b,i)=>[b,'core_'+i]).concat(t.bonus.map((b,i)=>[b,'bonus_'+i]));
+    const all=t.core.map((b,i)=>[b,'core_'+i]).concat(t.bonus.map((b,i)=>[b,'bonus_'+i])).concat(ABS[d].map((b,i)=>[b,'abs_'+i]));
     all.forEach(([b,key],i)=>{
       const name=pickedName(b,dayId,key,w), sch=scheme(b,w), hint=weightHint(name,sch,dIdx);
-      h+=`<tr><td>${i+1}</td><td>${name}${key.indexOf('bonus')===0?' (bonus)':''}</td><td>${sch.s}</td><td>${formatTime(b.rest)}</td><td>${hint.text}</td><td></td></tr>`;
+      h+=`<tr><td>${i+1}</td><td>${exLabel(name)}${key.indexOf('bonus')===0?' (bonus)':''}</td><td>${sch.s}</td><td>${formatTime(b.rest)}</td><td>${hint.text}</td><td></td></tr>`;
     });
     h+='</table>';
   }
@@ -3089,7 +3121,23 @@ const BEEF_RECIPES=[
   {"id":"beef-stew","name":"Crockpot Beef Stew","cut":"stew","method":"crockpot","minutes":480,"timeText":"8 hr on Low","servings":6,"ingredients":["2.5 lb stew meat, thawed","3 medium potatoes, cubed","3 carrots, sliced","1 onion, chopped","2 cups beef broth","2 tbsp tomato paste","1 tsp salt","1 tsp black pepper","1 tsp dried thyme"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Put the potatoes, carrots and onion in the crockpot. Add the meat on top.","Stir the tomato paste, salt, pepper and thyme into the broth. Pour it in.","Cook on Low for 8 hours.","Check that the meat is at least 145 F, then rest 3 minutes before serving."],"protein":41,"calories":390},
   {"id":"beef-tips","name":"Beef Tips and Gravy","cut":"stew","method":"crockpot","minutes":435,"timeText":"7 hr on Low, plus 15 min on High","servings":6,"ingredients":["2.5 lb stew meat, thawed","8 oz mushrooms, sliced","1 onion, chopped","2 cups beef broth","1 tbsp Worcestershire sauce","1 tsp salt","1 tsp black pepper","2 tbsp cornstarch","12 oz egg noodles"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Put the meat, mushrooms and onion in the crockpot.","Add the broth, Worcestershire sauce, salt and pepper. Cook on Low for 7 hours.","Check that the meat is at least 145 F, then rest 3 minutes.","Mix the cornstarch with 2 tbsp cold water. Stir it in and cook on High 15 minutes to thicken.","Boil the noodles the way the bag says. Spoon the beef tips and gravy over them."],"protein":48,"calories":540},
   {"id":"chislic","name":"Chislic","cut":"stew","method":"quick","minutes":20,"timeText":"20 min","servings":4,"ingredients":["1.5 lb stew meat, thawed, cut in 1 inch cubes","1 cup oil for frying","2 tsp garlic salt","1 sleeve saltine crackers","Hot sauce on the side"],"steps":["Pat the cubes dry with a paper towel.","Heat the oil in a heavy pan until it is very hot, about 350 F.","Fry the cubes in small batches, 3 to 4 minutes, until browned and at least 145 F inside.","Move the cubes to a paper towel and toss with the garlic salt.","Let them rest 3 minutes.","Serve with saltine crackers and hot sauce on the side."],"protein":36,"calories":450},
-  {"id":"beef-bites","name":"Beef Bites and Peppers","cut":"stew","method":"quick","minutes":25,"timeText":"25 min","servings":4,"ingredients":["1.5 lb stew meat, thawed","2 bell peppers, chopped","1 onion, chopped","1/4 cup soy sauce","1/4 cup water","1 tbsp cornstarch","2 cloves garlic, minced","2 tbsp oil"],"steps":["Cut the meat in small half inch cubes so it stays tender. Mix the soy sauce, water, cornstarch and garlic in a cup.","Heat 1 tbsp oil in a big hot pan. Cook the cubes in 2 batches until browned and at least 145 F.","Move the meat to a plate and let it rest 3 minutes.","Add the rest of the oil. Cook the peppers and onion 5 minutes.","Put the meat back, pour in the sauce and stir 1 minute until thick."],"protein":36,"calories":360}
+  {"id":"beef-bites","name":"Beef Bites and Peppers","cut":"stew","method":"quick","minutes":25,"timeText":"25 min","servings":4,"ingredients":["1.5 lb stew meat, thawed","2 bell peppers, chopped","1 onion, chopped","1/4 cup soy sauce","1/4 cup water","1 tbsp cornstarch","2 cloves garlic, minced","2 tbsp oil"],"steps":["Cut the meat in small half inch cubes so it stays tender. Mix the soy sauce, water, cornstarch and garlic in a cup.","Heat 1 tbsp oil in a big hot pan. Cook the cubes in 2 batches until browned and at least 145 F.","Move the meat to a plate and let it rest 3 minutes.","Add the rest of the oil. Cook the peppers and onion 5 minutes.","Put the meat back, pour in the sauce and stir 1 minute until thick."],"protein":36,"calories":360},
+  {"id":"beef-ragu","name":"Crockpot Beef Ragu","cut":"roast","method":"crockpot","minutes":480,"timeText":"8 hr on Low","servings":6,"ingredients":["3 lb chuck roast, thawed","1 can (28 oz) crushed tomatoes","1 large onion, diced","4 cloves garlic, minced","1 tbsp Italian seasoning","1 tsp salt","12 oz pasta"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Put the roast in the crockpot. Add the tomatoes, onion, garlic, Italian seasoning and salt.","Cook on Low for 8 hours, until the meat pulls apart with a fork. Boil the pasta near the end.","Check that the thickest part is at least 145 F, then rest 3 minutes.","Shred the meat with two forks and stir it into the sauce. Serve over the pasta."],"protein":53,"calories":650},
+  {"id":"sweet-soy-beef","name":"Sweet Soy Beef and Rice","cut":"roast","method":"crockpot","minutes":480,"timeText":"8 hr on Low","servings":6,"ingredients":["3 lb chuck roast, thawed","1/2 cup low sodium soy sauce","1/4 cup brown sugar","1 cup beef broth","4 cloves garlic, minced","1 tbsp grated ginger","2 cups dry rice","4 green onions, sliced"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Put the roast in the crockpot. Mix the soy sauce, brown sugar, broth, garlic and ginger, then pour it over the top.","Cook on Low for 8 hours, until the meat pulls apart with a fork. Cook the rice near the end.","Check that the thickest part is at least 145 F, then rest 3 minutes.","Shred the meat with two forks and stir it into the juices. Serve over the rice with the green onions."],"protein":50,"calories":670},
+  {"id":"cheesesteak-subs","name":"Cheesesteak Subs","cut":"roast","method":"quick","minutes":25,"timeText":"25 min","servings":4,"ingredients":["1.5 lb sirloin tip or rump roast, thawed","1 large onion, sliced","8 oz mushrooms, sliced","1 tbsp oil","1 tsp salt","1/2 tsp black pepper","8 slices provolone cheese","4 hoagie rolls"],"steps":["Slice the meat very thin against the grain. Season it with the salt and pepper.","Heat the oil in a big pan. Cook the onion and mushrooms until soft, about 6 minutes. Set them aside.","Cook the meat in the hot pan in two batches, 2 to 3 minutes a batch.","Check that the thickest piece is at least 145 F, then rest 3 minutes.","Stir the onion and mushrooms back in. Top with the provolone and let it melt.","Fill the rolls and serve."],"protein":55,"calories":640},
+  {"id":"sirloin-medallions","name":"Sirloin Tip Medallions with Mushrooms","cut":"roast","method":"quick","minutes":25,"timeText":"25 min","servings":4,"ingredients":["2 lb sirloin tip roast, thawed","8 oz mushrooms, sliced","1 cup beef broth","2 tbsp butter","1 tbsp oil","1 tsp salt","1 tsp black pepper"],"steps":["Cut the roast in rounds 3/4 inch thick. Season them with the salt and pepper.","Heat the oil in a big hot pan. Sear the rounds 3 to 4 minutes per side, in two batches.","Check that the thickest round is at least 145 F. Move them to a plate and rest 3 minutes.","Melt the butter in the same pan. Cook the mushrooms for 4 minutes.","Pour in the broth and simmer for 3 minutes, scraping the pan.","Spoon the sauce over the rounds."],"protein":50,"calories":420},
+  {"id":"swiss-steak","name":"Crockpot Swiss Steak","cut":"steak","method":"crockpot","minutes":480,"timeText":"8 hr on Low","servings":4,"ingredients":["2 lb round steak, thawed","1/4 cup flour","1 tsp salt","1 tsp black pepper","2 cans (14.5 oz each) diced tomatoes","1 large onion, sliced","2 stalks celery, sliced"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Cut the steak in 4 pieces. Coat them in the flour, salt and pepper.","Put half the onion and celery in the crockpot. Set the steak on top, then add the rest and the tomatoes.","Cook on Low for 8 hours, until the meat is fork tender.","Check that the thickest part is at least 145 F, then rest 3 minutes before serving."],"protein":51,"calories":400},
+  {"id":"salsa-verde-steak","name":"Crockpot Salsa Verde Steak","cut":"steak","method":"crockpot","minutes":360,"timeText":"6 hr on Low","servings":4,"ingredients":["2 lb round or sirloin steak, thawed","1 jar (16 oz) salsa verde","1 can (4 oz) green chiles","1 large onion, diced","1 tsp cumin","1/2 tsp salt","1.5 cups dry rice"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Cut the steak in strips. Put them in the crockpot with the onion, cumin and salt.","Pour the salsa verde and green chiles over the top.","Cook on Low for 6 hours, until the meat is tender. Cook the rice near the end.","Check that the thickest piece is at least 145 F, then rest 3 minutes.","Serve the steak and sauce over the rice."],"protein":54,"calories":620},
+  {"id":"steak-salad","name":"Steak Salad with Blue Cheese","cut":"steak","method":"quick","minutes":20,"timeText":"20 min","servings":4,"ingredients":["1.5 lb sirloin steak, thawed","8 cups salad greens","2 tomatoes, chopped","1/2 red onion, sliced","1/2 cup blue cheese crumbles","3 tbsp oil","2 tbsp vinegar","1 tsp salt"],"steps":["Rub the steak with 1 tbsp of the oil and the salt.","Cook it in a hot pan 4 to 5 minutes per side.","Check that the thickest part is at least 145 F, then rest 3 minutes. Slice it thin.","Toss the greens, tomatoes and onion with the rest of the oil and the vinegar.","Top with the steak and blue cheese."],"protein":41,"calories":420},
+  {"id":"steak-quesadillas","name":"Steak Quesadillas","cut":"steak","method":"quick","minutes":30,"timeText":"30 min","servings":4,"ingredients":["1.5 lb sirloin steak, thawed","1 large onion, sliced","2 tbsp taco seasoning","1 tbsp oil","8 flour tortillas (8 inch)","2 cups shredded cheese"],"steps":["Cut the steak in thin strips. Heat the oil in a big pan.","Cook the steak and onion for 5 to 6 minutes. Stir in the taco seasoning.","Check that the thickest piece is at least 145 F, then rest 3 minutes.","Lay a tortilla in a clean pan. Put cheese and steak on one half and fold it over.","Cook 2 minutes per side, until golden. Do the same with the other tortillas, two at a time."],"protein":58,"calories":790},
+  {"id":"crockpot-lasagna","name":"Crockpot Lasagna","cut":"ground","method":"crockpot","minutes":255,"timeText":"4 hr on Low, plus 15 min to brown","servings":6,"ingredients":["2 lb ground beef, thawed","2 jars (24 oz each) marinara sauce","1 tub (15 oz) ricotta","3 cups shredded mozzarella","12 uncooked lasagna noodles"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Brown the ground beef in a pan to 160 F and drain it. Stir in the marinara.","Spread 1 cup of the meat sauce in the crockpot. Break the noodles to fit.","Make 3 layers of noodles, ricotta, 2 cups of the mozzarella and meat sauce. End with sauce.","Cook on Low for 4 hours, until the noodles are soft.","Top with the last cup of mozzarella. Cover until it melts."],"protein":55,"calories":810},
+  {"id":"stuffed-pepper-soup","name":"Crockpot Stuffed Pepper Soup","cut":"ground","method":"crockpot","minutes":370,"timeText":"6 hr on Low, plus 10 min to brown","servings":6,"ingredients":["2 lb ground beef, thawed","3 bell peppers, diced","1 large onion, diced","2 cans (14.5 oz each) diced tomatoes","1 can (15 oz) tomato sauce","4 cups beef broth","1 tsp salt","3 cups cooked rice"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Brown the ground beef in a pan to 160 F and drain it.","Put the beef, peppers, onion, tomatoes, tomato sauce, broth and salt in the crockpot.","Cook on Low for 6 hours.","Stir in the cooked rice and heat 10 more minutes."],"protein":32,"calories":470},
+  {"id":"salisbury-patties","name":"Salisbury Steak Patties","cut":"ground","method":"quick","minutes":30,"timeText":"30 min","servings":4,"ingredients":["1.5 lb ground beef, thawed","1/2 cup breadcrumbs","1 egg","1/2 onion, finely diced","1 tsp salt","2 cups beef broth","2 tbsp cornstarch","2 tbsp water"],"steps":["Mix the beef, breadcrumbs, egg, onion and salt. Shape 4 oval patties.","Brown the patties in a big pan, 4 minutes per side.","Pour in the broth and simmer 8 to 10 minutes.","Check that the middle of each patty is 160 F. Move them to a plate.","Mix the cornstarch and water. Stir it into the broth and simmer 1 minute, until thick.","Spoon the gravy over the patties."],"protein":34,"calories":420},
+  {"id":"egg-roll-bowl","name":"Egg Roll Bowl","cut":"ground","method":"quick","minutes":20,"timeText":"20 min","servings":4,"ingredients":["1.5 lb ground beef, thawed","1 bag (14 oz) coleslaw mix","3 tbsp soy sauce","3 cloves garlic, minced","1 tbsp grated ginger","2 tsp sesame oil","4 green onions, sliced"],"steps":["Brown the ground beef in a big pan to 160 F and drain it.","Stir in the garlic and ginger and cook 1 minute.","Add the coleslaw mix and soy sauce. Cook 4 minutes, until just soft.","Drizzle with the sesame oil. Top with the green onions."],"protein":32,"calories":370},
+  {"id":"beef-goulash","name":"Crockpot Beef Goulash","cut":"stew","method":"crockpot","minutes":480,"timeText":"8 hr on Low","servings":6,"ingredients":["2.5 lb stew meat, thawed","2 large onions, diced","1 bell pepper, diced","2 tbsp paprika","3 tbsp tomato paste","2 cups beef broth","1 tsp salt","12 oz egg noodles"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Put the meat, onions and pepper in the crockpot.","Mix the paprika, tomato paste, salt and broth, then pour it over the top.","Cook on Low for 8 hours, until the meat is tender. Boil the noodles near the end.","Check that the thickest piece is at least 145 F, then rest 3 minutes.","Serve over the noodles."],"protein":47,"calories":540},
+  {"id":"beef-curry","name":"Crockpot Beef Curry","cut":"stew","method":"crockpot","minutes":480,"timeText":"8 hr on Low","servings":6,"ingredients":["2.5 lb stew meat, thawed","1 large onion, diced","4 cloves garlic, minced","1 tbsp grated ginger","2 tbsp curry powder","1 can (13.5 oz) coconut milk","1 cup beef broth","1 tsp salt","2 cups dry rice"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Put the meat, onion, garlic and ginger in the crockpot.","Stir the curry powder and salt into the coconut milk and broth, then pour it over the top.","Cook on Low for 8 hours, until the meat is tender. Cook the rice near the end.","Check that the thickest piece is at least 145 F, then rest 3 minutes.","Serve over the rice."],"protein":44,"calories":650},
+  {"id":"beef-hash","name":"Beef and Potato Hash","cut":"stew","method":"quick","minutes":30,"timeText":"30 min","servings":4,"ingredients":["1.5 lb stew meat, thawed","1 lb potatoes","1 large onion, diced","2 tbsp oil","2 tsp paprika","1 tsp salt","4 eggs"],"steps":["Cut the meat and the potatoes in small half inch cubes.","Heat 1 tbsp oil in a big pan. Cook the potatoes and onion with a lid on for 10 minutes, stirring often. Move them to a plate.","Heat the rest of the oil. Cook the meat with the paprika and salt for 5 minutes.","Check that the thickest piece is at least 145 F, then rest 3 minutes off the heat.","Stir the potatoes back in. Make 4 small wells and crack an egg in each.","Cover and cook 4 to 5 minutes, until the whites and yolks are firm."],"protein":43,"calories":500},
+  {"id":"beef-fried-rice","name":"Beef Fried Rice","cut":"stew","method":"quick","minutes":25,"timeText":"25 min","servings":4,"ingredients":["1.5 lb stew meat, thawed","4 cups cold cooked rice","3 eggs","1 cup frozen peas and carrots","1/4 cup soy sauce","2 cloves garlic, minced","2 tbsp oil"],"steps":["Cut the meat in small half inch cubes.","Heat 1 tbsp oil in a big hot pan. Cook the meat and garlic for 5 minutes.","Check that the thickest piece is at least 145 F. Move it to a plate and rest 3 minutes.","Scramble the eggs in the same pan until firm. Move them to the plate.","Heat the rest of the oil. Stir fry the rice and the peas and carrots for 4 minutes.","Stir in the soy sauce, meat and eggs. Serve hot."],"protein":45,"calories":630}
 ];
 const RC_CUT_NAMES={roast:'Roast',steak:'Steak',ground:'Ground Beef',stew:'Stew / Chislic'};
 const RC_KIND_NAMES={crockpot:'Crockpot',quick:'Quick'};
