@@ -457,6 +457,135 @@
   .bkmsg{font-size:13px;color:var(--green);margin-top:10px;min-height:18px;font-weight:700;}
   .bksub{font-size:13px;color:var(--mute);margin-bottom:11px;font-weight:500;}
   footer{text-align:center;color:var(--mute);font-size:11px;padding:18px 14px 0;font-weight:500;}
+  /* ===== v2 additions (meal and weigh-in styles above are unchanged) ===== */
+  nav .tab{font-size:16px;letter-spacing:.5px;padding:14px 1px;min-height:48px;}
+  .pendbar{display:none;margin:12px 14px 0;padding:14px 16px;background:rgba(224,178,92,.12);
+    border:1px solid rgba(224,178,92,.5);border-left:4px solid var(--gold);border-radius:var(--rad);
+    font-size:13px;color:var(--cream);font-weight:600;}
+  .pendbar.on{display:block;}
+  .pendbar b{color:var(--gold);}
+  .btnrow{display:flex;gap:10px;margin-top:12px;}
+  .btnrow > *{flex:1;}
+  .bigbtn{display:block;width:100%;min-height:48px;padding:12px 14px;border:none;border-radius:16px;cursor:pointer;
+    font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:1px;background:var(--redmid);color:#fff;}
+  .bigbtn:active{background:var(--red);}
+  .bigbtn.alt{background:var(--input);color:var(--cream);border:1px solid var(--line);}
+  .bigbtn.gold{background:var(--gold);color:#000;}
+  .pbtn{margin-bottom:14px;}
+  .modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:100;background:rgba(0,0,0,.82);
+    align-items:center;justify-content:center;padding:20px;}
+  .modal.on{display:flex;}
+  .modalbox{width:100%;max-width:360px;background:var(--panel2);border:1px solid var(--line);
+    border-left:4px solid var(--red);border-radius:var(--rad);padding:20px 18px;}
+  .modalbox h2{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;color:var(--red);margin-bottom:10px;}
+  .modalbox p{font-size:15px;color:var(--cream);margin-bottom:10px;line-height:1.45;}
+  .modalbox p.small{font-size:13px;color:var(--mute);}
+  .extag{display:inline-block;margin-left:6px;font-size:9px;font-weight:800;letter-spacing:.5px;padding:2px 6px;
+    border-radius:6px;vertical-align:middle;font-family:inherit;}
+  .extag.hs{background:rgba(224,178,92,.18);color:var(--gold);}
+  .extag.push{background:rgba(255,77,77,.2);color:var(--red);}
+  .extag.new{background:rgba(95,208,126,.16);color:var(--green);}
+  .extip{font-size:11px;color:var(--gold);margin-top:3px;font-weight:600;}
+  .weeknote{margin:8px 14px 0;padding:8px 10px;border-radius:12px;background:rgba(224,178,92,.14);
+    color:var(--gold);font-size:12px;font-weight:700;}
+  /* bigger tap targets (44pt) for the plan */
+  .expicker select{min-height:44px;font-size:16px;}
+  .setstoggle{min-height:44px;}
+  .resttimer{min-height:44px;}
+  .addset{min-height:44px;}
+  .setrow .delset{min-width:44px;min-height:44px;}
+  .daytoggle .seg button{min-height:44px;padding:5px 16px;font-size:15px;}
+  .intro .introclose{min-width:44px;min-height:44px;top:2px;right:2px;}
+  .jump select{min-height:44px;}
+  /* cardio + macros */
+  .fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .fld{min-width:0;}
+  .fld.full{grid-column:1 / -1;}
+  .fld label{display:block;font-size:11px;font-weight:700;color:var(--mute);letter-spacing:.5px;margin-bottom:4px;text-transform:uppercase;}
+  .fld input,.fld select{width:100%;min-height:44px;background:var(--input);color:var(--cream);
+    border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:16px;font-family:inherit;}
+  .fld input[type=date]{-webkit-appearance:none;appearance:none;}
+  .fmsg{font-size:13px;font-weight:700;margin-top:8px;min-height:18px;color:var(--green);}
+  .calc{font-size:12px;color:var(--mute);margin-top:6px;font-weight:600;}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+  .stat{background:var(--input);border-radius:14px;padding:10px 6px;text-align:center;}
+  .stat .sv{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;color:var(--cream);line-height:1.1;}
+  .stat .sl{font-size:10px;color:var(--mute);font-weight:700;text-transform:uppercase;letter-spacing:.5px;}
+  .hintbox{background:rgba(224,178,92,.10);border:1px solid rgba(224,178,92,.4);border-left:4px solid var(--gold);
+    border-radius:var(--rad);padding:14px 16px;font-size:13px;color:var(--cream);margin-bottom:14px;}
+  .hintbox b{color:var(--gold);}
+  .hintbox ul{list-style:none;margin-top:6px;}
+  .hintbox li{padding:4px 0 4px 16px;position:relative;}
+  .hintbox li:before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;background:var(--gold);border-radius:2px;}
+  .citem{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(74,68,60,.6);}
+  .citem:last-child{border-bottom:none;}
+  .cmain{flex:1;font-size:14px;color:var(--cream);min-width:0;}
+  .cmain b{color:var(--red);}
+  .csub{font-size:12px;color:var(--mute);margin-top:2px;font-weight:500;}
+  .xbtn{min-width:44px;min-height:44px;background:transparent;border:1px solid var(--line);border-radius:12px;
+    color:var(--mute);font-size:22px;cursor:pointer;}
+  .mbar{margin-bottom:10px;}
+  .mrow{display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:4px;color:var(--cream);}
+  .mbar .track{height:12px;}
+  .mbar .fill.ok{background:var(--green);}
+  .mtable{width:100%;border-collapse:collapse;font-size:12px;color:var(--cream);}
+  .mtable th,.mtable td{padding:8px 3px;text-align:right;border-bottom:1px solid rgba(74,68,60,.6);}
+  .mtable th:first-child,.mtable td:first-child{text-align:left;}
+  .mtable th{color:var(--mute);font-size:10px;text-transform:uppercase;letter-spacing:.5px;}
+  .mtable td.hit{color:var(--green);font-weight:800;}
+  .mtable tr.avg td{font-weight:800;color:var(--gold);border-bottom:none;}
+  .qgrid{display:grid;gap:8px;}
+  .qbtn{display:block;width:100%;text-align:left;min-height:48px;background:var(--input);color:var(--cream);
+    border:1px solid var(--line);border-radius:14px;padding:10px 12px;font-size:14px;cursor:pointer;font-family:inherit;}
+  .qbtn b{color:var(--red);margin-right:4px;}
+  .qbtn.tonight{border-color:var(--gold);}
+  .qbtn .qmac{display:block;font-size:11px;color:var(--mute);margin-top:3px;font-weight:600;}
+  .chartbox svg{display:block;}
+  #printArea{display:none;}
+  @media print{
+    body.px{background:#fff !important;}
+    body.px > *{display:none !important;}
+    body.px #printArea{display:block !important;color:#000;font-family:Arial,Helvetica,sans-serif;}
+    #printArea h1{font-size:20px;margin:0 0 4px;color:#000;}
+    #printArea h2{font-size:15px;margin:14px 0 6px;color:#000;}
+    #printArea p{font-size:11px;margin:0 0 8px;color:#000;}
+    #printArea table{width:100%;border-collapse:collapse;font-size:10.5px;}
+    #printArea th,#printArea td{border:1px solid #999;padding:4px 5px;text-align:left;vertical-align:top;color:#000;}
+    #printArea tr{page-break-inside:avoid;}
+  }
+
+  /* ---------- beef recipes ---------- */
+  @media (max-width:480px){
+    nav .tab{font-size:16px;letter-spacing:.5px;padding:14px 1px;}
+  }
+  .rcgroup{margin-bottom:12px;}
+  .rcgroup:last-child{margin-bottom:0;}
+  .rcbtns{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px;}
+  .rcbtns button{
+    flex:1 1 auto;min-height:44px;padding:8px 10px;border:1px solid var(--line);border-radius:14px;
+    background:var(--input);color:var(--cream);font-family:'Barlow',sans-serif;font-size:14px;font-weight:700;cursor:pointer;
+  }
+  .rcbtns button.on{background:var(--redmid);border-color:var(--redmid);color:#fff;}
+  .rccount{color:var(--mute);font-size:13px;font-weight:600;margin:0 4px 10px;}
+  .rccard{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);margin-bottom:12px;overflow:hidden;}
+  .rccard summary{display:block;list-style:none;padding:14px 16px;cursor:pointer;}
+  .rccard summary::-webkit-details-marker{display:none;}
+  .rcname{font-family:'Bebas Neue',sans-serif;font-size:23px;letter-spacing:1px;color:var(--cream);line-height:1.1;}
+  .rcname::after{content:'+';float:right;color:var(--red);}
+  .rccard[open] .rcname::after{content:'\2212';}
+  .rctags{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px;}
+  .rctag{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:3px 9px;border-radius:12px;
+    background:var(--input);border:1px solid var(--line);color:var(--mute);}
+  .rctag.crockpot{color:var(--gold);border-color:rgba(224,178,92,.5);}
+  .rctag.quick{color:var(--green);border-color:rgba(95,208,126,.5);}
+  .rcfacts{color:var(--mute);font-size:13px;font-weight:600;margin-top:7px;}
+  .rcbody{padding:0 16px 16px;border-top:1px solid var(--line);}
+  .rcbody h3{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--red);margin:13px 0 5px;}
+  .rcbody ul,.rcbody ol{padding-left:20px;color:var(--cream);font-size:15px;line-height:1.45;}
+  .rcbody li{margin-bottom:4px;}
+  .rcest{color:var(--mute);font-size:12px;margin-top:11px;}
+  .rcsafe{color:var(--cream);font-size:14px;line-height:1.45;padding-left:20px;}
+  .rcsafe li{margin-bottom:4px;}
 </style>
 </head>
 <body>
@@ -479,9 +608,21 @@
 <nav>
   <div class="tab on" data-page="plan">The Plan</div>
   <div class="tab" data-page="weigh">Weigh-In</div>
+  <div class="tab" data-page="cardio">Cardio</div>
+  <div class="tab" data-page="macros">Macros</div>
   <div class="tab" data-page="meals">Meals</div>
+  <div class="tab" data-page="recipes">Recipes</div>
   <div class="tab" data-page="rules">Rules</div>
 </nav>
+
+<div class="pendbar" id="pendBar">
+  <b>Update waiting.</b> Your old data is safe and nothing has changed. Export a backup first, then start v2. Until you do, new entries are not saved.
+  <div class="btnrow">
+    <button class="bigbtn alt" data-exp>Export Backup</button>
+    <button class="bigbtn" id="pendGo">Start v2</button>
+  </div>
+  <div class="bkmsg"></div>
+</div>
 
 <div class="page on" id="plan">
   <div class="intro" id="introBox">
@@ -492,6 +633,7 @@
     <label for="weekJump">Show</label>
     <select id="weekJump"></select>
   </div>
+  <button class="bigbtn alt pbtn" id="printWeek">Print This Week</button>
   <div id="weeks"></div>
 </div>
 
@@ -594,11 +736,11 @@
   </div>
   <div class="rule">
     <h3>Home or Gym Switch</h3>
-    <p>The switch at the top of <b>The Plan</b> tells the tracker where you are. On <b>Home</b>, any tip past your 45 lb dumbbells shows a red flag — use the barbell, a kettlebell, or Rapid Fitness. On <b>Gym</b>, no flags.</p>
+    <p>Each day has its own <b>Home</b> / <b>Gym</b> switch. Open a day to set it. On <b>Home</b>, Hammer Strength and other machines are hidden, and any dumbbell tip past your 45 lb dumbbells shows a red flag — use the barbell, a kettlebell, or Rapid Fitness. On <b>Gym</b>, Hammer Strength moves come first, and no flags.</p>
   </div>
   <div class="rule">
     <h3>How the Weight Tips Work</h3>
-    <p><b>First time</b> on a move: it shows a start range. Pick a weight where 8 reps feels solid.</p>
+    <p><b>First time</b> on a move: it starts from your old weights when it can — from your first 12 weeks, or from a similar lift. Hammer Strength numbers are estimates, so adjust on set one. With no history, it shows a start range.</p>
     <p><b>After that</b>: it averages your sets. Average hits the top reps? Add weight. Mid-range? Hold and build reps. The tip is a guide — your body has the final say.</p>
   </div>
   <div class="rule">
@@ -613,11 +755,10 @@
   </div>
   <div class="rule">
     <h3>The Game Plan</h3>
-    <p><b>Weeks 1–2:</b> Learn it. Light to medium weight. Get the moves right.</p>
-    <p><b>Weeks 3–6:</b> Add weight. The last 2 reps should feel hard.</p>
-    <p><b>Weeks 7–10:</b> Push harder. Add a 4th day any week you have time.</p>
-    <p><b>Weeks 11–12:</b> Heaviest weights of the plan.</p>
-    <p><b>Week 13:</b> Easy week, then weigh in and see how far you came.</p>
+    <p><b>Weeks 1–4:</b> Build volume. 3 sets of 8–12. Learn the moves and the Hammer machines. The last 2 reps should feel hard.</p>
+    <p><b>Weeks 5–8:</b> Strength and size. 4 sets of 6–10, heavier weight. The curl move changes.</p>
+    <p><b>Weeks 9–12:</b> Peak. One push lift each day, 4 sets of 6–8. The curl move changes again.</p>
+    <p><b>Week 13:</b> Easy week, half the sets. On Friday, test your push lift. Then weigh in and see how far you came.</p>
   </div>
   <div class="rule">
     <h3>Food — Keep It Simple</h3>
@@ -635,125 +776,297 @@
   </div>
 </div>
 
+<div class="page" id="cardio">
+  <div class="hintbox">
+    <b>Cardio guide</b>
+    <ul>
+      <li>Fat loss and health: 150–300 min a week at a moderate pace (a brisk walk, about 3.5 mph), or 75–150 min of hard cardio.</li>
+      <li>Keep it easy on lifting days so your legs can recover.</li>
+      <li>A 30 min walk at 3.5 mph burns about 150 cal for a 210 lb man (estimate).</li>
+    </ul>
+  </div>
+  <div class="wbox">
+    <h2>Log Cardio</h2>
+    <div class="fgrid">
+      <div class="fld"><label for="cDate">Date</label><input type="date" id="cDate"></div>
+      <div class="fld"><label for="cType">Type</label><select id="cType"><option>Walk</option><option>Bike</option><option>Run</option><option>Elliptical</option><option>Rower</option><option>HIIT</option><option>Other</option></select></div>
+      <div class="fld"><label for="cDur">Minutes</label><input type="number" inputmode="decimal" id="cDur" placeholder="30"></div>
+      <div class="fld"><label for="cDist">Miles</label><input type="number" inputmode="decimal" id="cDist" placeholder="optional"></div>
+      <div class="fld"><label for="cPace">Speed (mph)</label><input type="number" inputmode="decimal" id="cPace" placeholder="optional"></div>
+      <div class="fld"><label for="cEff">Effort (1–10)</label><select id="cEff"><option value="">Pick</option><option value="1">1 – very easy</option><option value="2">2</option><option value="3">3 – easy</option><option value="4">4</option><option value="5">5 – moderate</option><option value="6">6</option><option value="7">7 – hard</option><option value="8">8</option><option value="9">9</option><option value="10">10 – all out</option></select></div>
+      <div class="fld"><label for="cCal">Calories burned</label><input type="number" inputmode="decimal" id="cCal" placeholder="optional"></div>
+      <div class="fld"><label for="cNotes">Notes</label><input type="text" id="cNotes" placeholder="optional"></div>
+    </div>
+    <div class="calc" id="cCalc">Fill in miles and minutes and the speed works itself out.</div>
+    <button class="bigbtn" id="cSave" style="margin-top:12px;">Save Cardio</button>
+    <div class="fmsg" id="cMsg"></div>
+  </div>
+  <div class="wbox"><h2>This Week</h2><div id="cWeek"></div></div>
+  <div class="wbox"><h2>This Month</h2><div id="cMonth"></div></div>
+  <div class="wbox"><h2>Last 30 Days</h2><div class="chartbox" id="cChart"></div><div class="hint">Minutes per day. The gold line is 30 min.</div></div>
+  <div class="wbox"><h2>Recent Cardio</h2><div id="cList"></div></div>
+  <div class="wbox">
+    <h2>Backup</h2>
+    <p class="bksub">Export saves a backup file of all your logs. Import brings it back.</p>
+    <div class="bkbtns">
+      <button class="bkbtn exp" data-exp>Export Backup</button>
+      <button class="bkbtn imp" data-imp>Import Backup</button>
+    </div>
+    <div class="bkmsg"></div>
+  </div>
+</div>
+
+<div class="page" id="macros">
+  <div class="wbox">
+    <h2 id="mDayTitle">Today</h2>
+    <div class="fld" style="margin-bottom:12px;"><label for="mDate">Day</label><input type="date" id="mDate"></div>
+    <div id="mBars"></div>
+    <div class="hint" id="mNotesLine"></div>
+  </div>
+  <div class="wbox">
+    <h2>Quick Add</h2>
+    <div class="btnrow" style="margin-top:0;">
+      <button class="bigbtn" id="mShake" style="font-size:17px;">Add Protein Shake</button>
+      <button class="bigbtn" id="mCoffee" style="font-size:17px;">Add Coffee + Protein</button>
+    </div>
+    <div class="hint">Each one adds 25g protein and 140 cal.</div>
+    <div class="fmsg" id="qMsg"></div>
+    <div class="hint" style="margin:4px 0 8px;">Dinners from this week's meal plan. Tap one to add it.</div>
+    <div class="qgrid" id="mQuick"></div>
+  </div>
+  <div class="wbox">
+    <h2>Add Food</h2>
+    <p class="bksub">Type what you ate. It adds to the day picked at the top.</p>
+    <div class="fgrid">
+      <div class="fld"><label for="mCal">Calories</label><input type="number" inputmode="decimal" id="mCal"></div>
+      <div class="fld"><label for="mPro">Protein (g)</label><input type="number" inputmode="decimal" id="mPro"></div>
+      <div class="fld"><label for="mCarb">Carbs (g)</label><input type="number" inputmode="decimal" id="mCarb"></div>
+      <div class="fld"><label for="mFat">Fat (g)</label><input type="number" inputmode="decimal" id="mFat"></div>
+      <div class="fld"><label for="mWater">Water (oz)</label><input type="number" inputmode="decimal" id="mWater" placeholder="optional"></div>
+      <div class="fld"><label for="mNotes">Notes</label><input type="text" id="mNotes" placeholder="optional"></div>
+    </div>
+    <div class="btnrow">
+      <button class="bigbtn" id="mSave">Add to Day</button>
+      <button class="bigbtn alt" id="mClear">Clear This Day</button>
+    </div>
+    <div class="fmsg" id="mMsg"></div>
+  </div>
+  <div class="wbox"><h2>Last 7 Days</h2><div id="m7"></div></div>
+  <div class="wbox"><h2>Last 30 Days</h2><div id="m30"></div>
+    <button class="bigbtn alt" id="printMacros" style="margin-top:12px;">Print 30-Day Summary</button></div>
+  <div class="wbox">
+    <h2>My Targets</h2>
+    <div class="fgrid">
+      <div class="fld"><label for="tCal">Calories</label><input type="number" inputmode="decimal" id="tCal"></div>
+      <div class="fld"><label for="tPro">Protein (g)</label><input type="number" inputmode="decimal" id="tPro"></div>
+      <div class="fld"><label for="tCarb">Carbs (g)</label><input type="number" inputmode="decimal" id="tCarb"></div>
+      <div class="fld"><label for="tFat">Fat (g)</label><input type="number" inputmode="decimal" id="tFat"></div>
+      <div class="fld"><label for="tWater">Water (oz)</label><input type="number" inputmode="decimal" id="tWater"></div>
+    </div>
+    <button class="bigbtn" id="tSave" style="margin-top:12px;">Save Targets</button>
+    <div class="fmsg" id="tMsg"></div>
+  </div>
+  <div class="wbox">
+    <h2>Backup</h2>
+    <p class="bksub">Export saves a backup file of all your logs. Import brings it back.</p>
+    <div class="bkbtns">
+      <button class="bkbtn exp" data-exp>Export Backup</button>
+      <button class="bkbtn imp" data-imp>Import Backup</button>
+    </div>
+    <div class="bkmsg"></div>
+  </div>
+</div>
+
+<div class="page" id="recipes">
+  <div class="wbox">
+    <h2>Beef Recipes</h2>
+    <div class="rcgroup">
+      <label class="moptlbl">CUT</label>
+      <div class="rcbtns" id="rcCut">
+        <button data-rc="all" class="on">All</button>
+        <button data-rc="roast">Roasts</button>
+        <button data-rc="steak">Steaks</button>
+        <button data-rc="ground">Ground Beef</button>
+        <button data-rc="stew">Stew / Chislic</button>
+      </div>
+    </div>
+    <div class="rcgroup">
+      <label class="moptlbl">TYPE</label>
+      <div class="rcbtns" id="rcKind">
+        <button data-rc="all" class="on">All</button>
+        <button data-rc="crockpot">Crockpot</button>
+        <button data-rc="quick">Quick</button>
+      </div>
+    </div>
+  </div>
+  <div class="rccount" id="rcCount"></div>
+  <div id="rcList"></div>
+  <div class="wbox">
+    <h2>Safe Cooking</h2>
+    <ul class="rcsafe">
+      <li>Ground beef: cook to 160 F.</li>
+      <li>Steaks, roasts and cubed meat: cook to at least 145 F, then rest 3 minutes.</li>
+      <li>Crockpot: thaw the meat all the way first. Never start from frozen.</li>
+      <li>Recipe times do not count thawing. Thaw meat in the fridge.</li>
+    </ul>
+  </div>
+</div>
+
 <footer>90-Day Plan · Cory Claussen · Red Arbor LLC · Generated by Claude</footer>
+
+<div class="modal" id="mSafe" role="dialog" aria-modal="true" aria-labelledby="mSafeT">
+  <div class="modalbox">
+    <h2 id="mSafeT">New Version Ready</h2>
+    <p>Have you exported your data?</p>
+    <p class="small">Export saves a backup file of everything. If you have not, tap No, then tap Export Backup.</p>
+    <div class="btnrow">
+      <button class="bigbtn" id="safeYes">Yes, continue</button>
+      <button class="bigbtn alt" id="safeNo">No, cancel</button>
+    </div>
+  </div>
+</div>
+<div class="modal" id="mReset" role="dialog" aria-modal="true" aria-labelledby="mResetT">
+  <div class="modalbox">
+    <h2 id="mResetT">Week 1 Starts Now</h2>
+    <p>You finished the first 12 weeks. Starting fresh with v2 — your weigh-ins, meal plan, and workout history stay saved. New program starts now.</p>
+    <button class="bigbtn gold" id="letsGo">Let's Go</button>
+  </div>
+</div>
+<div id="printArea"></div>
 
 <script>
 const HOME_DB=45;
-/*  Each exercise has a default option (the first entry in opts) plus
-    ranked substitutes. Each option:
-     - n: name
-     - loc: 'home' | 'gym' | 'both'
-     - unit: 'lbs' (barbell/total/stack) or 'each' (one DB)
-     - startLo / startHi: generic starting range if you've never logged anything
-     - step: how much to add when you progress
-     - ratio: rough multiplier from THIS option's weight back to the DEFAULT's weight.
-       Used to convert a default-weight history into a sane first guess on the sub
-       (and vice-versa). The default option always has ratio=1.
-    repLo/repHi/sets/s/note/rest live on the parent block since the rep scheme
-    travels with the exercise, not the implement. */
+/*  v2 exercise library. Every lift name used by the plan (plus a few v1-only names,
+    so old v1 logs can still feed a first guess). Each entry:
+     - loc: 'home' | 'gym' | 'both'   (Hammer Strength is always 'gym')
+     - unit: 'lbs' (barbell / stack / all plates), 'each' (one dumbbell),
+             'side' (plates on ONE side of a Hammer Strength iso-lateral machine)
+     - lo / hi: first-time start range, step: how much to add when you progress
+     - fam + r: lift family and ratio to that family's reference lift (r:1).
+       Used to turn a weight on one lift into a first guess on another:
+       guess = otherWeight / other.r * this.r. Hammer ratios are ESTIMATES.
+     - hs: Hammer Strength machine, v1: old name kept only for the archive  */
+const EX={
+  /* squat family: reference = Barbell Back Squat (total lbs) */
+  'Barbell Back Squat':            {loc:'both',unit:'lbs', lo:95, hi:135,step:10,fam:'squat',r:1},
+  'Hammer Strength Leg Press':     {loc:'gym', unit:'lbs', lo:180,hi:270,step:10,fam:'squat',r:2.5,hs:1},
+  'Hammer Strength Hack Squat':    {loc:'gym', unit:'lbs', lo:90, hi:140,step:10,fam:'squat',r:1.2,hs:1},
+  'Goblet Squat':                  {loc:'both',unit:'lbs', lo:30, hi:45, step:5, fam:'squat',r:0.35},
+  'Leg Press':                     {loc:'gym', unit:'lbs', lo:180,hi:270,step:10,fam:'squat',r:2.5,v1:1},
+  'Hack Squat Machine':            {loc:'gym', unit:'lbs', lo:90, hi:140,step:10,fam:'squat',r:1.2,v1:1},
+  /* chest: reference = Dumbbell Bench Press (one DB) */
+  'Dumbbell Bench Press':          {loc:'both',unit:'each',lo:30, hi:45, step:5, fam:'chest',r:1},
+  'Hammer Strength Chest Press':   {loc:'gym', unit:'side',lo:35, hi:55, step:5, fam:'chest',r:1.1,hs:1},
+  'Barbell Bench Press':           {loc:'both',unit:'lbs', lo:75, hi:115,step:5, fam:'chest',r:2.35},
+  'Chest Press Machine':           {loc:'gym', unit:'lbs', lo:70, hi:95, step:5, fam:'chest',r:2.2,v1:1},
+  /* shoulder press: reference = Dumbbell Shoulder Press (one DB) */
+  'Dumbbell Shoulder Press':       {loc:'both',unit:'each',lo:20, hi:35, step:5, fam:'shoulder',r:1},
+  'Hammer Strength Shoulder Press':{loc:'gym', unit:'side',lo:25, hi:40, step:5, fam:'shoulder',r:1.1,hs:1},
+  'Barbell Overhead Press':        {loc:'both',unit:'lbs', lo:45, hi:65, step:5, fam:'shoulder',r:2.0,v1:1},
+  'Shoulder Press Machine':        {loc:'gym', unit:'lbs', lo:50, hi:75, step:5, fam:'shoulder',r:2.3,v1:1},
+  /* row: reference = One-Arm Dumbbell Row (one DB) */
+  'One-Arm Dumbbell Row':          {loc:'both',unit:'each',lo:35, hi:50, step:5, fam:'row',r:1},
+  'Hammer Strength Iso-Lateral Row':{loc:'gym',unit:'side',lo:45, hi:70, step:5, fam:'row',r:1.2,hs:1},
+  'Chest-Supported DB Row':        {loc:'both',unit:'each',lo:30, hi:45, step:5, fam:'row',r:0.95},
+  'Seated Cable Row':              {loc:'gym', unit:'lbs', lo:70, hi:90, step:10,fam:'row',r:2.0,v1:1},
+  /* vertical pull: reference = Lat Pulldown (cable stack) */
+  'Lat Pulldown':                  {loc:'gym', unit:'lbs', lo:90, hi:130,step:10,fam:'vpull',r:1},
+  'Hammer Strength Lat Pulldown':  {loc:'gym', unit:'side',lo:45, hi:65, step:5, fam:'vpull',r:0.5,hs:1},
+  /* incline press: reference = Incline Dumbbell Press (one DB) */
+  'Incline Dumbbell Press':        {loc:'both',unit:'each',lo:25, hi:40, step:5, fam:'incline',r:1},
+  'Hammer Strength Incline Press': {loc:'gym', unit:'side',lo:30, hi:45, step:5, fam:'incline',r:1.1,hs:1},
+  'Incline Barbell Press':         {loc:'both',unit:'lbs', lo:65, hi:85, step:5, fam:'incline',r:2.35,v1:1},
+  'Incline Press Machine':         {loc:'gym', unit:'lbs', lo:60, hi:85, step:5, fam:'incline',r:2.2,v1:1},
+  /* curl: reference = EZ-Bar Curl (total lbs) */
+  'EZ-Bar Curl':                   {loc:'both',unit:'lbs', lo:30, hi:50, step:5, fam:'curl',r:1},
+  'Hammer Strength Preacher Curl': {loc:'gym', unit:'lbs', lo:25, hi:45, step:5, fam:'curl',r:0.9,hs:1},
+  'Cable Curl':                    {loc:'gym', unit:'lbs', lo:30, hi:50, step:5, fam:'curl',r:0.9},
+  'DB Incline Curl':               {loc:'both',unit:'each',lo:10, hi:20, step:5, fam:'curl',r:0.4},
+  'DB Hammer Curl':                {loc:'both',unit:'each',lo:15, hi:25, step:5, fam:'curl',r:0.55},
+  'Dumbbell Curl':                 {loc:'both',unit:'each',lo:15, hi:25, step:5, fam:'curl',r:0.47,v1:1},
+  /* hinge: reference = Romanian Deadlift (barbell) */
+  'Romanian Deadlift':             {loc:'both',unit:'lbs', lo:95, hi:135,step:10,fam:'hinge',r:1},
+  'Dumbbell RDL':                  {loc:'both',unit:'each',lo:30, hi:45, step:5, fam:'hinge',r:0.5},
+  'Seated Leg Curl':               {loc:'gym', unit:'lbs', lo:50, hi:90, step:10,fam:'legcurl',r:1},
+  /* lateral raise: reference = Dumbbell Lateral Raise (one DB) */
+  'Dumbbell Lateral Raise':        {loc:'both',unit:'each',lo:10, hi:15, step:5, fam:'lateral',r:1},
+  'Hammer Strength Lateral Raise': {loc:'gym', unit:'lbs', lo:15, hi:30, step:5, fam:'lateral',r:1.5,hs:1},
+  'Cable Lateral Raise':           {loc:'gym', unit:'lbs', lo:10, hi:20, step:5, fam:'lateral',r:0.9},
+  'Lateral Raise Machine':         {loc:'gym', unit:'lbs', lo:15, hi:30, step:5, fam:'lateral',r:1.1,v1:1},
+  /* triceps: reference = Cable Triceps Pushdown */
+  'Cable Triceps Pushdown':        {loc:'gym', unit:'lbs', lo:30, hi:50, step:5, fam:'tri',r:1},
+  'Overhead Triceps Ext.':         {loc:'both',unit:'lbs', lo:20, hi:30, step:5, fam:'tri',r:0.65},
+  'EZ-Bar Skull Crusher':          {loc:'both',unit:'lbs', lo:25, hi:40, step:5, fam:'tri',r:0.85},
+  /* lunge: reference = Walking Lunges (one DB each hand) */
+  'Walking Lunges':                {loc:'both',unit:'each',lo:0,  hi:25, step:5, fam:'lunge',r:1},
+  'DB Reverse Lunge':              {loc:'both',unit:'each',lo:15, hi:25, step:5, fam:'lunge',r:1},
+  'DB Bulgarian Split Squat':      {loc:'both',unit:'each',lo:15, hi:25, step:5, fam:'lunge',r:0.95},
+  /* rear delts: reference = Face Pulls (cable) */
+  'Face Pulls':                    {loc:'gym', unit:'lbs', lo:25, hi:40, step:5, fam:'rear',r:1},
+  'Reverse Pec-Deck':              {loc:'gym', unit:'lbs', lo:30, hi:50, step:5, fam:'rear',r:1.15},
+  'DB Rear-Delt Fly':              {loc:'both',unit:'each',lo:10, hi:15, step:5, fam:'rear',r:0.3}
+};
+/*  v2 plan. Day A = Push, Day B = Pull (alternate A-B-A / B-A-B each week, Mon/Wed/Fri).
+    kind: 'main' = compound (sets/reps follow the 12-week phases, see scheme())
+          'opt'  = optional compound (same phases, never the push lift)
+          'iso'  = isolation (keeps its own reps), 'bonus' = if time.
+    push: the one lift per day you push in weeks 9-12.
+    rot:  rotating curl slot, one pick per 4-week block (weeks 1-4, 5-8, 9-13).
+    rest in seconds: heavy compound 150, moderate 105, isolation 75.  */
 const TPL = {
   A:{
     name:'Push Day', type:'A',
     core:[
-      {sets:3, repLo:8, repHi:10, s:'3 sets x 8-10 reps', note:'Slow down, drive up.', rest:150,
-        opts:[
-          {n:'Barbell Back Squat',   loc:'both', unit:'lbs',  startLo:95, startHi:115, step:10, ratio:1.0},
-          {n:'Hack Squat Machine',   loc:'gym',  unit:'lbs',  startLo:90, startHi:140, step:10, ratio:1.15},
-          {n:'Leg Press',            loc:'gym',  unit:'lbs',  startLo:140,startHi:210, step:10, ratio:1.75}
-        ]},
-      {sets:3, repLo:8, repHi:12, s:'3 sets x 8-12 reps', note:'Chest and triceps.', rest:105,
-        opts:[
-          {n:'Dumbbell Bench Press', loc:'both', unit:'each', startLo:30, startHi:40,  step:5,  ratio:1.0},
-          {n:'Barbell Bench Press',  loc:'both', unit:'lbs',  startLo:75, startHi:95,  step:5,  ratio:2.35},
-          {n:'Chest Press Machine',  loc:'gym',  unit:'lbs',  startLo:70, startHi:95,  step:5,  ratio:2.20}
-        ]},
-      {sets:3, repLo:8, repHi:12, s:'3 sets x 8-12 reps', note:'Builds shoulders.', rest:105,
-        opts:[
-          {n:'Dumbbell Shoulder Press',loc:'both', unit:'each', startLo:20, startHi:30, step:5,  ratio:1.0},
-          {n:'Barbell Overhead Press', loc:'both', unit:'lbs',  startLo:45, startHi:65, step:5,  ratio:2.0},
-          {n:'Shoulder Press Machine', loc:'gym',  unit:'lbs',  startLo:50, startHi:75, step:5,  ratio:2.30}
-        ]},
-      {sets:3, repLo:10, repHi:12, s:'3 sets x 10-12 each arm', note:'Pull to your hip.', rest:105,
-        opts:[
-          {n:'One-Arm Dumbbell Row',  loc:'both', unit:'each', startLo:35, startHi:45, step:5,  ratio:1.0},
-          {n:'Chest-Supported DB Row',loc:'both', unit:'each', startLo:30, startHi:40, step:5,  ratio:0.95},
-          {n:'Seated Cable Row',      loc:'gym',  unit:'lbs',  startLo:70, startHi:90, step:10, ratio:2.0}
-        ]},
-      {sets:3, repLo:10, repHi:12, s:'3 sets x 10-12 reps', note:'No swinging.', rest:75,
-        opts:[
-          {n:'EZ-Bar Curl',     loc:'both', unit:'lbs',  startLo:30, startHi:45, step:5, ratio:1.0},
-          {n:'Dumbbell Curl',   loc:'both', unit:'each', startLo:15, startHi:25, step:5, ratio:0.47},
-          {n:'Cable Curl',      loc:'gym',  unit:'lbs',  startLo:25, startHi:45, step:5, ratio:0.90}
-        ]}
+      {kind:'main', rest:150, note:'Slow down, drive up.',
+        tip:'Wrist tip: the leg press and hack squat need no grip. On the barbell, grip wider and keep wrists straight.',
+        opts:['Barbell Back Squat','Hammer Strength Leg Press','Hammer Strength Hack Squat','Goblet Squat']},
+      {kind:'main', push:true, rest:105, note:'Chest and triceps.',
+        tip:'Wrist tip: the Hammer handles keep wrists straight. On dumbbells, palms can turn in a little.',
+        opts:['Dumbbell Bench Press','Hammer Strength Chest Press','Barbell Bench Press']},
+      {kind:'main', rest:105, note:'Builds shoulders.',
+        tip:'Wrist tip: palms facing in is easier on the wrists.',
+        opts:['Dumbbell Shoulder Press','Hammer Strength Shoulder Press']},
+      {kind:'opt', rest:105, note:'Optional. Upper back. Skip it if you are short on time.',
+        opts:['One-Arm Dumbbell Row','Hammer Strength Iso-Lateral Row','Chest-Supported DB Row']},
+      {kind:'iso', repLo:10, repHi:12, rest:75, note:'No swinging. Slow on the way down.',
+        tip:'Wrist tip: use the EZ-bar angled grip, not a straight bar.',
+        rot:['EZ-Bar Curl','Hammer Strength Preacher Curl','DB Incline Curl'],
+        opts:['EZ-Bar Curl','Hammer Strength Preacher Curl','DB Incline Curl','Cable Curl','DB Hammer Curl']}
     ],
     bonus:[
-      {sets:2, repLo:10, repHi:10, s:'2 sets x 10 reps', note:'Soft knees, hinge at hips.', rest:150,
-        opts:[
-          {n:'Romanian Deadlift',   loc:'both', unit:'lbs',  startLo:95, startHi:135, step:10, ratio:1.0},
-          {n:'Dumbbell RDL',        loc:'both', unit:'each', startLo:30, startHi:45,  step:5,  ratio:0.50},
-          {n:'Seated Leg Curl',     loc:'gym',  unit:'lbs',  startLo:50, startHi:90,  step:10, ratio:0.65}
-        ]},
-      {sets:2, repLo:12, repHi:15, s:'2 sets x 12-15 reps', note:'Light weight. Round shoulders.', rest:75,
-        opts:[
-          {n:'Dumbbell Lateral Raise',loc:'both', unit:'each', startLo:10, startHi:15, step:5, ratio:1.0},
-          {n:'Cable Lateral Raise',   loc:'gym',  unit:'lbs',  startLo:10, startHi:20, step:5, ratio:0.90},
-          {n:'Lateral Raise Machine', loc:'gym',  unit:'lbs',  startLo:15, startHi:30, step:5, ratio:1.1}
-        ]}
+      {kind:'bonus', sets:2, repLo:10, repHi:10, rest:150, note:'Soft knees, hinge at hips.',
+        tip:'Wrist tip: lifting straps take the load off your hands.',
+        opts:['Romanian Deadlift','Dumbbell RDL','Seated Leg Curl']},
+      {kind:'bonus', sets:2, repLo:12, repHi:15, rest:75, note:'Light weight. Lead with your elbows.',
+        opts:['Dumbbell Lateral Raise','Hammer Strength Lateral Raise','Cable Lateral Raise']}
     ]
   },
   B:{
     name:'Pull Day', type:'B',
     core:[
-      {sets:3, repLo:10, repHi:12, s:'3 sets x 10-12 reps', note:'Hold weight at your chest.', rest:105,
-        opts:[
-          {n:'Goblet Squat',         loc:'both', unit:'lbs',  startLo:25, startHi:35, step:5,  ratio:1.0},
-          {n:'Leg Press',            loc:'gym',  unit:'lbs',  startLo:120,startHi:170,step:10, ratio:4.50},
-          {n:'DB Bulgarian Split Squat',loc:'both', unit:'each', startLo:20, startHi:30, step:5, ratio:0.85}
-        ]},
-      {sets:3, repLo:8, repHi:12, s:'3 sets x 8-12 reps', note:'Pull a wide bar down to your chest.', rest:105,
-        opts:[
-          {n:'Lat Pulldown',         loc:'gym',  unit:'lbs',  startLo:90, startHi:120,step:10, ratio:1.0},
-          {n:'Pull-Ups (assisted)',  loc:'gym',  unit:'lbs',  startLo:60, startHi:100,step:10, ratio:0.90},
-          {n:'Seated Row Machine',   loc:'gym',  unit:'lbs',  startLo:80, startHi:110,step:10, ratio:0.95}
-        ]},
-      {sets:3, repLo:8, repHi:12, s:'3 sets x 8-12 reps', note:'Upper chest.', rest:105,
-        opts:[
-          {n:'Incline Dumbbell Press',loc:'both', unit:'each', startLo:25, startHi:35, step:5, ratio:1.0},
-          {n:'Incline Barbell Press', loc:'both', unit:'lbs',  startLo:65, startHi:85, step:5, ratio:2.35},
-          {n:'Incline Press Machine', loc:'gym',  unit:'lbs',  startLo:60, startHi:85, step:5, ratio:2.20}
-        ]},
-      {sets:3, repLo:12, repHi:15, s:'3 sets x 12-15 reps', note:'Shoulders.', rest:75,
-        opts:[
-          {n:'Cable Lateral Raise',   loc:'gym',  unit:'lbs',  startLo:10, startHi:20, step:5, ratio:1.0},
-          {n:'Dumbbell Lateral Raise',loc:'both', unit:'each', startLo:10, startHi:15, step:5, ratio:1.1},
-          {n:'Lateral Raise Machine', loc:'gym',  unit:'lbs',  startLo:15, startHi:30, step:5, ratio:1.20}
-        ]},
-      {sets:3, repLo:10, repHi:12, s:'3 sets x 10-12 reps', note:'Smooth pull, slow lower.', rest:75,
-        opts:[
-          {n:'Cable Curl',     loc:'gym',  unit:'lbs',  startLo:30, startHi:50, step:5, ratio:1.0},
-          {n:'EZ-Bar Curl',    loc:'both', unit:'lbs',  startLo:30, startHi:45, step:5, ratio:1.10},
-          {n:'Dumbbell Curl',  loc:'both', unit:'each', startLo:15, startHi:25, step:5, ratio:0.52}
-        ]}
+      {kind:'main', rest:150, note:'Sit down and back. Chest up.',
+        tip:'Wrist tip: cup the top of the dumbbell with both palms.',
+        opts:['Goblet Squat','Hammer Strength Hack Squat','Hammer Strength Leg Press']},
+      {kind:'main', push:true, rest:105, note:'Pull your elbows back. Squeeze.',
+        tip:'Wrist tip: the Hammer row handles let you grip light. Straps help on heavy sets.',
+        opts:['Hammer Strength Iso-Lateral Row','Lat Pulldown','Hammer Strength Lat Pulldown','One-Arm Dumbbell Row']},
+      {kind:'main', rest:105, note:'Upper chest.',
+        tip:'Wrist tip: the Hammer handles keep wrists straight.',
+        opts:['Incline Dumbbell Press','Hammer Strength Incline Press']},
+      {kind:'iso', repLo:12, repHi:15, rest:75, note:'Shoulders. Light and smooth.',
+        opts:['Cable Lateral Raise','Hammer Strength Lateral Raise','Dumbbell Lateral Raise']},
+      {kind:'iso', repLo:10, repHi:12, rest:75, note:'Smooth pull, slow lower.',
+        rot:['Cable Curl','DB Hammer Curl','Hammer Strength Preacher Curl'],
+        opts:['Cable Curl','DB Hammer Curl','Hammer Strength Preacher Curl','EZ-Bar Curl','DB Incline Curl']}
     ],
     bonus:[
-      {sets:2, repLo:12, repHi:15, s:'2 sets x 12-15 reps', note:'Slow on the lower.', rest:75,
-        opts:[
-          {n:'Cable Triceps Pushdown',loc:'gym',  unit:'lbs',  startLo:30, startHi:50, step:5, ratio:1.0},
-          {n:'EZ-Bar Skull Crusher',  loc:'both', unit:'lbs',  startLo:25, startHi:40, step:5, ratio:0.85},
-          {n:'Overhead Triceps Ext.', loc:'both', unit:'lbs',  startLo:20, startHi:30, step:5, ratio:0.65}
-        ]},
-      {sets:2, repLo:10, repHi:10, s:'2 sets x 10 each leg', note:'Step forward, slow and steady.', rest:75,
-        opts:[
-          {n:'Walking Lunges',        loc:'both', unit:'each', startLo:0,  startHi:25, step:5, ratio:1.0},
-          {n:'DB Bulgarian Split Squat',loc:'both', unit:'each', startLo:15, startHi:25, step:5, ratio:0.95},
-          {n:'DB Reverse Lunge',      loc:'both', unit:'each', startLo:15, startHi:25, step:5, ratio:1.0}
-        ]},
-      {sets:2, repLo:15, repHi:15, s:'2 sets x 15 reps', note:'Rear shoulders and upper back.', rest:75,
-        opts:[
-          {n:'Face Pulls',            loc:'gym',  unit:'lbs',  startLo:25, startHi:40, step:5, ratio:1.0},
-          {n:'Reverse Pec-Deck',      loc:'gym',  unit:'lbs',  startLo:30, startHi:50, step:5, ratio:1.15},
-          {n:'DB Rear-Delt Fly',      loc:'both', unit:'each', startLo:10, startHi:15, step:5, ratio:0.30}
-        ]}
+      {kind:'bonus', sets:2, repLo:12, repHi:12, rest:75, note:'Elbows pinned. Slow on the way up.',
+        tip:'Wrist tip: use the rope so your wrists stay neutral.',
+        opts:['Cable Triceps Pushdown','Overhead Triceps Ext.','EZ-Bar Skull Crusher']},
+      {kind:'bonus', sets:2, repLo:10, repHi:10, each:'leg', rest:75, note:'Step forward, slow and steady.',
+        opts:['Walking Lunges','DB Reverse Lunge','DB Bulgarian Split Squat']},
+      {kind:'bonus', sets:2, repLo:15, repHi:15, rest:75, note:'Rear shoulders and upper back.',
+        opts:['Face Pulls','Reverse Pec-Deck','DB Rear-Delt Fly']}
     ]
   }
 };
@@ -1431,12 +1744,34 @@ function mealCardHTML(dayLabel, r, kind, idx){
   </div>`;
 }
 
+/* ---------- v2 12-week block + week 13 ---------- */
 function phase(w){
-  if(w<=2)return'Learn It';
-  if(w<=6)return'Add Weight';
-  if(w<=10)return'Push Harder';
-  if(w<=12)return'Peak';
+  if(w<=4)return'Build Volume';
+  if(w<=8)return'Strength + Size';
+  if(w<=12)return'Peak + Variety';
   return'Easy Week + Test';
+}
+/* 4-week block number: 1 = weeks 1-4, 2 = weeks 5-8, 3 = weeks 9-13 */
+function cycleOf(w){return w<=4?1:(w<=8?2:3);}
+/* sets and reps for a lift in a given week */
+function scheme(block,w){
+  let sets,lo,hi,tag='';
+  if(block.kind==='main'||block.kind==='opt'){
+    if(w<=4){sets=3;lo=8;hi=12;}
+    else if(w<=8){sets=4;lo=6;hi=10;}
+    else if(w<=12){
+      if(block.kind==='main'&&block.push){sets=4;lo=6;hi=8;tag='push';}
+      else{sets=3;lo=6;hi=10;}
+    }else{sets=2;lo=8;hi=10;}
+  }else if(block.kind==='iso'){
+    sets=w>=13?2:3;lo=block.repLo;hi=block.repHi;
+  }else{
+    sets=w>=13?1:block.sets;lo=block.repLo;hi=block.repHi;
+  }
+  if(w>=13)tag='deload';
+  const reps=(lo===hi)?String(lo):(lo+'-'+hi);
+  const s=sets+(sets===1?' set':' sets')+' x '+reps+(block.each?' each '+block.each:' reps');
+  return {sets:sets,repLo:lo,repHi:hi,s:s,tag:tag};
 }
 function tplFor(w,d){
   const odd=w%2===1;
@@ -1445,20 +1780,71 @@ function tplFor(w,d){
 }
 const START=210, GOAL=188, WEEKS=13;
 const STORE_KEY='redarbor-workout-v1';
+const MACRO_DEFAULTS={cal:2000, pro:140, carb:200, fat:65, water:100};
 
 let DATA={logs:{},weighIns:{},currentWeek:1,loc:'home',showWeek:0};
 let canSave=true;
+/* MIG.pending = old v1 data is loaded and waiting for Cory to confirm the reset.
+   While pending, NOTHING is written to storage. MIG.raw = the stored v1 text. */
+let MIG={pending:false, raw:null};
 
-function loadData(){
-  try{
-    const raw=localStorage.getItem(STORE_KEY);
-    if(raw){DATA=JSON.parse(raw);}
-  }catch(e){canSave=false;}
+function hasV1Logs(o){
+  return !!(o && o.logs && typeof o.logs==='object' && Object.keys(o.logs).length>0);
+}
+/* v1 -> v2. Pure: returns a new object, never touches storage.
+   Old workout log + week state go to archive_v1 (never overwritten if it exists).
+   weighIns, mealPlan, mealOpts, lastSwap, loc and every other old key stay as they are. */
+function migrateToV2(src){
+  const o=JSON.parse(JSON.stringify(src||{}));
+  if(o.schemaVersion>=2)return o;
+  if(hasV1Logs(o) && !o.archive_v1){
+    o.archive_v1={logs:o.logs, currentWeek:o.currentWeek, showWeek:o.showWeek, archivedOn:todayISO()};
+    o.logs={};
+    o.currentWeek=1;
+    o.showWeek=0;
+  }
+  if(!o.logs)o.logs={};
+  if(!Array.isArray(o.cardioLog))o.cardioLog=[];
+  if(!Array.isArray(o.macroLog))o.macroLog=[];
+  if(!o.macroTargets||typeof o.macroTargets!=='object')o.macroTargets=Object.assign({},MACRO_DEFAULTS);
+  // old protein default 122 becomes 140 on the update; any other number stays
+  if(Number(o.macroTargets.pro)===122)o.macroTargets.pro=140;
+  o.schemaVersion=2;
+  return o;
+}
+/* in-memory defaults only (does not save) */
+function fillDefaults(){
   if(!DATA.logs)DATA.logs={};
   if(!DATA.weighIns)DATA.weighIns={};
   if(!DATA.currentWeek)DATA.currentWeek=1;
   if(DATA.showWeek===undefined)DATA.showWeek=0;
   if(DATA.introHidden===undefined)DATA.introHidden=false;
+  if(!Array.isArray(DATA.cardioLog))DATA.cardioLog=[];
+  if(!Array.isArray(DATA.macroLog))DATA.macroLog=[];
+  if(!DATA.macroTargets||typeof DATA.macroTargets!=='object')DATA.macroTargets=Object.assign({},MACRO_DEFAULTS);
+  for(const k in MACRO_DEFAULTS){ if(DATA.macroTargets[k]==null||DATA.macroTargets[k]==='')DATA.macroTargets[k]=MACRO_DEFAULTS[k]; }
+}
+function loadData(){
+  let raw=null;
+  try{
+    raw=localStorage.getItem(STORE_KEY);
+    if(raw){DATA=JSON.parse(raw);}
+  }catch(e){canSave=false;}
+  if(!DATA||typeof DATA!=='object')DATA={};
+  if(!(DATA.schemaVersion>=2)){
+    if(hasV1Logs(DATA) && !DATA.archive_v1){
+      // v1 user with workout history: wait for the export prompt + Let's Go
+      MIG.pending=true; MIG.raw=raw;
+    }else{
+      // brand-new user (or no workout log yet): become v2 quietly
+      DATA=migrateToV2(DATA);
+      fillDefaults();
+      migrateLogs();
+      saveData();
+      return;
+    }
+  }
+  fillDefaults();
   migrateLogs();
 }
 function migrateLogs(){
@@ -1507,6 +1893,7 @@ function prettyDate(iso){
   return months[dt.getMonth()]+' '+dt.getDate()+yearTag;
 }
 function saveData(){
+  if(MIG.pending){setPill(false);return;} // nothing is written until Cory confirms the update
   try{
     localStorage.setItem(STORE_KEY,JSON.stringify(DATA));
     canSave=true;setPill(true);
@@ -1516,6 +1903,8 @@ function saveData(){
 }
 function setPill(ok){
   const p=document.getElementById('savePill');
+  if(!p)return;
+  if(MIG.pending){p.className='savepill warn';p.textContent='Update waiting — not saving yet';return;}
   if(ok){p.className='savepill ok';p.textContent='Saved on this device';}
   else{p.className='savepill warn';p.textContent='Save off — use Export to back up';}
 }
@@ -1533,24 +1922,29 @@ function formatTime(secs){
   const m=Math.floor(secs/60), s=secs%60;
   return m+':'+(s<10?'0':'')+s;
 }
-/* gather all completed sets of an exercise from the most recent day it was logged before dIdx */
-function getLastDaySets(exName,beforeIdx){
+/* finished sets of a lift from the most recent day before beforeIdx in a logs object.
+   Returns {sets:[{weight,reps}], idx} or null. Old v1 single weight/reps entries count too. */
+function lastSets(logs,exName,beforeIdx){
+  if(!logs)return null;
   for(let i=beforeIdx-1;i>=0;i--){
-    const w=Math.floor(i/3)+1, d=i%3;
-    const id='w'+w+'d'+d;
-    const e=DATA.logs[id]&&DATA.logs[id].ex&&DATA.logs[id].ex[exName];
-    if(e&&Array.isArray(e.sets)){
-      const done=[];
-      e.sets.forEach(st=>{
-        if(st&&st.weight!==''&&st.weight!=null&&st.reps!==''&&st.reps!=null){
-          const wt=parseFloat(st.weight), rp=parseFloat(st.reps);
-          if(!isNaN(wt)&&!isNaN(rp))done.push({weight:wt,reps:rp});
-        }
-      });
-      if(done.length>0)return done;
-    }
+    const id='w'+(Math.floor(i/3)+1)+'d'+(i%3);
+    const e=logs[id]&&logs[id].ex&&logs[id].ex[exName];
+    if(!e)continue;
+    const list=Array.isArray(e.sets)?e.sets:[{weight:e.weight,reps:e.reps}];
+    const done=[];
+    list.forEach(st=>{
+      if(st&&st.weight!==''&&st.weight!=null&&st.reps!==''&&st.reps!=null){
+        const wt=parseFloat(st.weight), rp=parseFloat(st.reps);
+        if(!isNaN(wt)&&!isNaN(rp))done.push({weight:wt,reps:rp});
+      }
+    });
+    if(done.length>0)return {sets:done,idx:i};
   }
   return null;
+}
+function getLastDaySets(exName,beforeIdx){
+  const r=lastSets(DATA.logs,exName,beforeIdx);
+  return r?r.sets:null;
 }
 function avg(arr){return arr.reduce((a,b)=>a+b,0)/arr.length;}
 function round5(n){return Math.round(n/5)*5;}
@@ -1564,96 +1958,109 @@ function setsLogged(dayId,exName){
   });
   return c;
 }
-/* ---- per-day location helpers ---- */
+/* ---- per-day location helpers (v2 default = Gym) ---- */
 function dayLoc(dayId){
   const dl=DATA.logs[dayId];
-  return (dl && dl.loc) ? dl.loc : 'home';
+  return (dl && dl.loc) ? dl.loc : 'gym';
 }
 function setDayLoc(dayId,loc){
   if(!DATA.logs[dayId])DATA.logs[dayId]={ex:{}};
   DATA.logs[dayId].loc=loc;
 }
-/* options available for a block at a given location */
-function optsForLoc(block, loc){
-  return block.opts.filter(o => o.loc==='both' || o.loc===loc);
+/* lift names allowed at a location (Home hides Hammer Strength and other machines) */
+function allowedOpts(block,loc){
+  return block.opts.filter(n=>{const l=EX[n].loc;return l==='both'||l===loc;});
 }
-/* the currently picked option name for this block on this day, defaulting to the
-   first option allowed by the current location */
-function pickedOptName(block, dayId, blockKey){
-  const dl=DATA.logs[dayId];
-  const picked = dl && dl.picked && dl.picked[blockKey];
-  const allowed = optsForLoc(block, dayLoc(dayId));
-  if(picked){
-    // make sure the saved pick is still allowed at the current location
-    if(allowed.some(o=>o.n===picked))return picked;
+/* default pick: the rotating curl for this 4-week block, else Hammer first at the gym */
+function defaultName(block,loc,w){
+  const al=allowedOpts(block,loc);
+  if(block.rot){
+    const r=block.rot[cycleOf(w)-1];
+    if(al.indexOf(r)>=0)return r;
   }
-  return allowed.length ? allowed[0].n : block.opts[0].n;
+  if(loc==='gym'){
+    const h=al.find(n=>EX[n].hs);
+    if(h)return h;
+  }
+  return al.length?al[0]:block.opts[0];
 }
-function pickedOpt(block, dayId, blockKey){
-  const name=pickedOptName(block, dayId, blockKey);
-  return block.opts.find(o=>o.n===name) || block.opts[0];
+function pickedName(block,dayId,blockKey,w){
+  const dl=DATA.logs[dayId];
+  const p=dl&&dl.picked&&dl.picked[blockKey];
+  const al=allowedOpts(block,dayLoc(dayId));
+  if(p&&al.indexOf(p)>=0)return p;
+  return defaultName(block,dayLoc(dayId),w);
 }
 function setPickedOpt(dayId, blockKey, optName){
   if(!DATA.logs[dayId])DATA.logs[dayId]={ex:{}};
   if(!DATA.logs[dayId].picked)DATA.logs[dayId].picked={};
   DATA.logs[dayId].picked[blockKey]=optName;
 }
+function unitTxt(u){return u==='each'?' lbs each':(u==='side'?' lbs per side':' lbs');}
 
-/* averaged suggested weight, or null for start-range moves */
-function suggestedWeight(opt, block, dIdx){
-  const sets=getLastDaySets(opt.n,dIdx);
-  if(!sets)return null;
-  const avgW=round5(avg(sets.map(s=>s.weight)));
-  const avgR=avg(sets.map(s=>s.reps));
-  if(avgR>=block.repHi)return avgW+opt.step;
-  return avgW;
+/* ---- old v1 log (archive) for first guesses ---- */
+function archLogs(){return (DATA.archive_v1&&DATA.archive_v1.logs)?DATA.archive_v1.logs:null;}
+function archEnd(logs){
+  let mx=0;
+  for(const k in logs){const m=/^w(\d+)d(\d)$/.exec(k);if(m){const i=(parseInt(m[1])-1)*3+parseInt(m[2])+1;if(i>mx)mx=i;}}
+  return mx;
+}
+/* first guess from the most recent lift in the same family, converted by ratio */
+function famGuess(logs,name,beforeIdx){
+  const me=EX[name];
+  if(!me||!me.fam||!logs)return null;
+  let best=null;
+  for(const k in EX){
+    if(k===name||EX[k].fam!==me.fam)continue;
+    const r=lastSets(logs,k,beforeIdx);
+    if(r&&(!best||r.idx>best.idx))best={sets:r.sets,idx:r.idx,from:k};
+  }
+  if(!best)return null;
+  const w=avg(best.sets.map(s=>s.weight));
+  if(!(w>0))return null;
+  return {w:Math.max(5,round5(w/EX[best.from].r*me.r)), from:best.from};
 }
 
-/* smart starting weight — use the same block's DEFAULT option's history,
-   scaled by the picked option's ratio. Lets you switch implements and still
-   get a sane starting weight on the first try. */
-function smartStart(opt, block, dIdx){
-  if(opt.n===block.opts[0].n)return null; // it IS the default — no scaling
-  const defaultOpt=block.opts[0];
-  const defaultSets=getLastDaySets(defaultOpt.n,dIdx);
-  if(!defaultSets)return null;
-  const defaultW=avg(defaultSets.map(s=>s.weight));
-  if(!defaultW||defaultW<=0)return null;
-  // default ratio is 1.0; opt.ratio expresses "to convert from default → this opt,
-  // multiply by ratio". e.g., DB Bench ratio=1, Barbell Bench ratio=2.35 → barbell ≈ 2.35× DB-each
-  let val=round5(defaultW*opt.ratio);
-  if(val<opt.startLo)val=opt.startLo;
-  if(val>opt.startHi)val=opt.startHi;
-  return val;
-}
-
-function weightHint(opt, block, dIdx){
-  const sets=getLastDaySets(opt.n,dIdx);
-  const u = opt.unit==='each' ? ' lbs each' : ' lbs';
-  if(!sets){
-    const smart=smartStart(opt,block,dIdx);
-    if(smart!=null){
-      return {cls:'start',text:'Start here: '+smart+u+'. Adjust on set one if it feels too heavy or light.'};
+/* Go up / Hold / Stay tip from the last session, or a first guess */
+function weightHint(name, sch, dIdx){
+  const x=EX[name], u=unitTxt(x.unit);
+  const last=lastSets(DATA.logs,name,dIdx);
+  if(last){
+    const sets=last.sets;
+    const avgW=round5(avg(sets.map(s=>s.weight)));
+    const avgR=avg(sets.map(s=>s.reps));
+    const avgRtxt=(Math.round(avgR*10)/10);
+    if(sch.tag==='deload'){
+      const e=Math.max(5,round5(avgW*0.8));
+      return {cls:'hold',w:e,text:'Easy week: about '+e+u+' (80 percent of last time). Stop 3 or more reps before it gets hard.'};
     }
-    if(opt.startLo===0){
-      return {cls:'start',text:'Start: bodyweight, or up to '+opt.startHi+u+' if it feels easy.'};
+    if(avgR>=sch.repHi){
+      return {cls:'up',w:avgW+x.step,text:'Go up: try '+(avgW+x.step)+u+'. Your sets averaged '+avgRtxt+' reps at ~'+avgW+u+'.'};
     }
-    return {cls:'start',text:'Start: try '+opt.startLo+'–'+opt.startHi+u+'. Pick where 8 reps feels solid.'};
+    if(avgR>=sch.repLo){
+      return {cls:'hold',w:avgW,text:'Hold ~'+avgW+u+'. Sets averaged '+avgRtxt+' reps. Build to '+sch.repHi+', then add weight.'};
+    }
+    return {cls:'hold',w:avgW,text:'Stay at ~'+avgW+u+'. Sets averaged '+avgRtxt+' reps — build to '+sch.repLo+'+ with clean form.'};
   }
-  const avgW=round5(avg(sets.map(s=>s.weight)));
-  const avgR=avg(sets.map(s=>s.reps));
-  const avgRtxt=(Math.round(avgR*10)/10);
-  if(avgR>=block.repHi){
-    return {cls:'up',text:'Go up: try '+(avgW+opt.step)+u+'. Your sets averaged '+avgRtxt+' reps at ~'+avgW+u+'.'};
+  const fg=famGuess(DATA.logs,name,dIdx);
+  if(fg)return {cls:'start',w:fg.w,text:'Start here: '+fg.w+u+' (from your '+fg.from+', est.). Adjust on set one.'};
+  const A=archLogs();
+  if(A){
+    const end=archEnd(A);
+    const al=lastSets(A,name,end);
+    if(al){
+      const aw=round5(avg(al.sets.map(s=>s.weight)));
+      return {cls:'start',w:aw,text:'Last block you used ~'+aw+u+'. Start there and adjust on set one.'};
+    }
+    const ag=famGuess(A,name,end);
+    if(ag)return {cls:'start',w:ag.w,text:'Start here: '+ag.w+u+' (from your old '+ag.from+', est.). Adjust on set one.'};
   }
-  if(avgR>=block.repLo){
-    return {cls:'hold',text:'Hold ~'+avgW+u+'. Sets averaged '+avgRtxt+' reps. Build to '+block.repHi+', then add weight.'};
-  }
-  return {cls:'hold',text:'Stay at ~'+avgW+u+'. Sets averaged '+avgRtxt+' reps — build to '+block.repLo+'+ with clean form.'};
+  if(x.lo===0)return {cls:'start',w:0,text:'Start: bodyweight, or up to '+x.hi+u+' if it feels easy.'};
+  return {cls:'start',w:x.lo,text:'Start: try '+x.lo+'–'+x.hi+u+'. Pick where '+sch.repLo+' reps feels solid.'};
 }
 /* fade note: last set drops 3+ reps below the average of the earlier sets */
-function fadeNote(opt,dIdx){
-  const sets=getLastDaySets(opt.n,dIdx);
+function fadeNote(name,dIdx){
+  const sets=getLastDaySets(name,dIdx);
   if(!sets||sets.length<2)return null;
   const last=sets[sets.length-1];
   const earlier=sets.slice(0,-1).map(s=>s.reps);
@@ -1665,69 +2072,85 @@ function fadeNote(opt,dIdx){
 }
 
 /* ---------- render plan ---------- */
-function setsBoxHTML(opt, block, dayId){
-  const e=exLog(dayId,opt.n);
-  while(e.sets.length<block.sets)e.sets.push({weight:'',reps:''});
-  const wlab = opt.unit==='each' ? 'WEIGHT (EACH)' : 'WEIGHT';
+function setsBoxHTML(name, sch, dayId){
+  const x=EX[name];
+  const e=exLog(dayId,name);
+  while(e.sets.length<sch.sets)e.sets.push({weight:'',reps:''});
+  const wlab = x.unit==='each' ? 'WEIGHT (EACH)' : (x.unit==='side' ? 'WEIGHT (PER SIDE)' : (x.hs ? 'WEIGHT (ALL PLATES)' : 'WEIGHT'));
   let h='<div class="setsbox">';
   for(let i=0;i<e.sets.length;i++){
     const st=e.sets[i]||{weight:'',reps:''};
-    const isBonus = i>=block.sets;
+    const isBonus = i>=sch.sets;
     h+=`<div class="setrow">
       <span class="setn">Set ${i+1}</span>
       <div class="field"><label>${wlab}</label>
         <input type="number" inputmode="decimal" placeholder="lbs"
-          data-day="${dayId}" data-ex="${opt.n}" data-set="${i}" data-f="weight" value="${st.weight||''}"></div>
+          data-day="${dayId}" data-ex="${name}" data-set="${i}" data-f="weight" value="${st.weight||''}"></div>
       <div class="field"><label>REPS</label>
         <input type="number" inputmode="numeric" placeholder="reps"
-          data-day="${dayId}" data-ex="${opt.n}" data-set="${i}" data-f="reps" value="${st.reps||''}"></div>`;
+          data-day="${dayId}" data-ex="${name}" data-set="${i}" data-f="reps" value="${st.reps||''}"></div>`;
     if(isBonus){
-      h+=`<button class="delset" data-delset="${dayId}|${opt.n}|${i}">&times;</button>`;
+      h+=`<button class="delset" data-delset="${dayId}|${name}|${i}" aria-label="Remove set">&times;</button>`;
     }
     h+=`</div>`;
   }
-  h+=`<button class="addset" data-addset="${dayId}|${opt.n}">+ Add Set</button>`;
+  h+=`<button class="addset" data-addset="${dayId}|${name}">+ Add Set</button>`;
   h+='</div>';
   return h;
 }
-function exHTML(block,blockKey,num,dayId,dIdx){
-  const opt=pickedOpt(block,dayId,blockKey);
-  const allowed=optsForLoc(block,dayLoc(dayId));
-  const e=exLog(dayId,opt.n);
-  const hint=weightHint(opt,block,dIdx);
-  const fade=fadeNote(opt,dIdx);
-  const logged=setsLogged(dayId,opt.n);
-  const totalSets=Math.max(block.sets, e.sets.length);
+function exHTML(block,blockKey,num,dayId,dIdx,w,d){
+  const sch=scheme(block,w);
+  const loc=dayLoc(dayId);
+  const name=pickedName(block,dayId,blockKey,w);
+  const x=EX[name];
+  const allowed=allowedOpts(block,loc);
+  const e=exLog(dayId,name);
+  const hint=weightHint(name,sch,dIdx);
+  const fade=fadeNote(name,dIdx);
+  const logged=setsLogged(dayId,name);
+  const totalSets=Math.max(sch.sets, e.sets.length);
   const open=e._open?true:false;
+  let tags='';
+  if(x.hs)tags+='<span class="extag hs">HAMMER</span>';
+  if(sch.tag==='push')tags+='<span class="extag push">PUSH LIFT</span>';
+  if(block.rot&&cycleOf(w)>1&&name===block.rot[cycleOf(w)-1])tags+='<span class="extag new">NEW MOVE</span>';
   let h=`<div class="ex ${open?'setsopen':''}">
     <div class="exname">
       <span class="exnum">${num}.</span>
-      <span class="extitle">${opt.n}</span>
+      <span class="extitle">${name}${tags}</span>
     </div>
-    <div class="exsets">${block.s}</div>`;
+    <div class="exsets">${sch.s} · Rest ${formatTime(block.rest)}</div>`;
   if(allowed.length>1){
+    const def=defaultName(block,loc,w);
+    const order=[def].concat(allowed.filter(n=>n!==def));
     h+=`<div class="expicker">
           <span>Swap:</span>
-          <select data-pick="${dayId}|${blockKey}">`;
-    allowed.forEach(o=>{
-      h+=`<option value="${o.n}"${o.n===opt.n?' selected':''}>${o.n}</option>`;
+          <select data-pick="${dayId}|${blockKey}" aria-label="Swap exercise">`;
+    order.forEach(n=>{
+      h+=`<option value="${n}"${n===name?' selected':''}>${n}</option>`;
     });
     h+=`</select></div>`;
   }
-  h+=`<div class="exnote">${block.note}</div>
-    <div class="exhint ${hint.cls}">${hint.text}</div>`;
+  h+=`<div class="exnote">${block.note}</div>`;
+  if(block.tip)h+=`<div class="extip">${block.tip}</div>`;
+  if(sch.tag==='push')h+=`<div class="exnote">Push lift for weeks 9-12: add weight when every set hits ${sch.repHi}.</div>`;
+  if(w===13&&d===2&&block.push)h+=`<div class="exfade">Progress test: after warm-up, do 1 set of as many clean reps as you can at your week 12 weight. Log it, then compare.</div>`;
+  h+=`<div class="exhint ${hint.cls}">${hint.text}</div>`;
+  if(loc==='home'&&x.unit==='each'&&hint.w>HOME_DB){
+    h+=`<div class="exflag">That is past your ${HOME_DB} lb home dumbbells. Use the barbell, a kettlebell, or do this one at the gym.</div>`;
+  }
   if(fade)h+=`<div class="exfade">${fade}</div>`;
-  h+=`<div class="setstoggle" data-settoggle="${dayId}|${opt.n}">
+  h+=`<div class="setstoggle" data-settoggle="${dayId}|${name}">
         <span class="stlabel">Log Sets</span>
         <span style="display:flex;align-items:center;">
           <span class="stinfo">${logged}/${totalSets} sets</span>
           <span class="stchev">&#9654;</span>
         </span>
       </div>`;
-  h+=setsBoxHTML(opt,block,dayId);
+  h+=setsBoxHTML(name,sch,dayId);
   if(block.rest){
     const restTxt = formatTime(block.rest);
-    h+=`<button class="resttimer" data-rest="${dayId}|${opt.n}|${block.rest}">
+    h+=`<button class="resttimer" data-rest="${dayId}|${name}|${block.rest}">
           <span class="rtlabel"><span class="rtdot"></span>Rest Timer</span>
           <span class="rttime">${restTxt}</span>
         </button>`;
@@ -1761,13 +2184,14 @@ function dayHTML(w,d){
           <button data-loc="home"${loc==='home'?' class="on"':''}>Home</button>
           <button data-loc="gym"${loc==='gym'?' class="on"':''}>Gym</button>
         </div>
-        <span class="dlocsub">${loc==='home'?'Home — DBs to 45 lb':'Rapid Fitness — full machines'}</span>
-      </div>
-      <div class="grouplabel">Core · 30 Min</div>`;
+        <span class="dlocsub">${loc==='home'?'Home — DBs to 45 lb, no machines':'Gym — Hammer Strength first'}</span>
+      </div>`;
+  if(w===13)h+=`<div class="weeknote">Easy week. Half the sets, lighter weight. Let your body catch up.</div>`;
+  h+=`<div class="grouplabel">Core · 30 Min</div>`;
   let num=1;
-  t.core.forEach((block,i)=>{ h+=exHTML(block,'core_'+i,num,dayId,dIdx); num++; });
+  t.core.forEach((block,i)=>{ h+=exHTML(block,'core_'+i,num,dayId,dIdx,w,d); num++; });
   h+=`<div class="grouplabel bonus">Bonus · 15 Min (if time)</div>`;
-  t.bonus.forEach((block,i)=>{ h+=exHTML(block,'bonus_'+i,num,dayId,dIdx); num++; });
+  t.bonus.forEach((block,i)=>{ h+=exHTML(block,'bonus_'+i,num,dayId,dIdx,w,d); num++; });
   h+=`<div class="daybtnwrap">
         <button class="donebtn" data-day="${dayId}">${done?'✓ Workout Done':'Mark Workout Done'}</button>
       </div>
@@ -1795,6 +2219,15 @@ function weekHTML(w){
   return h;
 }
 function renderPlan(){
+  const jp=document.getElementById('weekJump');
+  const jw=document.querySelector('#plan .jump'), pw=document.getElementById('printWeek');
+  if(jw)jw.style.display=MIG.pending?'none':'';
+  if(pw)pw.style.display=MIG.pending?'none':'';
+  if(MIG.pending){
+    document.getElementById('weeks').innerHTML='<div class="empty">Your new plan starts after the update. Use the box at the top to export a backup, then start v2.</div>';
+    jp.innerHTML='';
+    return;
+  }
   let h='';
   for(let w=1;w<=WEEKS;w++){
     if(DATA.showWeek===0 || DATA.showWeek===w){
@@ -1802,7 +2235,6 @@ function renderPlan(){
     }
   }
   document.getElementById('weeks').innerHTML=h;
-  const jp=document.getElementById('weekJump');
   jp.innerHTML='';
   const allOpt=document.createElement('option');
   allOpt.value=0;allOpt.textContent='All Weeks';
@@ -1904,12 +2336,19 @@ function renderAll(){
   renderPlan();renderWeigh();renderGoal();setPill(canSave);
   const intro=document.getElementById('introBox');
   if(intro)intro.style.display = DATA.introHidden ? 'none' : '';
+  renderCardio();renderMacros();
+  const pb=document.getElementById('pendBar');
+  if(pb)pb.classList.toggle('on',MIG.pending);
 }
 
 /* ---------- backup ---------- */
 function exportBackup(){
   try{
-    const blob=new Blob([JSON.stringify(DATA,null,2)],{type:'application/json'});
+    // while the update is waiting, export exactly what is stored (the untouched v1 data)
+    let txt;
+    if(MIG.pending&&MIG.raw){txt=JSON.stringify(JSON.parse(MIG.raw),null,2);}
+    else{txt=JSON.stringify(DATA,null,2);}
+    const blob=new Blob([txt],{type:'application/json'});
     const url=URL.createObjectURL(blob);
     const a=document.createElement('a');
     const d=new Date();
@@ -1922,25 +2361,31 @@ function exportBackup(){
     showBkMsg('Could not export. Try again.',false);
   }
 }
+/* load a backup object (v2, or an old v1 file which runs the v1 -> v2 migration) */
+function applyImport(obj){
+  if(!obj||typeof obj!=='object'||(!obj.logs&&!obj.weighIns&&!obj.schemaVersion))return 'bad';
+  const wasV1=!(obj.schemaVersion>=2);
+  DATA=migrateToV2(obj);
+  MIG.pending=false;MIG.raw=null;
+  closeModals();
+  fillDefaults();
+  migrateLogs();
+  saveData();
+  renderAll();
+  return wasV1?'v1':'v2';
+}
 function importBackup(file){
   const reader=new FileReader();
   reader.onload=()=>{
     try{
       const obj=JSON.parse(reader.result);
-      if(!obj||typeof obj!=='object'||(!obj.logs&&!obj.weighIns)){
+      const res=applyImport(obj);
+      if(res==='bad'){
         showBkMsg('That file does not look right. Pick a workout backup file.',false);
         return;
       }
-      DATA=obj;
-      if(!DATA.logs)DATA.logs={};
-      if(!DATA.weighIns)DATA.weighIns={};
-      if(!DATA.currentWeek)DATA.currentWeek=1;
-      if(DATA.showWeek===undefined)DATA.showWeek=0;
-      if(DATA.introHidden===undefined)DATA.introHidden=false;
-      migrateLogs();
-      saveData();
-      renderAll();
-      showBkMsg('Backup loaded. All your logs are back.',true);
+      if(res==='v1')showBkMsg('Old backup loaded. Its workouts are saved in the archive. The plan starts at Week 1.',true);
+      else showBkMsg('Backup loaded. All your logs are back.',true);
     }catch(e){
       showBkMsg('Could not read that file. Pick a workout backup file.',false);
     }
@@ -1949,9 +2394,10 @@ function importBackup(file){
   reader.readAsText(file);
 }
 function showBkMsg(msg,ok){
-  const el=document.getElementById('bkmsg');
-  el.textContent=msg;
-  el.style.color = ok ? 'var(--green)' : 'var(--red)';
+  document.querySelectorAll('.bkmsg').forEach(el=>{
+    el.textContent=msg;
+    el.style.color = ok ? 'var(--green)' : 'var(--red)';
+  });
 }
 
 /* ---------- rest timer ---------- */
@@ -2298,10 +2744,395 @@ function bindEvents(){
   });
 }
 
+/* ========== v2: shared small helpers ========== */
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function numVal(id){const el=document.getElementById(id);if(!el)return null;const v=parseFloat(el.value);return isNaN(v)?null:v;}
+function r1(n){return Math.round(n*10)/10;}
+function fmtN(n){return (n==null||n==='')?'—':String(r1(+n));}
+function addDaysISO(iso,n){const [y,m,d]=iso.split('-').map(Number);const dt=new Date(y,m-1,d);dt.setDate(dt.getDate()+n);return isoDate(dt);}
+function weekStartISO(){const d=new Date();d.setDate(d.getDate()-((d.getDay()+6)%7));return isoDate(d);} // Monday
+function monthStartISO(){const d=new Date();return isoDate(new Date(d.getFullYear(),d.getMonth(),1));}
+function validISO(v){return /^\d{4}-\d{2}-\d{2}$/.test(v||'');}
+function flashMsg(id,msg,ok){const el=document.getElementById(id);if(!el)return;el.textContent=msg;el.style.color=ok?'var(--green)':'var(--red)';}
+function statTile(v,l){return `<div class="stat"><div class="sv">${v}</div><div class="sl">${l}</div></div>`;}
+
+/* ========== CARDIO ========== */
+function paceTxt(mph){
+  if(!(mph>0))return '';
+  const secs=Math.round(3600/mph);
+  return Math.floor(secs/60)+':'+String(secs%60).padStart(2,'0')+' per mile';
+}
+function cardioCalcHint(){
+  const dur=numVal('cDur'), dist=numVal('cDist');
+  const p=document.getElementById('cPace'), h=document.getElementById('cCalc');
+  if(!p||!h)return;
+  if(dur>0&&dist>0){
+    const mph=dist/(dur/60);
+    p.placeholder=String(r1(mph));
+    h.textContent='Auto: '+r1(mph)+' mph ('+paceTxt(mph)+'). Leave speed blank to use it.';
+  }else{
+    p.placeholder='optional';
+    h.textContent='Fill in miles and minutes and the speed works itself out.';
+  }
+}
+function saveCardio(){
+  const di=document.getElementById('cDate');
+  const date=validISO(di.value)?di.value:todayISO();
+  const dur=numVal('cDur');
+  if(!(dur>0)){flashMsg('cMsg','Add the minutes first.',false);return;}
+  const dist=numVal('cDist');
+  let pace=numVal('cPace');
+  if(!(pace>0)&&dist>0)pace=r1(dist/(dur/60));
+  const eff=parseInt(document.getElementById('cEff').value);
+  DATA.cardioLog.push({
+    id:Date.now().toString(36), date:date, type:document.getElementById('cType').value,
+    duration:dur, distance:(dist>0?dist:null), pace:(pace>0?pace:null),
+    effort:isNaN(eff)?null:eff, cal:numVal('cCal'), notes:document.getElementById('cNotes').value.trim()
+  });
+  saveData();
+  ['cDur','cDist','cPace','cCal','cNotes'].forEach(id=>{document.getElementById(id).value='';});
+  document.getElementById('cEff').value='';
+  di.value=todayISO();
+  cardioCalcHint();
+  renderCardio();
+  flashMsg('cMsg','Saved.',true);
+}
+function cardioSum(from,to){
+  let mins=0,miles=0,n=0;
+  DATA.cardioLog.forEach(c=>{
+    if(c&&c.date>=from&&c.date<=to){mins+=(+c.duration||0);miles+=(+c.distance||0);n++;}
+  });
+  return {mins:r1(mins),miles:r1(miles),n:n};
+}
+function cardioChart(){
+  const W=320,H=150,padL=26,padR=8,padT=14,padB=20;
+  const today=todayISO();
+  const days=[];
+  for(let i=29;i>=0;i--){
+    const iso=addDaysISO(today,-i);let m=0;
+    DATA.cardioLog.forEach(c=>{if(c&&c.date===iso)m+=(+c.duration||0);});
+    days.push([iso,m]);
+  }
+  const top=Math.ceil(Math.max(30,...days.map(d=>d[1]))/15)*15;
+  const iw=W-padL-padR, ih=H-padT-padB, bw=iw/30;
+  const y=v=>padT+ih-(v/top)*ih;
+  let s=`<svg viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Cardio minutes per day for the last 30 days">`;
+  s+=`<line x1="${padL}" y1="${y(0)}" x2="${W-padR}" y2="${y(0)}" stroke="#4a443c" stroke-width="1"/>`;
+  s+=`<text x="${padL-4}" y="${y(top)+3}" fill="#bcb3a5" font-size="9" text-anchor="end">${top}</text>`;
+  s+=`<text x="${padL-4}" y="${y(0)+3}" fill="#bcb3a5" font-size="9" text-anchor="end">0</text>`;
+  s+=`<line x1="${padL}" y1="${y(30).toFixed(1)}" x2="${W-padR}" y2="${y(30).toFixed(1)}" stroke="#e0b25c" stroke-width="1" stroke-dasharray="4 3"/>`;
+  s+=`<text x="${W-padR}" y="${(y(30)-3).toFixed(1)}" fill="#e0b25c" font-size="9" text-anchor="end">30 min</text>`;
+  days.forEach(([iso,m],i)=>{
+    if(m>0){
+      s+=`<rect x="${(padL+i*bw+1).toFixed(1)}" y="${y(m).toFixed(1)}" width="${(bw-2).toFixed(1)}" height="${((m/top)*ih).toFixed(1)}" rx="2" fill="#ff4d4d"><title>${prettyDate(iso)}: ${r1(m)} min</title></rect>`;
+    }
+  });
+  s+=`<text x="${padL}" y="${H-5}" fill="#bcb3a5" font-size="9">${prettyDate(days[0][0])}</text>`;
+  s+=`<text x="${W-padR}" y="${H-5}" fill="#bcb3a5" font-size="9" text-anchor="end">Today</text>`;
+  s+='</svg>';
+  return s;
+}
+function renderCardio(){
+  const di=document.getElementById('cDate');
+  if(!di)return;
+  if(!di.value)di.value=todayISO();
+  if(!Array.isArray(DATA.cardioLog))return;
+  const today=todayISO();
+  const wk=cardioSum(weekStartISO(),today), mo=cardioSum(monthStartISO(),today);
+  const left=Math.max(0,r1(150-wk.mins));
+  document.getElementById('cWeek').innerHTML=
+    `<div class="stats">${statTile(wk.mins,'Minutes')}${statTile(wk.miles,'Miles')}${statTile(wk.n,'Sessions')}</div>
+     <div class="hint">Week runs Monday to Sunday. Goal: 150–300 min. ${wk.mins>=150?'You hit 150 this week.':left+' min to go for 150.'}</div>`;
+  document.getElementById('cMonth').innerHTML=
+    `<div class="stats">${statTile(mo.mins,'Minutes')}${statTile(mo.miles,'Miles')}${statTile(mo.n,'Sessions')}</div>
+     <div class="stats" style="margin-top:8px;grid-template-columns:1fr 1fr;">${statTile(mo.n?Math.round(mo.mins/mo.n):0,'Avg min / session')}${statTile(mo.n?r1(mo.miles/mo.n):0,'Avg miles / session')}</div>
+     <div class="hint">Since the 1st of this month.</div>`;
+  document.getElementById('cChart').innerHTML=cardioChart();
+  DATA.cardioLog.forEach((c,i)=>{if(c&&!c.id)c.id='c'+i;});
+  const list=DATA.cardioLog.filter(c=>c).slice().sort((a,b)=>{
+    if(a.date!==b.date)return a.date<b.date?1:-1;
+    return String(b.id).localeCompare(String(a.id));
+  }).slice(0,20);
+  document.getElementById('cList').innerHTML = list.length ? list.map(c=>{
+    let main=`<b>${esc(c.type)}</b> · ${fmtN(c.duration)} min`;
+    if(c.distance)main+=` · ${fmtN(c.distance)} mi`;
+    if(c.pace)main+=` · ${fmtN(c.pace)} mph`;
+    let sub=prettyDate(c.date);
+    if(c.effort)sub+=` · Effort ${c.effort}/10`;
+    if(c.cal)sub+=` · ${fmtN(c.cal)} cal`;
+    if(c.notes)sub+=` · ${esc(c.notes)}`;
+    return `<div class="citem"><div class="cmain">${main}<div class="csub">${sub}</div></div><button class="xbtn" data-cdel="${esc(c.id)}" aria-label="Delete">&times;</button></div>`;
+  }).join('') : '<div class="empty">No cardio yet. Log your first walk above.</div>';
+}
+
+/* ========== MACROS ========== */
+const MKEYS=['cal','pro','carb','fat','water'];
+/* one row per date; Add and quick-add buttons add to that row */
+function mRow(date,create){
+  let r=DATA.macroLog.find(x=>x&&x.date===date);
+  if(!r&&create){r={date:date,cal:0,pro:0,carb:0,fat:0,water:0,notes:''};DATA.macroLog.push(r);}
+  return r;
+}
+function macroDate(){const di=document.getElementById('mDate');return (di&&validISO(di.value))?di.value:todayISO();}
+function dayWord(d){return d===todayISO()?'today':prettyDate(d);}
+function macroAdd(add,note){
+  const d=macroDate();
+  const r=mRow(d,true);
+  MKEYS.forEach(k=>{r[k]=Math.max(0,r1((+r[k]||0)+(+add[k]||0)));});
+  if(note)r.notes=r.notes?r.notes+'; '+note:note;
+  saveData();
+  renderMacros();
+  ['mMsg','qMsg'].forEach(id=>flashMsg(id,'Added to '+dayWord(d)+'.',true));
+}
+function saveMacroForm(){
+  const add={cal:numVal('mCal'),pro:numVal('mPro'),carb:numVal('mCarb'),fat:numVal('mFat'),water:numVal('mWater')};
+  const note=document.getElementById('mNotes').value.trim();
+  if(MKEYS.every(k=>add[k]==null)&&!note){flashMsg('mMsg','Type at least one number.',false);return;}
+  macroAdd(add,note);
+  ['mCal','mPro','mCarb','mFat','mWater','mNotes'].forEach(id=>{document.getElementById(id).value='';});
+}
+function clearMacroDay(){
+  const d=macroDate();
+  const i=DATA.macroLog.findIndex(x=>x&&x.date===d);
+  if(i<0){flashMsg('mMsg','Nothing logged on '+dayWord(d)+'.',false);return;}
+  if(!confirm('Clear everything logged on '+dayWord(d)+'?'))return;
+  DATA.macroLog.splice(i,1);
+  saveData();
+  renderMacros();
+  flashMsg('mMsg','Cleared '+dayWord(d)+'.',true);
+}
+function saveTargets(){
+  const t={};
+  for(const k of MKEYS){
+    const v=numVal('t'+k[0].toUpperCase()+k.slice(1));
+    if(!(v>0)){flashMsg('tMsg','Every target needs a number above 0.',false);return;}
+    t[k]=v;
+  }
+  DATA.macroTargets=t;
+  saveData();
+  renderMacros();
+  flashMsg('tMsg','Targets saved.',true);
+}
+function macroStats(days){
+  const T=DATA.macroTargets, today=todayISO();
+  let n=0,cal=0,pro=0,hit=0;
+  for(let i=0;i<days;i++){
+    const x=mRow(addDaysISO(today,-i),false);
+    if(!x)continue;
+    n++;cal+=(+x.cal||0);pro+=(+x.pro||0);
+    if((+x.pro||0)>=0.9*T.pro)hit++;
+  }
+  return {n:n,cal:n?Math.round(cal/n):0,pro:n?Math.round(pro/n):0,hit:hit};
+}
+function renderMacros(){
+  const di=document.getElementById('mDate');
+  if(!di)return;
+  if(!di.value)di.value=todayISO();
+  if(!Array.isArray(DATA.macroLog)||!DATA.macroTargets)return;
+  const T=DATA.macroTargets, today=todayISO();
+  const d=macroDate();
+  const r=mRow(d,false)||{cal:0,pro:0,carb:0,fat:0,water:0,notes:''};
+  document.getElementById('mDayTitle').textContent = d===today ? 'Today' : prettyDate(d);
+  const rows=[['cal','Calories',''],['pro','Protein','g'],['carb','Carbs','g'],['fat','Fat','g'],['water','Water','oz']];
+  document.getElementById('mBars').innerHTML=rows.map(([k,lab,u])=>{
+    const v=+r[k]||0, t=+T[k]||0;
+    const pct=t>0?Math.min(100,v/t*100):0;
+    const ok=(k==='pro'&&t>0&&v>=0.9*t);
+    return `<div class="mbar"><div class="mrow"><span>${lab}</span><span>${fmtN(v)} / ${fmtN(t)}${u}</span></div>
+      <div class="track"><div class="fill${ok?' ok':''}" style="width:${pct.toFixed(1)}%"></div></div></div>`;
+  }).join('');
+  document.getElementById('mNotesLine').textContent = r.notes ? 'Notes: '+r.notes : 'Protein bar turns green at 90 percent of your target.';
+  // quick-add dinners from the meal plan (read only)
+  const mp=DATA.mealPlan, dn=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], tIdx=new Date().getDay();
+  const q=document.getElementById('mQuick');
+  if(mp&&Array.isArray(mp.dinners)&&mp.dinners.length){
+    q.innerHTML=mp.dinners.map((x,i)=>x?`<button class="qbtn${i===tIdx?' tonight':''}" data-qdin="${i}">
+        <b>${dn[i]||''}${i===tIdx?' · Tonight':''}</b> ${esc(x.n)}
+        <span class="qmac">+ ${x.cal||0} cal · ${x.pro||0}g pro · ${x.carb||0}g carb · ${x.fat||0}g fat</span></button>`:'').join('');
+  }else{
+    q.innerHTML='<div class="empty">Make a meal plan on the Meals tab to quick-add dinners here.</div>';
+  }
+  // last 7 days
+  let tr='', sum={cal:0,pro:0,carb:0,fat:0,water:0}, n=0;
+  for(let i=0;i<7;i++){
+    const iso=addDaysISO(today,-i), x=mRow(iso,false);
+    if(x){n++;MKEYS.forEach(k=>{sum[k]+=(+x[k]||0);});}
+    const hit=x&&(+x.pro||0)>=0.9*T.pro;
+    tr+=`<tr><td>${i===0?'Today':prettyDate(iso)}</td><td>${x?fmtN(x.cal):'—'}</td><td class="${hit?'hit':''}">${x?fmtN(x.pro):'—'}</td><td>${x?fmtN(x.carb):'—'}</td><td>${x?fmtN(x.fat):'—'}</td><td>${x?fmtN(x.water):'—'}</td></tr>`;
+  }
+  const av=k=>n?String(Math.round(sum[k]/n)):'—';
+  document.getElementById('m7').innerHTML=
+    `<table class="mtable"><tr><th>Day</th><th>Cal</th><th>Pro</th><th>Carb</th><th>Fat</th><th>Water</th></tr>${tr}
+     <tr class="avg"><td>Avg (${n} day${n===1?'':'s'})</td><td>${av('cal')}</td><td>${av('pro')}</td><td>${av('carb')}</td><td>${av('fat')}</td><td>${av('water')}</td></tr></table>
+     <div class="hint">Average counts only the days you logged.</div>`;
+  const s=macroStats(30);
+  document.getElementById('m30').innerHTML=
+    `<div class="stats" style="grid-template-columns:1fr 1fr;">${statTile(s.cal,'Avg calories')}${statTile(s.pro+'g','Avg protein')}${statTile(s.hit,'Protein days hit')}${statTile(s.n+' / 30','Days logged')}</div>
+     <div class="hint">A protein day counts as hit at 90 percent of your target or more.</div>`;
+  // targets (do not overwrite a box he is typing in)
+  MKEYS.forEach(k=>{
+    const el=document.getElementById('t'+k[0].toUpperCase()+k.slice(1));
+    if(el&&document.activeElement!==el)el.value=T[k];
+  });
+}
+
+/* ========== PRINT (plan week + 30-day macros; meal print is unchanged) ========== */
+let PX_AT=0;
+function doPrint(html){
+  document.getElementById('printArea').innerHTML=html;
+  document.body.classList.add('px');
+  PX_AT=Date.now();
+  window.print();
+}
+window.addEventListener('beforeprint',()=>{ if(Date.now()-PX_AT>3000)document.body.classList.remove('px'); });
+window.addEventListener('afterprint',()=>{ document.body.classList.remove('px'); PX_AT=0; });
+function printWeek(){
+  if(MIG.pending)return;
+  const w=DATA.showWeek||DATA.currentWeek||1;
+  let h=`<h1>Week ${w} — ${phase(w)}</h1><p>Cory Claussen · Mon / Wed / Fri · printed ${prettyDate(todayISO())}</p>`;
+  for(let d=0;d<3;d++){
+    const t=tplFor(w,d), dayId='w'+w+'d'+d, dIdx=dayIndex(w,d), loc=dayLoc(dayId);
+    h+=`<h2>${DAYS[d]} — ${t.name} (${loc==='gym'?'Gym':'Home'})</h2>
+      <table><tr><th>#</th><th>Exercise</th><th>Sets x reps</th><th>Rest</th><th>Weight tip</th><th>Done</th></tr>`;
+    const all=t.core.map((b,i)=>[b,'core_'+i]).concat(t.bonus.map((b,i)=>[b,'bonus_'+i]));
+    all.forEach(([b,key],i)=>{
+      const name=pickedName(b,dayId,key,w), sch=scheme(b,w), hint=weightHint(name,sch,dIdx);
+      h+=`<tr><td>${i+1}</td><td>${name}${key.indexOf('bonus')===0?' (bonus)':''}</td><td>${sch.s}</td><td>${formatTime(b.rest)}</td><td>${hint.text}</td><td></td></tr>`;
+    });
+    h+='</table>';
+  }
+  doPrint(h);
+}
+function printMacros(){
+  if(MIG.pending)return;
+  const T=DATA.macroTargets, today=todayISO(), s=macroStats(30);
+  let h=`<h1>Macros — Last 30 Days</h1><p>${prettyDate(addDaysISO(today,-29))} to ${prettyDate(today)} · Targets: ${T.cal} cal, ${T.pro}g protein, ${T.carb}g carbs, ${T.fat}g fat, ${T.water} oz water</p>
+    <table><tr><th>Date</th><th>Calories</th><th>Protein</th><th>Carbs</th><th>Fat</th><th>Water</th><th>Notes</th></tr>`;
+  for(let i=29;i>=0;i--){
+    const iso=addDaysISO(today,-i), x=mRow(iso,false);
+    if(!x)continue;
+    h+=`<tr><td>${prettyDate(iso)}</td><td>${fmtN(x.cal)}</td><td>${fmtN(x.pro)}</td><td>${fmtN(x.carb)}</td><td>${fmtN(x.fat)}</td><td>${fmtN(x.water)}</td><td>${esc(x.notes||'')}</td></tr>`;
+  }
+  h+=`</table><p>Days logged: ${s.n} of 30 · Avg calories: ${s.cal} · Avg protein: ${s.pro}g · Protein days hit (90 percent or more): ${s.hit}</p>`;
+  doPrint(h);
+}
+
+/* ========== v1 -> v2 reset flow ========== */
+function openModal(id){document.getElementById(id).classList.add('on');}
+function closeModals(){document.querySelectorAll('.modal').forEach(m=>m.classList.remove('on'));}
+function doMigrate(){
+  let src=null;
+  try{const raw=localStorage.getItem(STORE_KEY);if(raw)src=JSON.parse(raw);}catch(e){}
+  if(!src&&MIG.raw){try{src=JSON.parse(MIG.raw);}catch(e){}}
+  if(!src)src=DATA;
+  DATA=migrateToV2(src);
+  MIG.pending=false;MIG.raw=null;
+  fillDefaults();migrateLogs();loadMealPlan();
+  saveData();
+  closeModals();
+  renderAll();
+  window.scrollTo(0,0);
+}
+function startFlow(){ if(MIG.pending)openModal('mSafe'); }
+
+/* ========== v2 events (v1 bindEvents is unchanged) ========== */
+function bindV2(){
+  document.getElementById('safeYes').addEventListener('click',()=>{closeModals();openModal('mReset');});
+  document.getElementById('safeNo').addEventListener('click',()=>{closeModals();renderAll();});
+  document.getElementById('letsGo').addEventListener('click',doMigrate);
+  document.getElementById('pendGo').addEventListener('click',()=>openModal('mSafe'));
+  document.querySelectorAll('[data-exp]').forEach(b=>b.addEventListener('click',exportBackup));
+  document.querySelectorAll('[data-imp]').forEach(b=>b.addEventListener('click',()=>document.getElementById('impFile').click()));
+  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>document.body.classList.remove('px')));
+  document.getElementById('printWeek').addEventListener('click',printWeek);
+  // cardio
+  ['cDur','cDist'].forEach(id=>document.getElementById(id).addEventListener('input',cardioCalcHint));
+  document.getElementById('cSave').addEventListener('click',saveCardio);
+  document.getElementById('cList').addEventListener('click',e=>{
+    const b=e.target.closest('[data-cdel]');
+    if(!b)return;
+    if(!confirm('Delete this cardio entry?'))return;
+    DATA.cardioLog=DATA.cardioLog.filter(c=>!c||String(c.id)!==b.dataset.cdel);
+    saveData();renderCardio();
+  });
+  // macros
+  document.getElementById('mDate').addEventListener('change',renderMacros);
+  document.getElementById('mSave').addEventListener('click',saveMacroForm);
+  document.getElementById('mClear').addEventListener('click',clearMacroDay);
+  document.getElementById('mShake').addEventListener('click',()=>macroAdd({pro:25,cal:140},'Protein shake'));
+  document.getElementById('mCoffee').addEventListener('click',()=>macroAdd({pro:25,cal:140},'Coffee + protein'));
+  document.getElementById('mQuick').addEventListener('click',e=>{
+    const b=e.target.closest('[data-qdin]');
+    if(!b)return;
+    const x=DATA.mealPlan&&DATA.mealPlan.dinners&&DATA.mealPlan.dinners[parseInt(b.dataset.qdin)];
+    if(!x)return;
+    macroAdd({cal:x.cal,pro:x.pro,carb:x.carb,fat:x.fat},'Dinner: '+x.n);
+  });
+  document.getElementById('tSave').addEventListener('click',saveTargets);
+  document.getElementById('printMacros').addEventListener('click',printMacros);
+}
+
+/* ========== beef recipes: read only. Nothing here reads or writes saved data. ========== */
+const BEEF_RECIPES=[
+  {"id":"pot-roast","name":"Crockpot Pot Roast","cut":"roast","method":"crockpot","minutes":480,"timeText":"8 hr on Low","servings":6,"ingredients":["3 lb chuck or arm roast, thawed","4 medium potatoes, cut in chunks","4 carrots, cut in chunks","1 onion, cut in wedges","2 cups beef broth","1 tsp salt","1 tsp black pepper","1 tsp dried thyme"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Put the potatoes, carrots and onion in the crockpot. Set the roast on top.","Add the salt, pepper and thyme. Pour in the broth.","Cook on Low for 8 hours, until the meat pulls apart with a fork.","Check that the thickest part is at least 145 F, then rest 3 minutes before serving."],"protein":48,"calories":520},
+  {"id":"shredded-beef","name":"Shredded Beef Tacos","cut":"roast","method":"crockpot","minutes":480,"timeText":"8 hr on Low","servings":6,"ingredients":["3 lb chuck or arm roast, thawed","2 cups salsa","1 tbsp chili powder","2 tsp cumin","1 tsp garlic powder","1 tsp salt","12 small corn tortillas"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Put the roast in the crockpot. Rub it with the chili powder, cumin, garlic powder and salt.","Pour the salsa over the top. Cook on Low for 8 hours.","Check that the thickest part is at least 145 F, then rest 3 minutes.","Shred the meat with two forks and stir it into the juices.","Warm the tortillas and fill them."],"protein":48,"calories":540},
+  {"id":"italian-beef","name":"Crockpot Italian Beef","cut":"roast","method":"crockpot","minutes":480,"timeText":"8 hr on Low","servings":6,"ingredients":["3 lb rump or chuck roast, thawed","2 cups beef broth","1 cup sliced pepperoncini peppers with some juice","1 tbsp dried Italian seasoning","1 tsp garlic powder","1 tsp salt","6 hoagie rolls"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Put the roast in the crockpot. Add the seasoning, garlic powder, salt and broth.","Add the peppers and juice on top. Cook on Low for 8 hours.","Check that the thickest part is at least 145 F, then rest 3 minutes.","Shred or slice the meat thin and put it back in the juices.","Pile it on the rolls and spoon on some juice."],"protein":52,"calories":610},
+  {"id":"roast-stir-fry","name":"Roast Beef Stir Fry","cut":"roast","method":"quick","minutes":25,"timeText":"25 min","servings":4,"ingredients":["1.5 lb sirloin tip or rump roast, thawed","3 cups broccoli pieces","1/4 cup soy sauce","1/4 cup water","1 tbsp cornstarch","2 cloves garlic, minced","1 tsp ground ginger","2 tbsp oil"],"steps":["Slice the roast thin against the grain. Mix the soy sauce, water, cornstarch, garlic and ginger in a cup.","Heat 1 tbsp oil in a big hot pan. Cook the meat in 2 batches until browned and at least 145 F.","Move the meat to a plate and let it rest 3 minutes.","Add the rest of the oil and cook the broccoli 4 minutes.","Put the meat back, pour in the sauce and stir 1 minute until thick."],"protein":39,"calories":340},
+  {"id":"smothered-steak","name":"Smothered Steak and Onions","cut":"steak","method":"crockpot","minutes":360,"timeText":"6 hr on Low","servings":4,"ingredients":["2 lb round or sirloin steak, thawed","2 large onions, sliced","2 cups beef broth","2 tbsp flour","1 tsp salt","1 tsp black pepper","1 tsp garlic powder"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Mix the flour, salt, pepper and garlic powder. Rub it on the steak.","Put half the onions in the crockpot. Add the steak, then the rest of the onions.","Pour in the broth. Cook on Low for 6 hours.","Check that the thickest part is at least 145 F, then rest 3 minutes.","Spoon the onions and gravy over the top."],"protein":50,"calories":360},
+  {"id":"garlic-butter-steak","name":"Garlic Butter Skillet Steak","cut":"steak","method":"quick","minutes":20,"timeText":"20 min","servings":2,"ingredients":["2 steaks, 1 inch thick, 8 oz each, thawed","1 tbsp oil","2 tbsp butter","3 cloves garlic, minced","1/2 tsp salt","1/2 tsp black pepper"],"steps":["Pat the steaks dry. Season both sides with the salt and pepper.","Heat the oil in a heavy pan over high heat until it is very hot.","Cook the steaks about 5 minutes per side, until at least 145 F in the middle.","Turn the heat to low. Add the butter and garlic, and spoon it over the steaks for 1 minute.","Move the steaks to a plate and rest 3 minutes."],"protein":46,"calories":580},
+  {"id":"steak-and-eggs","name":"Steak and Eggs","cut":"steak","method":"quick","minutes":20,"timeText":"20 min","servings":2,"ingredients":["2 steaks, 1 inch thick, 8 oz each, thawed","4 eggs","1 tbsp oil","1 tbsp butter","1/2 tsp salt","1/2 tsp black pepper"],"steps":["Pat the steaks dry. Season both sides with the salt and pepper.","Heat the oil in a heavy pan over high heat until it is very hot.","Cook the steaks about 5 minutes per side, until at least 145 F in the middle.","Move the steaks to a plate and rest 3 minutes.","Melt the butter in the same pan. Fry the eggs until the whites are firm.","Serve each steak with two eggs."],"protein":58,"calories":680},
+  {"id":"pepper-steak","name":"Pepper Steak Skillet","cut":"steak","method":"quick","minutes":25,"timeText":"25 min","servings":4,"ingredients":["1.5 lb steak, thawed","2 bell peppers, sliced","1 onion, sliced","1/4 cup soy sauce","1/4 cup water","1 tbsp cornstarch","2 cloves garlic, minced","2 tbsp oil"],"steps":["Cut the steak in thin strips. Mix the soy sauce, water, cornstarch and garlic in a cup.","Heat 1 tbsp oil in a big hot pan. Cook the strips in 2 batches until browned and at least 145 F.","Move the meat to a plate and let it rest 3 minutes.","Add the rest of the oil. Cook the peppers and onion 5 minutes.","Put the meat back, pour in the sauce and stir 1 minute until thick."],"protein":36,"calories":420},
+  {"id":"crockpot-chili","name":"Crockpot Chili","cut":"ground","method":"crockpot","minutes":370,"timeText":"6 hr on Low, plus 10 min to brown","servings":6,"ingredients":["2 lb ground beef, thawed","1 onion, chopped","2 cans (15 oz) kidney beans, drained","1 can (14.5 oz) diced tomatoes","1 can (8 oz) tomato sauce","2 tbsp chili powder","2 tsp cumin","1 tsp salt"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Brown the ground beef and onion in a pan to 160 F. Drain the fat.","Put it in the crockpot. Add the beans, tomatoes, tomato sauce, chili powder, cumin and salt.","Stir and cook on Low for 6 hours."],"protein":36,"calories":450},
+  {"id":"sloppy-joes","name":"Crockpot Sloppy Joes","cut":"ground","method":"crockpot","minutes":250,"timeText":"4 hr on Low, plus 10 min to brown","servings":6,"ingredients":["2 lb ground beef, thawed","1 onion, chopped","1 cup ketchup","2 tbsp brown sugar","1 tbsp mustard","1 tbsp Worcestershire sauce","1 tsp salt","6 hamburger buns"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Brown the ground beef and onion in a pan to 160 F. Drain the fat.","Put it in the crockpot. Add the ketchup, brown sugar, mustard, Worcestershire sauce and salt.","Stir and cook on Low for 4 hours.","Spoon onto the buns."],"protein":32,"calories":490},
+  {"id":"taco-bowls","name":"Beef Taco Bowls","cut":"ground","method":"quick","minutes":20,"timeText":"20 min","servings":4,"ingredients":["1.5 lb ground beef, thawed","1 cup instant rice","1 can (15 oz) black beans, drained","1 tbsp chili powder","1 tsp cumin","1/2 tsp salt","1 cup shredded cheese","1 cup salsa"],"steps":["Make the rice the way the box says.","Brown the ground beef in a big pan to 160 F. Drain the fat.","Stir in the chili powder, cumin and salt. Cook 2 minutes.","Add the beans and warm them through.","Scoop the rice into 4 bowls. Top with the meat, cheese and salsa."],"protein":45,"calories":620},
+  {"id":"burger-rice-skillet","name":"Cheeseburger Rice Skillet","cut":"ground","method":"quick","minutes":30,"timeText":"30 min","servings":4,"ingredients":["1.5 lb ground beef, thawed","1 onion, chopped","1 cup long grain rice","2 cups beef broth","1/4 cup ketchup","1 tbsp mustard","1/2 tsp salt","1 cup shredded cheddar"],"steps":["Brown the ground beef and onion in a big deep pan to 160 F. Drain the fat.","Stir in the rice, broth, ketchup, mustard and salt. Bring it to a boil.","Cover, turn the heat to low and cook about 18 minutes, until the rice is soft.","Turn off the heat. Stir in the cheese and serve."],"protein":42,"calories":640},
+  {"id":"beef-stew","name":"Crockpot Beef Stew","cut":"stew","method":"crockpot","minutes":480,"timeText":"8 hr on Low","servings":6,"ingredients":["2.5 lb stew meat, thawed","3 medium potatoes, cubed","3 carrots, sliced","1 onion, chopped","2 cups beef broth","2 tbsp tomato paste","1 tsp salt","1 tsp black pepper","1 tsp dried thyme"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Put the potatoes, carrots and onion in the crockpot. Add the meat on top.","Stir the tomato paste, salt, pepper and thyme into the broth. Pour it in.","Cook on Low for 8 hours.","Check that the meat is at least 145 F, then rest 3 minutes before serving."],"protein":41,"calories":390},
+  {"id":"beef-tips","name":"Beef Tips and Gravy","cut":"stew","method":"crockpot","minutes":435,"timeText":"7 hr on Low, plus 15 min on High","servings":6,"ingredients":["2.5 lb stew meat, thawed","8 oz mushrooms, sliced","1 onion, chopped","2 cups beef broth","1 tbsp Worcestershire sauce","1 tsp salt","1 tsp black pepper","2 tbsp cornstarch","12 oz egg noodles"],"steps":["Make sure the meat is fully thawed. Never start from frozen.","Put the meat, mushrooms and onion in the crockpot.","Add the broth, Worcestershire sauce, salt and pepper. Cook on Low for 7 hours.","Check that the meat is at least 145 F, then rest 3 minutes.","Mix the cornstarch with 2 tbsp cold water. Stir it in and cook on High 15 minutes to thicken.","Boil the noodles the way the bag says. Spoon the beef tips and gravy over them."],"protein":48,"calories":540},
+  {"id":"chislic","name":"Chislic","cut":"stew","method":"quick","minutes":20,"timeText":"20 min","servings":4,"ingredients":["1.5 lb stew meat, thawed, cut in 1 inch cubes","1 cup oil for frying","2 tsp garlic salt","1 sleeve saltine crackers","Hot sauce on the side"],"steps":["Pat the cubes dry with a paper towel.","Heat the oil in a heavy pan until it is very hot, about 350 F.","Fry the cubes in small batches, 3 to 4 minutes, until browned and at least 145 F inside.","Move the cubes to a paper towel and toss with the garlic salt.","Let them rest 3 minutes.","Serve with saltine crackers and hot sauce on the side."],"protein":36,"calories":450},
+  {"id":"beef-bites","name":"Beef Bites and Peppers","cut":"stew","method":"quick","minutes":25,"timeText":"25 min","servings":4,"ingredients":["1.5 lb stew meat, thawed","2 bell peppers, chopped","1 onion, chopped","1/4 cup soy sauce","1/4 cup water","1 tbsp cornstarch","2 cloves garlic, minced","2 tbsp oil"],"steps":["Cut the meat in small half inch cubes so it stays tender. Mix the soy sauce, water, cornstarch and garlic in a cup.","Heat 1 tbsp oil in a big hot pan. Cook the cubes in 2 batches until browned and at least 145 F.","Move the meat to a plate and let it rest 3 minutes.","Add the rest of the oil. Cook the peppers and onion 5 minutes.","Put the meat back, pour in the sauce and stir 1 minute until thick."],"protein":36,"calories":360}
+];
+const RC_CUT_NAMES={roast:'Roast',steak:'Steak',ground:'Ground Beef',stew:'Stew / Chislic'};
+const RC_KIND_NAMES={crockpot:'Crockpot',quick:'Quick'};
+const RC_FILTER={cut:'all',kind:'all'};
+function recipeCard(r){
+  const li=a=>a.map(x=>'<li>'+esc(x)+'</li>').join('');
+  return '<details class="rccard" data-rcid="'+esc(r.id)+'"><summary>'
+    +'<div class="rcname">'+esc(r.name)+'</div>'
+    +'<div class="rctags"><span class="rctag '+esc(r.method)+'">'+esc(RC_KIND_NAMES[r.method])+'</span>'
+    +'<span class="rctag">'+esc(RC_CUT_NAMES[r.cut])+'</span></div>'
+    +'<div class="rcfacts">'+esc(r.timeText)+' · Serves '+esc(r.servings)+' · About '+esc(r.protein)+' g protein · About '+esc(r.calories)+' cal</div>'
+    +'</summary><div class="rcbody">'
+    +'<h3>Ingredients</h3><ul>'+li(r.ingredients)+'</ul>'
+    +'<h3>Steps</h3><ol>'+li(r.steps)+'</ol>'
+    +'<p class="rcest">Protein and calories are rough estimates per serving.</p>'
+    +'</div></details>';
+}
+function renderRecipes(){
+  const list=BEEF_RECIPES.filter(r=>(RC_FILTER.cut==='all'||r.cut===RC_FILTER.cut)&&(RC_FILTER.kind==='all'||r.method===RC_FILTER.kind));
+  document.getElementById('rcCount').textContent=list.length+(list.length===1?' recipe':' recipes');
+  document.getElementById('rcList').innerHTML=list.length?list.map(recipeCard).join(''):'<div class="empty">No recipes match. Try another filter.</div>';
+}
+function bindRecipes(){
+  [['rcCut','cut'],['rcKind','kind']].forEach(([id,key])=>{
+    const box=document.getElementById(id);
+    box.addEventListener('click',e=>{
+      const b=e.target.closest('[data-rc]');
+      if(!b)return;
+      RC_FILTER[key]=b.dataset.rc;
+      box.querySelectorAll('[data-rc]').forEach(x=>x.classList.toggle('on',x===b));
+      renderRecipes();
+    });
+  });
+  renderRecipes();
+}
+
 loadData();
 loadMealPlan();
 renderAll();
 bindEvents();
+bindV2();
+bindRecipes();
+startFlow();
 </script>
 </body>
 </html>
